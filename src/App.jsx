@@ -1,6 +1,6 @@
 import "./App.css";
 
-function App() {
+export function App() {
     let test;
 
     return <h1>test</h1>;

@@ -7,7 +7,7 @@
         "dev": "vite",
         "test": "vitest",
         "build": "vite build",
-        "lint": "eslint .",
+        "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview",
         "prepare": "husky install",
         "format": "prettier --write \"src/**/*.jsx\""

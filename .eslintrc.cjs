@@ -6,6 +6,7 @@ module.exports = {
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
         "plugin:react-hooks/recommended",
+        "plugin:jest-dom/recommended",
         "prettier",
     ],
     ignorePatterns: ["dist", ".eslintrc.cjs"],
@@ -18,5 +19,21 @@ module.exports = {
             { allowConstantExport: true },
         ],
         "no-unused-vars": "warn",
+
+        "spaced-comment": [
+            "error",
+            "always",
+            {
+                line: {
+                    markers: ["/"],
+                    exceptions: ["-", "+"],
+                },
+                block: {
+                    markers: ["!"],
+                    exceptions: ["*"],
+                    balanced: true,
+                },
+            },
+        ],
     },
 };

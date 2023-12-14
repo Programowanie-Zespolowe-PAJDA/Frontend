@@ -10,7 +10,7 @@ export default function Dummy() {
     return (
         <>
             <h1>{testReverse ? "tseT" : "Test"}</h1>
-            <button onClick={clickReverseHandler}>reverse</button>
+            <button>reverse</button>
         </>
     );
 }

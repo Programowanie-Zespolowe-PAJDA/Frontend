@@ -71,11 +71,21 @@ a:link {
 }
 .header-title p {
     font-size: 20px;
+    margin-bottom: 24px;
 }
-.header-title a:link {
+.header-title a:link,
+a:visited {
     background-color: lightgreen;
+    color: black;
     font-size: 18px;
     padding: 12px 24px;
+    border-radius: 12px;
+}
+.header-title a:hover {
+    background-color: rgb(109, 218, 109);
+}
+.header-title a:active {
+    background-color: rgb(83, 197, 83);
 }
 
 .goodbye {

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { getHello } from "./http";
 
-export default function TestGET() {
+export default function HelloGET() {
     const [text, setText] = useState("not yet");
     const [isFetching, setIsFetching] = useState(false);
     const [error, setError] = useState();

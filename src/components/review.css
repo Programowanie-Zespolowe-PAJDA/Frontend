@@ -1,0 +1,21 @@
+.review-form label,
+.review-form input {
+    display: block;
+}
+
+.star-rating {
+    list-style: none;
+    display: flex;
+}
+.star-rating li {
+    margin-right: 10px;
+}
+.star-rating button {
+    border: 0;
+    background-color: transparent;
+}
+
+.star-rating img {
+    width: 40px;
+    height: auto;
+}

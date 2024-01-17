@@ -7,6 +7,8 @@ export default function Navigation() {
             <nav className="main-nav">
                 <Link to="/">Home</Link>
                 <Link to="/tests">Tests</Link>
+                <Link to="/tip">Tip</Link>
+                <Link to="/thankyou">ThankYou</Link>
             </nav>
 
             <Outlet />

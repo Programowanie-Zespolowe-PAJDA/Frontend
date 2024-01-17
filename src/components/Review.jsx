@@ -57,6 +57,14 @@ export default function Review() {
         }));
     }
 
+    if (!searchParams.has("waiter")) {
+        return (
+            <>
+                <h2>Waiter not specified</h2>
+            </>
+        );
+    }
+
     return (
         <>
             <form

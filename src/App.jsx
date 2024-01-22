@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navigation from "./Pages/Navigation";
 import Tip from "./Pages/Tip";
 import ThankYou from "./Pages/ThankYou";
+import ReviewDisplay from "./components/ReviewDisplay";
 
 export function App() {
     return (
@@ -16,6 +17,7 @@ export function App() {
                         <Route path="tests" element={<Tests />} />
                         <Route path="tip" element={<Tip />} />
                         <Route path="thankyou" element={<ThankYou />} />
+                        <Route path="reviewList" element={<ReviewDisplay />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

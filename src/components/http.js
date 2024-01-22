@@ -9,3 +9,45 @@ export async function getHello() {
 
     return responseData;
 }
+
+export async function getReviews() {
+    // const response = await fetch("https://enapiwek-api.onrender.com/hello");
+    const response = await fetch("http://localhost:8080/review/read");
+    const responseData = await response.json();
+
+    if (!response.ok) {
+        throw new Error("Failed to GET response from /hello");
+    }
+
+    console.log(responseData);
+
+    return responseData;
+}
+
+export async function postReview(reviewData) {
+    const finalReviewData = {
+        id: 2,
+        rating: reviewData.rating,
+        comment: reviewData.comment,
+        clientName: reviewData.clientName,
+        hashRevID: "test1234",
+        userID: reviewData.userID,
+        createdAt: "",
+    };
+
+    console.log(finalReviewData);
+
+    const response = await fetch("http://localhost:8080/review/add", {
+        method: "POST",
+        body: JSON.stringify(reviewData),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    const responseData = await response.text();
+    console.log("responseData login");
+    console.log(responseData);
+
+    return responseData;
+}

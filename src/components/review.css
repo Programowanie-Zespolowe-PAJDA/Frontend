@@ -1,11 +1,31 @@
-.review-form label,
-.review-form input {
-    display: block;
+.review-container {
+    margin: 0 auto;
+    width: 500px;
+    background-color: gray;
 }
 
+.review-container {
+    text-align: center;
+}
+
+.review-form input {
+    display: block;
+    text-align: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 60%;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.review-form label {
+    font-weight: 600;
+    font-size: 20px;
+}
 .star-rating {
     list-style: none;
     display: flex;
+    justify-content: center;
 }
 .star-rating li {
     margin-right: 10px;
@@ -18,4 +38,44 @@
 .star-rating img {
     width: 40px;
     height: auto;
+}
+
+.tip-buttons-grid {
+    width: 50%;
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.tip-buttons-grid button:nth-child(1) {
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+.tip-buttons-grid button:nth-child(2) {
+    grid-row-start: 1;
+    grid-column-start: 2;
+    height: auto;
+}
+.tip-buttons-grid button:nth-child(3) {
+    grid-row-start: 2;
+    grid-column-start: 1;
+}
+.tip-buttons-grid button:nth-child(4) {
+    grid-row-start: 2;
+    grid-column-start: 2;
+}
+.tip-buttons-grid input {
+    width: 100%;
+    grid-row-start: 1;
+    grid-column-start: 3;
+    grid-row-end: 3;
+}
+.review-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+.review-button {
+    width: 100%;
+    font-size: 24px;
 }

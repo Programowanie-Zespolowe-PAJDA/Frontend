@@ -9,6 +9,7 @@ export default function Navigation() {
                 <Link to="/tests">Tests</Link>
                 <Link to="/tip">Tip</Link>
                 <Link to="/thankyou">ThankYou</Link>
+                <Link to="/reviewList">Review List</Link>
             </nav>
 
             <Outlet />

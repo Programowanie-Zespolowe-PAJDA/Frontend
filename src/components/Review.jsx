@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./review.css";
 import { useNavigate } from "react-router-dom";
+import { postReview } from "./http";
 
 export default function Review() {
     const navigate = useNavigate();
@@ -26,6 +27,8 @@ export default function Review() {
         console.log(reviewData);
 
         console.log(new Date());
+
+        postReview({ ...reviewData, userID: waiter });
 
         navigateToThankYou();
     }
@@ -66,7 +69,8 @@ export default function Review() {
     }
 
     return (
-        <>
+        <div className="review-container">
+            <h1>Recenzja</h1>
             <form
                 onSubmit={submitHandler}
                 onReset={resetHandler}
@@ -115,31 +119,52 @@ export default function Review() {
 
                 <section className="tip">
                     <label htmlFor="tip">tip</label>
-                    <button type="button" onClick={() => tipButtonHandler(5)}>
-                        5
-                    </button>
-                    <button type="button" onClick={() => tipButtonHandler(10)}>
-                        10
-                    </button>
-                    <button type="button" onClick={() => tipButtonHandler(20)}>
-                        20
-                    </button>
-                    <input
-                        id="tip"
-                        type="number"
-                        name="tip"
-                        onChange={(event) => inputHandler("tipAmount", event)}
-                        value={reviewData.tipAmount}
-                    />
+                    <div className="tip-buttons-grid">
+                        <button
+                            type="button"
+                            onClick={() => tipButtonHandler(0)}
+                        >
+                            0
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => tipButtonHandler(5)}
+                        >
+                            5
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => tipButtonHandler(10)}
+                        >
+                            10
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => tipButtonHandler(20)}
+                        >
+                            20
+                        </button>
+                        <input
+                            id="tip"
+                            type="number"
+                            name="tip"
+                            onChange={(event) =>
+                                inputHandler("tipAmount", event)
+                            }
+                            value={reviewData.tipAmount}
+                        />
+                    </div>
                 </section>
 
-                <button type="reset" className="button button-flat">
-                    Reset
-                </button>
-                <button type="submit" className="button">
-                    Send
-                </button>
+                <section className="review-buttons">
+                    <button type="reset" className="review-button reset">
+                        Reset
+                    </button>
+                    <button type="submit" className="review-button submit">
+                        Send
+                    </button>
+                </section>
             </form>
-        </>
+        </div>
     );
 }

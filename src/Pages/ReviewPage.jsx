@@ -1,6 +1,6 @@
 import Review from "../components/Review";
 
-export default function Tip() {
+export default function ReviewPage() {
     return (
         <>
             <Review />

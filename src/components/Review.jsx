@@ -64,107 +64,120 @@ export default function Review() {
         return (
             <>
                 <h2>Waiter not specified</h2>
+                <p>add ?waiter=xx to url</p>
             </>
         );
     }
 
     return (
-        <div className="review-container">
-            <h1>Recenzja</h1>
-            <form
-                onSubmit={submitHandler}
-                onReset={resetHandler}
-                className="review-form"
-            >
-                <label htmlFor="clientName">Your name</label>
-                <input
-                    id="clientName"
-                    type="clientName"
-                    name="clientName"
-                    onChange={(event) => inputHandler("clientName", event)}
-                    value={reviewData.clientName}
-                />
-
-                <label htmlFor="rating">Rating</label>
-                <ol className="star-rating">
-                    {[...Array(5)].map((a, index) => {
-                        index++;
-                        return (
-                            <li key={index}>
-                                <button
-                                    type="button"
-                                    onClick={() => ratingButtonHandler(index)}
-                                >
-                                    <img
-                                        src={
-                                            reviewData.rating >= index
-                                                ? "star.png"
-                                                : "star-empty.png"
-                                        }
-                                    />
-                                </button>
-                            </li>
-                        );
-                    })}
-                </ol>
-
-                <label htmlFor="comment">comment</label>
-                <input
-                    id="comment"
-                    type="comment"
-                    name="comment"
-                    onChange={(event) => inputHandler("comment", event)}
-                    value={reviewData.comment}
-                />
-
-                <section className="tip">
-                    <label htmlFor="tip">tip</label>
-                    <div className="tip-buttons-grid">
-                        <button
-                            type="button"
-                            onClick={() => tipButtonHandler(0)}
-                        >
-                            0
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => tipButtonHandler(5)}
-                        >
-                            5
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => tipButtonHandler(10)}
-                        >
-                            10
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => tipButtonHandler(20)}
-                        >
-                            20
-                        </button>
+        <div className="background">
+            <div className="review-container">
+                <h1 className="review-header">Recenzja</h1>
+                <form
+                    onSubmit={submitHandler}
+                    onReset={resetHandler}
+                    className="review-form"
+                >
+                    <section className="input-section">
+                        <label htmlFor="clientName">Twoje imie</label>
                         <input
-                            id="tip"
-                            type="number"
-                            name="tip"
+                            id="clientName"
+                            type="clientName"
+                            name="clientName"
                             onChange={(event) =>
-                                inputHandler("tipAmount", event)
+                                inputHandler("clientName", event)
                             }
-                            value={reviewData.tipAmount}
+                            value={reviewData.clientName}
                         />
-                    </div>
-                </section>
+                    </section>
 
-                <section className="review-buttons">
-                    <button type="reset" className="review-button reset">
-                        Reset
-                    </button>
-                    <button type="submit" className="review-button submit">
-                        Send
-                    </button>
-                </section>
-            </form>
+                    <section className="input-section">
+                        <label htmlFor="rating">Ocena</label>
+                        <ol className="star-rating">
+                            {[...Array(5)].map((a, index) => {
+                                index++;
+                                return (
+                                    <li key={index}>
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                ratingButtonHandler(index)
+                                            }
+                                        >
+                                            <img
+                                                src={
+                                                    reviewData.rating >= index
+                                                        ? "../../public/star.png"
+                                                        : "../../public/star-empty.png"
+                                                }
+                                            />
+                                        </button>
+                                    </li>
+                                );
+                            })}
+                        </ol>
+                    </section>
+
+                    <section className="input-section">
+                        <label htmlFor="comment">Komentarz</label>
+                        <input
+                            id="comment"
+                            type="comment"
+                            name="comment"
+                            onChange={(event) => inputHandler("comment", event)}
+                            value={reviewData.comment}
+                        />
+                    </section>
+
+                    <section className="input-section tip">
+                        <label htmlFor="tip">Napiwek</label>
+                        <div className="tip-buttons-grid">
+                            <button
+                                type="button"
+                                onClick={() => tipButtonHandler(0)}
+                            >
+                                0
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => tipButtonHandler(5)}
+                            >
+                                5
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => tipButtonHandler(10)}
+                            >
+                                10
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => tipButtonHandler(20)}
+                            >
+                                20
+                            </button>
+                            <input
+                                id="tip"
+                                type="number"
+                                name="tip"
+                                onChange={(event) =>
+                                    inputHandler("tipAmount", event)
+                                }
+                                value={reviewData.tipAmount}
+                            />
+                        </div>
+                    </section>
+
+                    <section className="review-buttons">
+                        <button type="reset" className="review-button reset">
+                            Reset
+                        </button>
+                        <button type="submit" className="review-button submit">
+                            Wyślij
+                        </button>
+                    </section>
+                </form>
+            </div>
         </div>
     );
 }

@@ -1,13 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
 import "./Navigation.css";
 
-export default function Navigation() {
+export default function NavigationDev() {
     return (
         <>
             <nav className="main-nav">
                 <div className="left-side">
                     <NavLink
-                        to="/"
+                        to=""
                         className={({ isActive }) =>
                             isActive ? "active" : undefined
                         }
@@ -16,12 +16,36 @@ export default function Navigation() {
                         Home
                     </NavLink>
                     <NavLink
-                        to="/dev"
+                        to="thankyou"
                         className={({ isActive }) =>
                             isActive ? "active" : undefined
                         }
                     >
-                        Dev
+                        ThankYou
+                    </NavLink>
+                    <NavLink
+                        to="review"
+                        className={({ isActive }) =>
+                            isActive ? "active" : undefined
+                        }
+                    >
+                        Review
+                    </NavLink>
+                    <NavLink
+                        to="review?waiter=602"
+                        className={({ isActive }) =>
+                            isActive ? "active" : undefined
+                        }
+                    >
+                        Review z kelnerem
+                    </NavLink>
+                    <NavLink
+                        to="reviewlist"
+                        className={({ isActive }) =>
+                            isActive ? "active" : undefined
+                        }
+                    >
+                        Review lista
                     </NavLink>
                 </div>
                 <div className="right-side">

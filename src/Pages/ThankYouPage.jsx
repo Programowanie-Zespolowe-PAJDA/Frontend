@@ -1,4 +1,4 @@
-export default function ThankYou() {
+export default function ThankYouPage() {
     return (
         <>
             <h2>Thank you</h2>

@@ -1,20 +1,16 @@
-import "./index.css";
+import "./HomePage.css";
+import { Link } from "react-router-dom";
 
-export default function Index() {
+export default function HomePage() {
     return (
         <div className="index">
-            <nav className="navigation">
-                {/* <p>eNapiwek</p> */}
-                <a href="#">Zaloguj się</a>
-            </nav>
-
             <div className="container">
                 <header className="main-header">
                     <img src="qr-code.jpg" alt="qr-code" />
                     <div className="header-title">
                         <h1>eNapiwek</h1>
                         <p>Aplikacja do napiwków QR</p>
-                        <a href="#">Zarejestruj się</a>
+                        <Link to="auth">Zarejestruj się</Link>
                     </div>
                 </header>
 
@@ -57,7 +53,6 @@ export default function Index() {
                 </section>
 
                 <section className="description">
-                    {/* <img src="qr-code.jpg" alt="qr-code" /> */}
                     <div>
                         <h3>eNapiwek</h3>
                         <p>

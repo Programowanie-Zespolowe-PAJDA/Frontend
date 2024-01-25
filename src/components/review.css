@@ -1,13 +1,32 @@
+:root {
+    --color-review: #333;
+    --color-review-stars: #999;
+    --color-review-button: #f1dc60;
+    --color-review-button-hover: #eede81;
+    --color-review-button-active: #e2cb47;
+}
+
+.background {
+    background-color: var(--color-review);
+    min-height: 100%;
+}
+
 .review-container {
     margin: 0 auto;
     width: 500px;
-    background-color: gray;
+    background-color: var(--color-description);
 }
 
 .review-container {
     text-align: center;
 }
-
+.review-header {
+    padding-top: var(--spacing-4);
+    padding-bottom: var(--spacing-6);
+}
+.input-section {
+    padding-bottom: var(--spacing-4);
+}
 .review-form input {
     display: block;
     text-align: center;
@@ -15,7 +34,7 @@
     margin: 0 auto;
     width: 60%;
     font-weight: 500;
-    font-size: 20px;
+    font-size: var(--font-5);
 }
 
 .review-form label {
@@ -26,6 +45,7 @@
     list-style: none;
     display: flex;
     justify-content: center;
+    background-color: var(--color-review-stars);
 }
 .star-rating li {
     margin-right: 10px;
@@ -46,36 +66,62 @@
     margin: 0 auto;
     grid-template-columns: 1fr 1fr 2fr;
     grid-template-rows: 1fr 1fr;
+    border: 2px solid black;
 }
 
+.tip-buttons-grid button {
+    border: 0;
+}
 .tip-buttons-grid button:nth-child(1) {
     grid-row-start: 1;
     grid-column-start: 1;
+    border-right: solid 2px var(--color-review);
+    border-bottom: solid 2px var(--color-review);
 }
 .tip-buttons-grid button:nth-child(2) {
     grid-row-start: 1;
     grid-column-start: 2;
     height: auto;
+    border-bottom: solid 2px var(--color-review);
+    border-right: solid 2px var(--color-review);
 }
 .tip-buttons-grid button:nth-child(3) {
     grid-row-start: 2;
     grid-column-start: 1;
+    border-right: solid 2px var(--color-review);
 }
 .tip-buttons-grid button:nth-child(4) {
     grid-row-start: 2;
     grid-column-start: 2;
+    border-right: solid 2px var(--color-review);
 }
 .tip-buttons-grid input {
     width: 100%;
     grid-row-start: 1;
     grid-column-start: 3;
     grid-row-end: 3;
+    border: 0;
+}
+.tip {
+    padding-bottom: var(--spacing-7);
 }
 .review-buttons {
     display: flex;
     justify-content: space-around;
 }
 .review-button {
+    background-color: var(--color-review-button);
     width: 100%;
     font-size: 24px;
+    border: 0;
+    border-top: var(--color-review) 2px solid;
+}
+.review-button:hover {
+    background-color: var(--color-review-button-hover);
+}
+.review-button:active {
+    background-color: var(--color-review-button-active);
+}
+.reset {
+    border-right: var(--color-review) 2px solid;
 }

@@ -1,6 +1,6 @@
 export async function getHello() {
-    // const response = await fetch("https://enapiwek-api.onrender.com/hello");
-    const response = await fetch("http://localhost:8080/hello");
+    const response = await fetch("https://enapiwek-api.onrender.com/hello");
+    // const response = await fetch("http://localhost:8080/hello");
     const responseData = await response.text();
 
     if (!response.ok) {
@@ -11,8 +11,10 @@ export async function getHello() {
 }
 
 export async function getReviews() {
-    // const response = await fetch("https://enapiwek-api.onrender.com/review/read");
-    const response = await fetch("http://localhost:8080/review/read");
+    const response = await fetch(
+        "https://enapiwek-api.onrender.com/review/read"
+    );
+    // const response = await fetch("http://localhost:8080/review/read");
     const responseData = await response.json();
 
     if (!response.ok) {
@@ -37,16 +39,17 @@ export async function postReview(reviewData) {
 
     console.log(finalReviewData);
 
-    const response = await fetch("http://localhost:8080/review/add", {
-        // const response = await fetch(
-        //     "https://enapiwek-api.onrender.com/review/add",
-        //     {
-        method: "POST",
-        body: JSON.stringify(reviewData),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
+    // const response = await fetch("http://localhost:8080/review/add", {
+    const response = await fetch(
+        "https://enapiwek-api.onrender.com/review/add",
+        {
+            method: "POST",
+            body: JSON.stringify(reviewData),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+    );
 
     const responseData = await response.text();
     console.log("responseData login");

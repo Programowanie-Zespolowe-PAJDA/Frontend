@@ -7,9 +7,10 @@ import NavigationDev from "./Pages/NavigationDev";
 import HomePage from "./Pages/HomePage";
 import AuthenticationPage from "./Pages/AuthenticationPage";
 import ErrorPage from "./Pages/ErrorPage";
-import ReviewPage from "./Pages/ReviewPage";
+import ReviewAddPage from "./Pages/ReviewPage";
 import ThankYouPage from "./Pages/ThankYouPage";
 import DisplayReviewsPage from "./Pages/DisplayReviewsPage";
+import DisplayUsersPage from "./Pages/DisplayUsersPage";
 
 const router = createBrowserRouter([
     {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
             { index: true, element: <HomePage /> },
             { path: "auth", element: <AuthenticationPage /> },
             { path: "thankyou", element: <ThankYouPage /> },
-            { path: "review", element: <ReviewPage /> },
+            { path: "review", element: <ReviewAddPage /> },
         ],
     },
     {
@@ -31,8 +32,9 @@ const router = createBrowserRouter([
             { index: true, element: <HomePage /> },
             { path: "auth", element: <AuthenticationPage /> },
             { path: "thankyou", element: <ThankYouPage /> },
-            { path: "review", element: <ReviewPage /> },
+            { path: "review", element: <ReviewAddPage /> },
             { path: "reviewlist", element: <DisplayReviewsPage /> },
+            { path: "userlist", element: <DisplayUsersPage /> },
         ],
     },
 ]);

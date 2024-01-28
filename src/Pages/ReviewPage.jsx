@@ -1,9 +1,9 @@
-import Review from "../components/Review";
+import ReviewAdd from "../components/ReviewAdd";
 
 export default function ReviewPage() {
     return (
         <>
-            <Review />
+            <ReviewAdd />
         </>
     );
 }

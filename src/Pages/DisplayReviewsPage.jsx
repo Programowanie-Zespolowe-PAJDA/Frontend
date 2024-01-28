@@ -1,4 +1,4 @@
-import ReviewDisplay from "../components/ReviewDisplay";
+import ReviewDisplay from "../components/ReviewList";
 
 export default function DisplayReviewsPage() {
     return <ReviewDisplay />;

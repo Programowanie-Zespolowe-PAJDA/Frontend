@@ -47,6 +47,14 @@ export default function NavigationDev() {
                     >
                         Review lista
                     </NavLink>
+                    <NavLink
+                        to="userlist"
+                        className={({ isActive }) =>
+                            isActive ? "active" : undefined
+                        }
+                    >
+                        Lista użytkowników
+                    </NavLink>
                 </div>
                 <div className="right-side">
                     <NavLink

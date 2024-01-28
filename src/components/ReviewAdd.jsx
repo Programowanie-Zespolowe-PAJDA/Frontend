@@ -3,6 +3,8 @@ import "./ReviewAdd.css";
 import { useNavigate } from "react-router-dom";
 import { postReview } from "./http";
 
+const TIPS_AMOUNT = [0, 5, 10, 20];
+
 export default function Review() {
     const navigate = useNavigate();
     const [reviewData, setReviewData] = useState({
@@ -95,18 +97,18 @@ export default function Review() {
                         <label htmlFor="rating">Ocena</label>
                         <ol className="star-rating">
                             {[...Array(5)].map((a, index) => {
-                                index++;
+                                const rating = index + 1;
                                 return (
-                                    <li key={index}>
+                                    <li key={rating}>
                                         <button
                                             type="button"
                                             onClick={() =>
-                                                ratingButtonHandler(index)
+                                                ratingButtonHandler(rating)
                                             }
                                         >
                                             <img
                                                 src={
-                                                    reviewData.rating >= index
+                                                    reviewData.rating >= rating
                                                         ? "../../public/star.png"
                                                         : "../../public/star-empty.png"
                                                 }
@@ -132,30 +134,19 @@ export default function Review() {
                     <section className="input-section tip">
                         <label htmlFor="tip">Napiwek</label>
                         <div className="tip-buttons-grid">
-                            <button
-                                type="button"
-                                onClick={() => tipButtonHandler(0)}
-                            >
-                                0
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => tipButtonHandler(5)}
-                            >
-                                5
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => tipButtonHandler(10)}
-                            >
-                                10
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => tipButtonHandler(20)}
-                            >
-                                20
-                            </button>
+                            {TIPS_AMOUNT.map((tipValue, index) => (
+                                <>
+                                    <button
+                                        key={index}
+                                        type="button"
+                                        onClick={() =>
+                                            tipButtonHandler(tipValue)
+                                        }
+                                    >
+                                        {tipValue}
+                                    </button>
+                                </>
+                            ))}
                             <input
                                 id="tip"
                                 type="number"

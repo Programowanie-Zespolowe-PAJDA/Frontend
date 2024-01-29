@@ -34,7 +34,7 @@
     --color-header-button: lightgreen;
     --color-header-button-hover: rgb(109, 218, 109);
     --color-header-button-click: rgb(83, 197, 83);
-    --color-footer: bisque;
+    --color-footer: rgb(56, 119, 54);
     --color-bad: orangered;
     --color-good: green;
     --color-description: rgb(247, 185, 72);
@@ -42,19 +42,19 @@
 }
 
 .container {
-    width: 800px;
+    width: 1000px;
     margin: 0 auto;
 }
 
 .index h2 {
     text-align: center;
-    font-size: var(--font-10);
+    font-size: var(--font-12);
     letter-spacing: -0.8px;
 }
 .index footer {
     background-color: var(--color-footer);
     font-size: var(--font-4);
-    padding: var(--spacing-4) var(--spacing-6);
+    padding: var(--spacing-6) var(--spacing-8);
 }
 .index a:link {
     display: inline-block;
@@ -65,7 +65,7 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    height: var(--spacing-8);
+    height: var(--spacing-8) var(--spacing-3);
     background-color: var(--color-nav);
 }
 .navigation a:link {
@@ -73,18 +73,21 @@
 }
 
 .main-header {
+    background: url("wall.jpg");
+    background-size: 100%;
+}
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--color-header);
-    padding: var(--spacing-8);
-    margin-bottom: var(--spacing-9);
+    padding: var(--spacing-11);
+    margin-bottom: var(--spacing-12);
 }
 .header-title {
     text-align: right;
 }
 .header-title h1 {
-    font-size: var(--font-14);
+    font-size: var(--font-15);
     font-weight: bold;
     letter-spacing: -3px;
 }
@@ -107,6 +110,9 @@
     background-color: var(--color-header-button-click);
 }
 
+.picture-points {
+    width: 300px;
+}
 .goodbye {
     display: flex;
     align-items: center;
@@ -130,7 +136,7 @@
 }
 .goodbye li {
     font-size: var(--font-7);
-    margin-bottom: var(--spacing-4);
+    margin-bottom: var(--spacing-5);
 }
 .goodbye li:last-child {
     margin-bottom: 0;
@@ -151,6 +157,7 @@
     font-size: var(--font-8);
     font-weight: 600;
     letter-spacing: var(--spacing-3);
+    margin-bottom: var(--spacing-5);
     text-align: center;
     color: var(--color-good);
     text-transform: uppercase;
@@ -160,7 +167,7 @@
 }
 .welcome li {
     font-size: var(--font-7);
-    margin-bottom: var(--spacing-4);
+    margin-bottom: var(--spacing-5);
 }
 .welcome span {
     color: var(--color-good);
@@ -172,9 +179,11 @@
     position: relative;
     display: flex;
     justify-content: center;
-    background: url(qr-code.jpg);
+    background: url(qr-plant.png);
+    background-size: contain;
+    background-repeat: no-repeat;
     margin-bottom: var(--spacing-9);
-    padding: var(--spacing-8) 0;
+    padding: var(--spacing-10) 0;
 }
 .description div {
     width: 500px;
@@ -187,6 +196,12 @@
     line-height: 1.6;
 }
 
+.picture-steps {
+    width: 250px;
+    position: absolute;
+    top: -25px;
+    left: var(--spacing-10);
+}
 .steps {
     margin-bottom: var(--spacing-9);
 }
@@ -210,11 +225,6 @@
     color: var(--color-good);
     margin-bottom: 0;
 }
-.steps-list-container img {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-}
 
 .trusted {
     margin-bottom: var(--spacing-7);
@@ -231,5 +241,21 @@
 }
 
 .contact {
+    padding-top: var(--spacing-6);
+    padding-bottom: var(--spacing-8);
     margin-bottom: var(--spacing-9);
+    text-align: center;
+    border-top: 2px solid var(--color-steps-border);
+    border-bottom: 2px solid var(--color-steps-border);
+}
+.contact h3 {
+    font-size: var(--font-8);
+}
+.contact p {
+    font-size: var(--font-6);
+}
+.contact textarea {
+    font-size: var(--font-6);
+    resize: none;
+    padding: var(--spacing-3) var(--spacing-5);
 }

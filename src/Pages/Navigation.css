@@ -1,6 +1,6 @@
 :root {
-    --color-nav: beige;
-    --color-nav-link: gray;
+    --color-nav: rgb(253, 242, 228);
+    --color-nav-link: transparent;
     --color-nav-link-current: orange;
 }
 
@@ -12,12 +12,15 @@
 .right-side,
 .left-side {
     display: flex;
-    gap: 10px;
+    gap: var(--spacing-3);
 }
 .main-nav a:link,
 .main-nav a:visited {
-    padding: var(--spacing-3) var(--spacing-5);
+    padding: var(--spacing-4) var(--spacing-6);
+    margin-top: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
     background-color: var(--color-nav-link);
+    border-radius: var(--spacing-3);
     color: black;
     text-decoration: none;
 }

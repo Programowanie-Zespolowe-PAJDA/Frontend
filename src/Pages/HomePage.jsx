@@ -1,23 +1,20 @@
-import "./index.css";
+import "./HomePage.css";
+import { Link } from "react-router-dom";
 
-export default function Index() {
+export default function HomePage() {
     return (
         <div className="index">
-            <nav className="navigation">
-                {/* <p>eNapiwek</p> */}
-                <a href="#">Zaloguj się</a>
-            </nav>
-
-            <div className="container">
-                <header className="main-header">
+            <header className="main-header">
+                <div className="container header-container">
                     <img src="qr-code.jpg" alt="qr-code" />
                     <div className="header-title">
                         <h1>eNapiwek</h1>
                         <p>Aplikacja do napiwków QR</p>
-                        <a href="#">Zarejestruj się</a>
+                        <Link to="auth">Zarejestruj się</Link>
                     </div>
-                </header>
-
+                </div>
+            </header>
+            <div className="container">
                 <section className="goodbye">
                     <div>
                         <h2>Razem z nami</h2>
@@ -34,11 +31,19 @@ export default function Index() {
                             </li>
                         </ul>
                     </div>
-                    <img src="qr-code.jpg" alt="qr-code" />
+                    <img
+                        src="waving-person.png"
+                        alt="waving-person"
+                        className="picture-points"
+                    />
                 </section>
 
                 <section className="welcome">
-                    <img src="qr-code.jpg" alt="qr-code" />
+                    <img
+                        src="happy-person.png"
+                        alt="happy-person"
+                        className="picture-points"
+                    />
                     <div>
                         <h2>Razem z nami</h2>
                         <p>Przywitaj</p>
@@ -57,7 +62,6 @@ export default function Index() {
                 </section>
 
                 <section className="description">
-                    {/* <img src="qr-code.jpg" alt="qr-code" /> */}
                     <div>
                         <h3>eNapiwek</h3>
                         <p>
@@ -75,7 +79,11 @@ export default function Index() {
                 <section className="steps">
                     <h2>Jak to działa?</h2>
                     <div className="steps-list-container">
-                        <img src="qr-code.jpg" alt="qr-code" />
+                        <img
+                            src="handshake.png"
+                            alt="handshake"
+                            className="picture-steps"
+                        />
                         <ol>
                             <li>Kelner daje kod QR klientowi</li>
                             <li>Klient skanuje kod QR</li>
@@ -96,12 +104,13 @@ export default function Index() {
                         <img src="qr-code.jpg" alt="qr-code" />
                     </div>
                 </section>
-
-                <section className="contact">
-                    <h3>Zainteresowany?</h3>
-                    <p>Napisz do nas aby dowiedzieć się szczegółów</p>
-                </section>
             </div>
+
+            <section className="contact">
+                <h3>Zainteresowany?</h3>
+                <p>Napisz do nas aby dowiedzieć się szczegółów</p>
+                <textarea id="story" name="story" rows="8" cols="60" />
+            </section>
 
             <footer>Wszelkie prawa zastrzeżone</footer>
         </div>

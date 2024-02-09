@@ -1,0 +1,6 @@
+.qr-container {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 30px 20px 1fr;
+    gap: 10px;
+}

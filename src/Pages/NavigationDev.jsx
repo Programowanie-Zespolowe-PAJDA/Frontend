@@ -40,6 +40,14 @@ export default function NavigationDev() {
                         Review z kelnerem
                     </NavLink>
                     <NavLink
+                        to="qr"
+                        className={({ isActive }) =>
+                            isActive ? "active" : undefined
+                        }
+                    >
+                        QR
+                    </NavLink>
+                    <NavLink
                         to="reviewlist"
                         className={({ isActive }) =>
                             isActive ? "active" : undefined

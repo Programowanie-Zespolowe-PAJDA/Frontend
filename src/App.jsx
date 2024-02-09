@@ -12,6 +12,8 @@ import ThankYouPage from "./Pages/ThankYouPage";
 import DisplayReviewsPage from "./Pages/DisplayReviewsPage";
 import DisplayUsersPage from "./Pages/DisplayUsersPage";
 
+import GenerateQRTestPage from "./Pages/GenerateQRTestPage";
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -33,6 +35,7 @@ const router = createBrowserRouter([
             { path: "auth", element: <AuthenticationPage /> },
             { path: "thankyou", element: <ThankYouPage /> },
             { path: "review", element: <ReviewAddPage /> },
+            { path: "qr", element: <GenerateQRTestPage /> },
             { path: "reviewlist", element: <DisplayReviewsPage /> },
             { path: "userlist", element: <DisplayUsersPage /> },
         ],

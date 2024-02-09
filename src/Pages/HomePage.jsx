@@ -89,7 +89,7 @@ export default function HomePage() {
                             <li>Klient skanuje kod QR</li>
                             <li>Klient pisze recenzję</li>
                             <li>Klient pisze napiwek</li>
-                            <li>Kelner ma pieniądze na kącie</li>
+                            <li>Kelner ma pieniądze na koncie</li>
                         </ol>
                     </div>
                 </section>

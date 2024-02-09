@@ -109,8 +109,8 @@ export default function Review() {
                                             <img
                                                 src={
                                                     reviewData.rating >= rating
-                                                        ? "../../public/star.png"
-                                                        : "../../public/star-empty.png"
+                                                        ? "/star.png"
+                                                        : "/star-empty.png"
                                                 }
                                             />
                                         </button>

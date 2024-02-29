@@ -2,41 +2,56 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import "./App.css";
 
-import Navigation from "./Pages/Navigation";
-import NavigationDev from "./Pages/NavigationDev";
-import HomePage from "./Pages/HomePage";
-import AuthenticationPage from "./Pages/AuthenticationPage";
-import ErrorPage from "./Pages/ErrorPage";
-import ReviewAddPage from "./Pages/ReviewPage";
-import ThankYouPage from "./Pages/ThankYouPage";
-import DisplayReviewsPage from "./Pages/DisplayReviewsPage";
-import DisplayUsersPage from "./Pages/DisplayUsersPage";
+import HomePage from "./Pages/Home";
+import AuthenticationPage from "./Pages/Authentication";
+import ErrorPage from "./Pages/Error";
+import ReviewAddPage, { reviewAddAction } from "./Pages/Review";
+import ThankYouPage from "./Pages/ThankYou";
+import DisplayReviewsPage, {
+    reviewDisplayAction,
+} from "./Pages/DisplayReviews";
+import DisplayUsersPage from "./Pages/DisplayUsers";
 
-import GenerateQRTestPage from "./Pages/GenerateQRTestPage";
+import GenerateQRTestPage from "./Pages/GenerateQRTest";
+import RootLayout from "./Pages/Root";
+
+export const LOCAL = true;
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Navigation />,
+        element: <RootLayout />,
         errorElement: <ErrorPage />,
         children: [
             { index: true, element: <HomePage /> },
             { path: "auth", element: <AuthenticationPage /> },
             { path: "thankyou", element: <ThankYouPage /> },
-            { path: "review", element: <ReviewAddPage /> },
+            {
+                path: "review/:waiterId",
+                element: <ReviewAddPage />,
+                action: reviewAddAction,
+            },
         ],
     },
     {
         path: "/dev",
-        element: <NavigationDev />,
+        element: <RootLayout dev={true} />,
         errorElement: <ErrorPage />,
         children: [
             { index: true, element: <HomePage /> },
             { path: "auth", element: <AuthenticationPage /> },
             { path: "thankyou", element: <ThankYouPage /> },
-            { path: "review", element: <ReviewAddPage /> },
+            {
+                path: "review/:waiterId",
+                element: <ReviewAddPage />,
+                action: reviewAddAction,
+            },
             { path: "qr", element: <GenerateQRTestPage /> },
-            { path: "reviewlist", element: <DisplayReviewsPage /> },
+            {
+                path: "reviewlist",
+                element: <DisplayReviewsPage />,
+                loader: reviewDisplayAction,
+            },
             { path: "userlist", element: <DisplayUsersPage /> },
         ],
     },

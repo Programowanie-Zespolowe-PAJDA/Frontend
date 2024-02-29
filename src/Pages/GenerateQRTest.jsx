@@ -1,7 +1,7 @@
 import QRCode from "react-qr-code";
 import { useRef, useState } from "react";
 
-import "./GenerateQRPage.css";
+import "./GenerateQR.css";
 
 export default function GenerateQRTestPage() {
     const [url, setUrl] = useState("http://localhost/review?waiter=602");

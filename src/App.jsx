@@ -15,7 +15,7 @@ import DisplayUsersPage from "./Pages/DisplayUsers";
 import GenerateQRTestPage from "./Pages/GenerateQRTest";
 import RootLayout from "./Pages/Root";
 
-export const LOCAL = true;
+export const LOCAL = false;
 
 const router = createBrowserRouter([
     {

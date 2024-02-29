@@ -1,7 +1,7 @@
 import QRCode from "react-qr-code";
 import { useRef, useState } from "react";
 
-import "./GenerateQR.css";
+import classes from "./GenerateQR.module.css";
 
 export default function GenerateQRTestPage() {
     const [url, setUrl] = useState("http://localhost/review?waiter=602");
@@ -12,16 +12,10 @@ export default function GenerateQRTestPage() {
     };
 
     return (
-        <>
-            <div className="qr-container">
-                <input
-                    ref={urlInput}
-                    type={"text"}
-                    placeholder={"Wklej link"}
-                />
-                <button onClick={handleClick}>Generate QR Code</button>
-                <QRCode value={url}></QRCode>
-            </div>
-        </>
+        <div className={classes.qrContainer}>
+            <input ref={urlInput} type={"text"} placeholder={"Wklej link"} />
+            <button onClick={handleClick}>Generate QR Code</button>
+            <QRCode value={url}></QRCode>
+        </div>
     );
 }

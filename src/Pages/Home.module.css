@@ -29,45 +29,45 @@
     color: var(--color-nav-link);
 }
 
-.main-header {
+.mainHeader {
     background: url("wall.jpg");
     background-size: 100%;
 }
-.header-container {
+.headerContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-11);
     margin-bottom: var(--spacing-12);
 }
-.header-title {
+.headerTitle {
     text-align: right;
 }
-.header-title h1 {
+.headerTitle h1 {
     font-size: var(--font-15);
     font-weight: bold;
     letter-spacing: -3px;
 }
-.header-title p {
+.headerTitle p {
     font-size: var(--font-6);
     margin-bottom: var(--spacing-6);
 }
-.header-title a:link,
-.header-title a:visited {
+.headerTitle a:link,
+.headerTitle a:visited {
     background-color: var(--color-header-button);
     color: black;
     font-size: var(--font-5);
     padding: var(--spacing-4) var(--spacing-6);
     border-radius: 12px;
 }
-.header-title a:hover {
+.headerTitle a:hover {
     background-color: var(--color-header-button-hover);
 }
-.header-title a:active {
+.headerTitle a:active {
     background-color: var(--color-header-button-click);
 }
 
-.picture-points {
+.picturePoints {
     width: 300px;
 }
 .goodbye {
@@ -153,7 +153,7 @@
     line-height: 1.6;
 }
 
-.picture-steps {
+.pictureSteps {
     width: 250px;
     position: absolute;
     top: -25px;
@@ -165,20 +165,20 @@
 .steps h2 {
     margin-bottom: var(--spacing-7);
 }
-.steps-list-container {
+.stepsListContainer {
     position: relative;
 }
-.steps-list-container ol {
+.stepsListContainer ol {
     list-style: none;
     text-align: right;
 }
-.steps-list-container li {
+.stepsListContainer li {
     padding: var(--spacing-5) var(--spacing-7);
     border: 3px solid var(--color-steps-border);
     margin-bottom: var(--spacing-4);
     font-size: var(--font-6);
 }
-.steps-list-container li:last-child {
+.stepsListContainer li:last-child {
     color: var(--color-good);
     margin-bottom: 0;
 }
@@ -189,7 +189,7 @@
 .trusted h2 {
     margin-bottom: var(--spacing-7);
 }
-.trusted-grid {
+.trustedGrid {
     display: grid;
     justify-content: center;
     grid-template-columns: auto auto;

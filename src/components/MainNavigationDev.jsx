@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
-import "./MainNavigation.css";
+import classes from "./MainNavigation.module.css";
 
 export default function MainNavigationDev() {
     return (
-        <nav className="main-nav">
-            <div className="left-side">
+        <nav className={classes.mainNav}>
+            <div className={classes.leftSide}>
                 <NavLink
                     to=""
                     className={({ isActive }) =>
-                        isActive ? "active" : undefined
+                        isActive ? classes.active : undefined
                     }
                     end
                 >
@@ -17,7 +17,7 @@ export default function MainNavigationDev() {
                 <NavLink
                     to="thankyou"
                     className={({ isActive }) =>
-                        isActive ? "active" : undefined
+                        isActive ? classes.active : undefined
                     }
                 >
                     ThankYou
@@ -25,7 +25,7 @@ export default function MainNavigationDev() {
                 <NavLink
                     to="review/602"
                     className={({ isActive }) =>
-                        isActive ? "active" : undefined
+                        isActive ? classes.active : undefined
                     }
                 >
                     Review Add Test
@@ -33,7 +33,7 @@ export default function MainNavigationDev() {
                 <NavLink
                     to="qr"
                     className={({ isActive }) =>
-                        isActive ? "active" : undefined
+                        isActive ? classes.active : undefined
                     }
                 >
                     QR
@@ -41,7 +41,7 @@ export default function MainNavigationDev() {
                 <NavLink
                     to="reviewlist"
                     className={({ isActive }) =>
-                        isActive ? "active" : undefined
+                        isActive ? classes.active : undefined
                     }
                 >
                     Review lista
@@ -49,17 +49,17 @@ export default function MainNavigationDev() {
                 <NavLink
                     to="userlist"
                     className={({ isActive }) =>
-                        isActive ? "active" : undefined
+                        isActive ? classes.active : undefined
                     }
                 >
                     Lista użytkowników
                 </NavLink>
             </div>
-            <div className="right-side">
+            <div className={classes.rightSide}>
                 <NavLink
                     to="auth"
                     className={({ isActive }) =>
-                        isActive ? "active" : undefined
+                        isActive ? classes.active : undefined
                     }
                 >
                     Login

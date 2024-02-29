@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
-import "./MainNavigation.css";
+import classes from "./MainNavigation.module.css";
 
 export default function MainNavigation() {
     return (
-        <nav className="main-nav">
-            <div className="left-side">
+        <nav className={classes.mainNav}>
+            <div className={classes.leftSide}>
                 <NavLink
                     to="/"
                     className={({ isActive }) =>
-                        isActive ? "active" : undefined
+                        isActive ? classes.active : undefined
                     }
                     end
                 >
@@ -17,17 +17,17 @@ export default function MainNavigation() {
                 <NavLink
                     to="/dev"
                     className={({ isActive }) =>
-                        isActive ? "active" : undefined
+                        isActive ? classes.active : undefined
                     }
                 >
                     Dev
                 </NavLink>
             </div>
-            <div className="right-side">
+            <div className={classes.rightSide}>
                 <NavLink
                     to="auth"
                     className={({ isActive }) =>
-                        isActive ? "active" : undefined
+                        isActive ? classes.active : undefined
                     }
                 >
                     Login

@@ -9,39 +9,43 @@ body {
     height: 100%;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 body {
     font-family: "Inter", sans-serif;
 }
 
 :root {
-    --spacing-1: 2px;
-    --spacing-2: 4px;
-    --spacing-3: 8px;
-    --spacing-4: 12px;
-    --spacing-5: 16px;
-    --spacing-6: 24px;
-    --spacing-7: 32px;
-    --spacing-8: 48px;
-    --spacing-9: 64px;
-    --spacing-10: 80px;
-    --spacing-11: 96px;
-    --spacing-12: 128px;
+    --spacing-1: 0.2rem;
+    --spacing-2: 0.4rem;
+    --spacing-3: 0.8rem;
+    --spacing-4: 1.2rem;
+    --spacing-5: 1.6rem;
+    --spacing-6: 2.4rem;
+    --spacing-7: 3.2rem;
+    --spacing-8: 4.8rem;
+    --spacing-9: 6.4rem;
+    --spacing-10: 8rem;
+    --spacing-11: 9.6rem;
+    --spacing-12: 12.8rem;
 
-    --font-1: 10px;
-    --font-2: 12px;
-    --font-3: 14px;
-    --font-4: 16px;
-    --font-5: 18px;
-    --font-6: 20px;
-    --font-7: 24px;
-    --font-8: 30px;
-    --font-9: 36px;
-    --font-10: 44px;
-    --font-11: 52px;
-    --font-12: 62px;
-    --font-13: 74px;
-    --font-14: 86px;
-    --font-15: 98px;
+    --font-1: 1rem;
+    --font-2: 1.2rem;
+    --font-3: 1.4rem;
+    --font-4: 1.6rem;
+    --font-5: 1.8rem;
+    --font-6: 2rem;
+    --font-7: 2.4rem;
+    --font-8: 3rem;
+    --font-9: 3.6rem;
+    --font-10: 4.4rem;
+    --font-11: 5.2rem;
+    --font-12: 6.2rem;
+    --font-13: 7.4rem;
+    --font-14: 8.6rem;
+    --font-15: 9.8rem;
 
     --color-background: #eee;
     --color-text: black;

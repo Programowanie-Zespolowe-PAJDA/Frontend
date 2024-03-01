@@ -9,15 +9,13 @@ export default function HomePage() {
                     className={`${classes.container} ${classes.headerContainer}`}
                 >
                     <img src="qr-code.jpg" alt="qr-code" />
-                    <div className={classes.headerTitle}>
-                        <h1>eNapiwek</h1>
-                        <p>Aplikacja do napiwków QR</p>
-                        <Link to="auth">Zarejestruj się</Link>
-                    </div>
+                    <h1>eNapiwek</h1>
+                    <p>Aplikacja do napiwków QR</p>
+                    <Link to="auth">Zarejestruj się</Link>
                 </div>
             </header>
             <div className={classes.container}>
-                <section className={classes.goodbye}>
+                <section className={classes.comparison}>
                     <div>
                         <h2>Razem z nami</h2>
                         <p>Pożegnaj</p>
@@ -40,7 +38,7 @@ export default function HomePage() {
                     />
                 </section>
 
-                <section className={classes.welcome}>
+                <section className={`${classes.comparison} ${classes.good}`}>
                     <img
                         src="happy-person.png"
                         alt="happy-person"
@@ -111,7 +109,7 @@ export default function HomePage() {
             <section className={classes.contact}>
                 <h3>Zainteresowany?</h3>
                 <p>Napisz do nas aby dowiedzieć się szczegółów</p>
-                <textarea id="story" name="story" rows="8" cols="60" />
+                <textarea id="story" name="story" />
             </section>
 
             <footer>Wszelkie prawa zastrzeżone</footer>

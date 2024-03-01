@@ -31,7 +31,7 @@
 }
 
 .mainHeader {
-    background: url("wall.jpg");
+    background: url("/wall.jpg");
     background-repeat: repeat-x;
     background-size: contain;
 }
@@ -125,7 +125,7 @@
     position: relative;
     display: flex;
     justify-content: center;
-    background: url(qr-plant.png);
+    background: url("/qr-plant.png");
     background-size: contain;
     background-repeat: no-repeat;
     margin-bottom: var(--spacing-9);

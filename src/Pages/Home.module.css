@@ -247,8 +247,9 @@
     }
     .headerContainer {
         padding-bottom: var(--spacing-8);
+        padding-top: var(--spacing-8);
         grid-template-columns: 25rem 1fr;
-        grid-template-rows: 2fr 1fr 1fr;
+        grid-template-rows: 1fr 0.5fr 1fr;
 
         background-size: contain;
     }
@@ -258,8 +259,11 @@
     .headerContainer h1 {
         font-size: var(--font-15);
         grid-column: 1 / span 2;
-        align-self: center;
+        align-self: end;
         justify-self: center;
+    }
+    .picturePoints {
+        max-width: 15rem;
     }
     .pictureSteps {
         max-width: 20rem;

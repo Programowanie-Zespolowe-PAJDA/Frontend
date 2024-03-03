@@ -9,6 +9,63 @@ body {
     height: 100%;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 body {
     font-family: "Inter", sans-serif;
+}
+
+:root {
+    --spacing-1: 0.2rem;
+    --spacing-2: 0.4rem;
+    --spacing-3: 0.8rem;
+    --spacing-4: 1.2rem;
+    --spacing-5: 1.6rem;
+    --spacing-6: 2.4rem;
+    --spacing-7: 3.2rem;
+    --spacing-8: 4.8rem;
+    --spacing-9: 6.4rem;
+    --spacing-10: 8rem;
+    --spacing-11: 9.6rem;
+    --spacing-12: 12.8rem;
+
+    --font-1: 1rem;
+    --font-2: 1.2rem;
+    --font-3: 1.4rem;
+    --font-4: 1.6rem;
+    --font-5: 1.8rem;
+    --font-6: 2rem;
+    --font-7: 2.4rem;
+    --font-8: 3rem;
+    --font-9: 3.6rem;
+    --font-10: 4.4rem;
+    --font-11: 5.2rem;
+    --font-12: 6.2rem;
+    --font-13: 7.4rem;
+    --font-14: 8.6rem;
+    --font-15: 9.8rem;
+
+    --color-background: #eee;
+    --color-text: black;
+    --color-header: lightgray;
+    --color-header-button: lightgreen;
+    --color-header-button-hover: rgb(109, 218, 109);
+    --color-header-button-click: rgb(83, 197, 83);
+    --color-footer: rgb(56, 119, 54);
+    --color-bad: orangered;
+    --color-good: green;
+    --color-description: rgb(247, 185, 72);
+    --color-steps-border: gray;
+
+    --color-nav: rgb(253, 242, 228);
+    --color-nav-link: transparent;
+    --color-nav-link-current: orange;
+
+    --color-review: #333;
+    --color-review-stars: #999;
+    --color-review-button: #f1dc60;
+    --color-review-button-hover: #eede81;
+    --color-review-button-active: #e2cb47;
 }

@@ -1,21 +1,16 @@
-:root {
-    --color-nav: rgb(253, 242, 228);
-    --color-nav-link: transparent;
-    --color-nav-link-current: orange;
-}
-
-.main-nav {
+.mainNav {
     background-color: var(--color-nav);
     display: flex;
     justify-content: space-between;
 }
-.right-side,
-.left-side {
+.rightSide,
+.leftSide {
     display: flex;
     gap: var(--spacing-3);
 }
-.main-nav a:link,
-.main-nav a:visited {
+.mainNav a:link,
+.mainNav a:visited {
+    font-size: var(--font-4);
     padding: var(--spacing-4) var(--spacing-6);
     margin-top: var(--spacing-3);
     margin-bottom: var(--spacing-3);
@@ -24,7 +19,7 @@
     color: black;
     text-decoration: none;
 }
-.main-nav a:link.active,
-.main-nav a:visited.active {
+.mainNav a:link.active,
+.mainNav a:visited.active {
     background-color: var(--color-nav-link-current);
 }

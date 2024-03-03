@@ -1,21 +1,21 @@
-import "./HomePage.css";
+import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
     return (
-        <div className="index">
-            <header className="main-header">
-                <div className="container header-container">
+        <div className={classes.index}>
+            <header className={classes.mainHeader}>
+                <div
+                    className={`${classes.container} ${classes.headerContainer}`}
+                >
                     <img src="qr-code.jpg" alt="qr-code" />
-                    <div className="header-title">
-                        <h1>eNapiwek</h1>
-                        <p>Aplikacja do napiwków QR</p>
-                        <Link to="auth">Zarejestruj się</Link>
-                    </div>
+                    <h1>eNapiwek</h1>
+                    <p>Aplikacja do napiwków QR</p>
+                    <Link to="auth">Zarejestruj się</Link>
                 </div>
             </header>
-            <div className="container">
-                <section className="goodbye">
+            <div className={classes.container}>
+                <section className={classes.comparison}>
                     <div>
                         <h2>Razem z nami</h2>
                         <p>Pożegnaj</p>
@@ -34,15 +34,15 @@ export default function HomePage() {
                     <img
                         src="waving-person.png"
                         alt="waving-person"
-                        className="picture-points"
+                        className={classes.picturePoints}
                     />
                 </section>
 
-                <section className="welcome">
+                <section className={`${classes.comparison} ${classes.good}`}>
                     <img
                         src="happy-person.png"
                         alt="happy-person"
-                        className="picture-points"
+                        className={classes.picturePoints}
                     />
                     <div>
                         <h2>Razem z nami</h2>
@@ -61,7 +61,7 @@ export default function HomePage() {
                     </div>
                 </section>
 
-                <section className="description">
+                <section className={classes.description}>
                     <div>
                         <h3>eNapiwek</h3>
                         <p>
@@ -76,13 +76,13 @@ export default function HomePage() {
                     </div>
                 </section>
 
-                <section className="steps">
+                <section className={classes.steps}>
                     <h2>Jak to działa?</h2>
-                    <div className="steps-list-container">
+                    <div className={classes.stepsListContainer}>
                         <img
                             src="handshake.png"
                             alt="handshake"
-                            className="picture-steps"
+                            className={classes.pictureSteps}
                         />
                         <ol>
                             <li>Kelner daje kod QR klientowi</li>
@@ -94,10 +94,10 @@ export default function HomePage() {
                     </div>
                 </section>
 
-                <section className="trusted">
+                <section className={classes.trusted}>
                     <h2>Zaufali nam</h2>
 
-                    <div className="trusted-grid">
+                    <div className={classes.trustedGrid}>
                         <img src="qr-code.jpg" alt="qr-code" />
                         <img src="qr-code.jpg" alt="qr-code" />
                         <img src="qr-code.jpg" alt="qr-code" />
@@ -106,10 +106,10 @@ export default function HomePage() {
                 </section>
             </div>
 
-            <section className="contact">
+            <section className={classes.contact}>
                 <h3>Zainteresowany?</h3>
                 <p>Napisz do nas aby dowiedzieć się szczegółów</p>
-                <textarea id="story" name="story" rows="8" cols="60" />
+                <textarea id="story" name="story" />
             </section>
 
             <footer>Wszelkie prawa zastrzeżone</footer>

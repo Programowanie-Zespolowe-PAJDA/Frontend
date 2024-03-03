@@ -21,6 +21,8 @@ After downloading this repository for the first time, you must install needed mo
 
 -   npm install
 
+To switch between local and production communication, change LOCAL in App.jsx
+
 List of useful commands:
 
 -   npm run dev - launches project locally where changes are applied in real-time

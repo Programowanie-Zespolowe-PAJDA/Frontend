@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { getReviews } from "./http";
 import "./List.css";
 
 const EXAMPLE_DATA = [

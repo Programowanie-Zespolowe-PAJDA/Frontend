@@ -3,7 +3,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 
 import HomePage from "./Pages/Home";
-import AuthenticationPage from "./Pages/Authentication";
+import AuthenticationPage from "./Pages/AuthenticationPage.jsx";
+import { action as authAction } from "./components/auth/Auth.js";
 import ErrorPage from "./Pages/Error";
 import ReviewAddPage, { reviewAddAction } from "./Pages/Review";
 import ThankYouPage from "./Pages/ThankYou";
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             { index: true, element: <HomePage /> },
-            { path: "auth", element: <AuthenticationPage /> },
+            {
+                path: "auth",
+                element: <AuthenticationPage />,
+                action: authAction,
+            },
             { path: "thankyou", element: <ThankYouPage /> },
             {
                 path: "review/:waiterId",

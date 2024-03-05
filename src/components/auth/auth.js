@@ -15,16 +15,22 @@ export async function action({ request }) {
         body: JSON.stringify(authData),
     });
 
-    console.log(response);
-
-    //TODO: better error handling
     if (response.status !== 200) {
         return redirect("?retry=true");
     }
 
-    const responseBody = await response.json();
-    console.log(responseBody);
+    const responseJson = await response.json();
 
-    localStorage.setItem("token", responseBody.token);
-    return redirect("/");
+    localStorage.setItem("token", responseJson.token);
+    console.log("Logged in");
+    return redirect("/dev");
+}
+
+export function getAuthToken() {
+    const token = localStorage.getItem("token");
+    return token;
+}
+
+export function tokenLoader() {
+    return getAuthToken();
 }

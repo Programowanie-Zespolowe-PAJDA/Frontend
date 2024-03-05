@@ -4,17 +4,8 @@ import { useRef, useState } from "react";
 import classes from "./GenerateQR.module.css";
 
 export default function GenerateQRTestPage() {
-    const [url, setUrl] = useState("http://localhost/review?waiter=602");
-    const urlInput = useRef();
-
-    const handleClick = () => {
-        setUrl(urlInput.current.value);
-    };
-
     return (
         <div className={classes.qrContainer}>
-            <input ref={urlInput} type={"text"} placeholder={"Wklej link"} />
-            <button onClick={handleClick}>Generate QR Code</button>
             <QRCode value={url}></QRCode>
         </div>
     );

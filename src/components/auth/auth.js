@@ -1,4 +1,5 @@
 import { redirect } from "react-router-dom";
+import { getBackendUrl } from "../../util/LocalUrlGeneration.js";
 
 export async function action({ request }) {
     const data = await request.formData();
@@ -7,7 +8,7 @@ export async function action({ request }) {
         password: data.get("password"),
     };
 
-    const response = await fetch("http://localhost:8080/login", {
+    const response = await fetch(getBackendUrl() + "/login", {
         method: "post",
         headers: {
             "Content-Type": "application/json",

@@ -18,8 +18,9 @@ import DisplayUsersPage from "./Pages/DisplayUsers";
 import GenerateQRTestPage from "./Pages/GenerateQRTest";
 import RootLayout from "./Pages/Root";
 import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
+import UserInfo from "./Pages/UserInfo.jsx";
 
-export const LOCAL = true;
+export const LOCAL = false;
 
 const router = createBrowserRouter([
     {
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
                         <DisplayUsersPage />{" "}
                     </ProtectedRoute>
                 ),
+            },
+            {
+                path: "userInfo",
+                element: <UserInfo></UserInfo>,
             },
         ],
     },

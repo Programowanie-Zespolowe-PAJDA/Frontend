@@ -64,14 +64,16 @@ export default function MainNavigationDev() {
                         Lista użytkowników
                     </NavLink>
                 )}
-                <NavLink
-                    to="userpanel"
-                    className={({ isActive }) =>
-                        isActive ? classes.active : undefined
-                    }
-                >
-                    Panel użytkownika
-                </NavLink>
+                {token && (
+                    <NavLink
+                        to="userpanel"
+                        className={({ isActive }) =>
+                            isActive ? classes.active : undefined
+                        }
+                    >
+                        Panel użytkownika
+                    </NavLink>
+                )}
             </div>
             {token && (
                 <div className={classes.rightSide}>

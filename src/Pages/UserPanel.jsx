@@ -2,26 +2,31 @@ import Comments from "../components/UserPanel/Comments";
 import TipChart from "../components/UserPanel/TipChart";
 import TipInfo from "../components/UserPanel/TipInfo";
 import UserRating from "../components/UserPanel/UserRating";
+import { getAuthToken } from "../components/auth/auth";
+import { getBackendUrl } from "../util/LocalUrlGeneration";
 import classes from "./UserPanel.module.css";
+import { useLoaderData } from "react-router-dom";
 
 import happyPersonImg from "/happy-person.png";
 
 const EXAMPLE_COMMENTS = [
     {
-        user: "Agnieszka",
+        clientName: "Agnieszka",
         comment: "Bardzo dobre",
     },
     {
-        user: "Adam",
+        clientName: "Adam",
         comment: "Podoba mi sie bardzo to jedzonko",
     },
     {
-        user: "Ewa",
+        clientName: "Ewa",
         comment: "Skibidi toilet",
     },
 ];
 
 export default function UserPanelPage() {
+    const comments = useLoaderData();
+
     return (
         <div className={classes.container}>
             <header className={classes.header}>
@@ -60,8 +65,29 @@ export default function UserPanelPage() {
             </section>
             <section className={classes.comments}>
                 <h2>Komentarze</h2>
-                <Comments commentList={EXAMPLE_COMMENTS} />
+                <Comments commentList={comments} />
             </section>
         </div>
     );
+}
+
+export async function userPanelLoader() {
+    const token = getAuthToken();
+    const fetchUrl = getBackendUrl() + "/review/owner";
+
+    const response = await fetch(fetchUrl, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+    const responseData = await response.json();
+
+    if (!response.ok) {
+        throw new Error("Failed to GET response from /review/read");
+    }
+
+    console.log("komentarze");
+    console.log(responseData);
+
+    return responseData;
 }

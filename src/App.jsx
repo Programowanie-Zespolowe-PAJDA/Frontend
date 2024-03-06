@@ -11,7 +11,7 @@ import ErrorPage from "./Pages/Error";
 import ReviewAddPage, { reviewAddAction } from "./Pages/Review";
 import ThankYouPage from "./Pages/ThankYou";
 import DisplayReviewsPage, {
-    reviewDisplayAction,
+    reviewDisplayLoader,
 } from "./Pages/DisplayReviews";
 import DisplayUsersPage from "./Pages/DisplayUsers";
 
@@ -19,9 +19,9 @@ import GenerateQRTestPage from "./Pages/GenerateQRTest";
 import RootLayout from "./Pages/Root";
 import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
 import UserInfo from "./Pages/UserInfo.jsx";
-import UserPanelPage from "./Pages/UserPanel";
+import UserPanelPage, { userPanelLoader } from "./Pages/UserPanel";
 
-export const LOCAL = false;
+export const LOCAL = true;
 
 const router = createBrowserRouter([
     {
@@ -79,7 +79,7 @@ const router = createBrowserRouter([
                         <DisplayReviewsPage />{" "}
                     </ProtectedRoute>
                 ),
-                loader: reviewDisplayAction,
+                loader: reviewDisplayLoader,
             },
             {
                 path: "userlist",
@@ -94,7 +94,11 @@ const router = createBrowserRouter([
                 path: "userInfo",
                 element: <UserInfo></UserInfo>,
             },
-            { path: "userpanel", element: <UserPanelPage /> },
+            {
+                path: "userpanel",
+                element: <UserPanelPage />,
+                loader: userPanelLoader,
+            },
         ],
     },
 ]);

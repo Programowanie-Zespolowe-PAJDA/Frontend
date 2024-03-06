@@ -73,7 +73,7 @@
     padding: var(--spacing-6) var(--spacing-8);
 }
 .comments li {
-    box-shadow: 0 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
     padding: var(--spacing-4) var(--spacing-6);
     margin-bottom: var(--spacing-6);
 }

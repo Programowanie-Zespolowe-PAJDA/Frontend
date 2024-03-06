@@ -14,6 +14,7 @@ import DisplayUsersPage from "./Pages/DisplayUsers";
 
 import GenerateQRTestPage from "./Pages/GenerateQRTest";
 import RootLayout from "./Pages/Root";
+import UserPanelPage from "./Pages/UserPanel";
 
 export const LOCAL = false;
 
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
                 loader: reviewDisplayAction,
             },
             { path: "userlist", element: <DisplayUsersPage /> },
+            { path: "userpanel", element: <UserPanelPage /> },
         ],
     },
 ]);

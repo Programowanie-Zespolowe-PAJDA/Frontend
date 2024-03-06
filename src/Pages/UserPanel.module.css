@@ -1,0 +1,89 @@
+.container {
+    max-width: 100rem;
+    padding: 0 var(--spacing-8);
+    margin: 0 auto;
+}
+.container h2 {
+    font-size: var(--font-10);
+    margin-bottom: var(--spacing-6);
+}
+.container section {
+    margin-bottom: var(--spacing-10);
+}
+
+.headerLine {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-7);
+}
+.headerLine h1 {
+    font-size: var(--font-13);
+}
+.headerLine hr {
+    flex-grow: 1;
+    border: 0;
+    border-bottom: 0.1rem solid var(--color-text);
+}
+
+.earnings {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.earnings ol {
+    list-style: none;
+    text-align: center;
+}
+.earnings h3 {
+    font-size: var(--font-9);
+    color: var(--color-nav-link-current);
+    padding: var(--spacing-4) var(--spacing-11);
+    margin-bottom: var(--spacing-4);
+    border-bottom: 0.1rem solid var(--color-text);
+}
+.earnings span {
+    font-size: var(--font-6);
+    color: var(--color-text);
+}
+.earnings p {
+    font-size: var(--font-5);
+}
+.earnings img {
+    width: 15rem;
+}
+.earnings ol {
+    list-style: none;
+    text-align: center;
+}
+.earnings li {
+    margin-bottom: var(--spacing-6);
+}
+
+.rating ol {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+}
+.rating img {
+    width: 10rem;
+}
+
+.comments ol {
+    list-style: none;
+    padding: var(--spacing-6) var(--spacing-8);
+}
+.comments li {
+    box-shadow: 0 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+    padding: var(--spacing-4) var(--spacing-6);
+    margin-bottom: var(--spacing-6);
+}
+.comments li:last-child {
+    margin-bottom: 0;
+}
+.comments h3 {
+    font-size: var(--font-7);
+}
+.comments p {
+    font-size: var(--font-5);
+    margin: var(--spacing-4) var(--spacing-6);
+}

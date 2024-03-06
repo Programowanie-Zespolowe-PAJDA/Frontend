@@ -54,6 +54,14 @@ export default function MainNavigationDev() {
                 >
                     Lista użytkowników
                 </NavLink>
+                <NavLink
+                    to="userpanel"
+                    className={({ isActive }) =>
+                        isActive ? classes.active : undefined
+                    }
+                >
+                    Panel użytkownika
+                </NavLink>
             </div>
             <div className={classes.rightSide}>
                 <NavLink

@@ -9,16 +9,19 @@
     gap: var(--spacing-3);
 }
 .mainNav a:link,
-.mainNav a:visited {
+.mainNav a:visited,
+.logoutButton {
     font-size: var(--font-4);
     padding: var(--spacing-4) var(--spacing-6);
     margin-top: var(--spacing-3);
     margin-bottom: var(--spacing-3);
     background-color: var(--color-nav-link);
     border-radius: var(--spacing-3);
+    border: none;
     color: black;
     text-decoration: none;
 }
+
 .mainNav a:link.active,
 .mainNav a:visited.active {
     background-color: var(--color-nav-link-current);

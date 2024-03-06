@@ -3,7 +3,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 
 import HomePage from "./Pages/Home";
-import AuthenticationPage from "./Pages/Authentication";
+import AuthenticationPage from "./Pages/AuthenticationPage.jsx";
+import { action as authAction } from "./components/auth/auth.js";
+import { action as logoutAction } from "./components/auth/Logout.jsx";
+import { tokenLoader } from "./components/auth/auth.js";
 import ErrorPage from "./Pages/Error";
 import ReviewAddPage, { reviewAddAction } from "./Pages/Review";
 import ThankYouPage from "./Pages/ThankYou";
@@ -14,6 +17,8 @@ import DisplayUsersPage from "./Pages/DisplayUsers";
 
 import GenerateQRTestPage from "./Pages/GenerateQRTest";
 import RootLayout from "./Pages/Root";
+import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
+import UserInfo from "./Pages/UserInfo.jsx";
 
 export const LOCAL = false;
 
@@ -36,23 +41,58 @@ const router = createBrowserRouter([
     {
         path: "/dev",
         element: <RootLayout dev={true} />,
-        errorElement: <ErrorPage />,
+        // errorElement: <ErrorPage />,
+        loader: tokenLoader,
+        id: "root",
         children: [
             { index: true, element: <HomePage /> },
-            { path: "auth", element: <AuthenticationPage /> },
+            {
+                path: "auth",
+                element: <AuthenticationPage />,
+                action: authAction,
+            },
+            {
+                path: "logout",
+                action: logoutAction,
+            },
             { path: "thankyou", element: <ThankYouPage /> },
             {
                 path: "review/:waiterId",
                 element: <ReviewAddPage />,
                 action: reviewAddAction,
             },
-            { path: "qr", element: <GenerateQRTestPage /> },
+            {
+                path: "qr",
+                element: (
+                    <ProtectedRoute>
+                        {" "}
+                        <GenerateQRTestPage />{" "}
+                    </ProtectedRoute>
+                ),
+            },
             {
                 path: "reviewlist",
-                element: <DisplayReviewsPage />,
+                element: (
+                    <ProtectedRoute>
+                        {" "}
+                        <DisplayReviewsPage />{" "}
+                    </ProtectedRoute>
+                ),
                 loader: reviewDisplayAction,
             },
-            { path: "userlist", element: <DisplayUsersPage /> },
+            {
+                path: "userlist",
+                element: (
+                    <ProtectedRoute>
+                        {" "}
+                        <DisplayUsersPage />{" "}
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "userInfo",
+                element: <UserInfo></UserInfo>,
+            },
         ],
     },
 ]);

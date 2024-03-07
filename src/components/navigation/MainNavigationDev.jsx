@@ -1,9 +1,7 @@
-import { Form, NavLink, useRouteLoaderData } from "react-router-dom";
+import { Form, NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
-export default function MainNavigationDev() {
-    const token = useRouteLoaderData("root");
-
+export default function MainNavigationDev({ token }) {
     return (
         <nav className={classes.mainNav}>
             <div className={classes.leftSide}>
@@ -16,24 +14,16 @@ export default function MainNavigationDev() {
                 >
                     Home
                 </NavLink>
+
                 <NavLink
-                    to="thankyou"
+                    to="review/602"
                     className={({ isActive }) =>
                         isActive ? classes.active : undefined
                     }
                 >
-                    ThankYou
+                    Review Add Test
                 </NavLink>
-                {token && (
-                    <NavLink
-                        to="review/602"
-                        className={({ isActive }) =>
-                            isActive ? classes.active : undefined
-                        }
-                    >
-                        Review Add Test
-                    </NavLink>
-                )}
+
                 {token && (
                     <NavLink
                         to="qr"
@@ -44,24 +34,25 @@ export default function MainNavigationDev() {
                         QR
                     </NavLink>
                 )}
+
                 {token && (
                     <NavLink
-                        to="reviewlist"
+                        to="userpanel"
                         className={({ isActive }) =>
                             isActive ? classes.active : undefined
                         }
                     >
-                        Review lista
+                        Panel użytkownika
                     </NavLink>
                 )}
                 {token && (
                     <NavLink
-                        to="userlist"
+                        to="info"
                         className={({ isActive }) =>
                             isActive ? classes.active : undefined
                         }
                     >
-                        Lista użytkowników
+                        Informacje
                     </NavLink>
                 )}
             </div>

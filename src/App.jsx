@@ -11,14 +11,15 @@ import ErrorPage from "./Pages/Error";
 import ReviewAddPage, { reviewAddAction } from "./Pages/Review";
 import ThankYouPage from "./Pages/ThankYou";
 import DisplayReviewsPage, {
-    reviewDisplayAction,
+    reviewDisplayLoader,
 } from "./Pages/DisplayReviews";
-import DisplayUsersPage from "./Pages/DisplayUsers";
+import DisplayUsersPage, { displayUsersLoader } from "./Pages/DisplayUsers";
 
 import GenerateQRTestPage from "./Pages/GenerateQRTest";
 import RootLayout from "./Pages/Root";
 import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
-import UserInfo from "./Pages/UserInfo.jsx";
+import UserInfoPage, { userInfoLoader } from "./Pages/UserInfo.jsx";
+import UserPanelPage, { userPanelLoader } from "./Pages/UserPanel";
 
 export const LOCAL = false;
 
@@ -27,14 +28,71 @@ const router = createBrowserRouter([
         path: "/",
         element: <RootLayout />,
         errorElement: <ErrorPage />,
+        loader: tokenLoader,
         children: [
             { index: true, element: <HomePage /> },
-            { path: "auth", element: <AuthenticationPage /> },
+            {
+                path: "auth",
+                element: <AuthenticationPage />,
+                action: authAction,
+            },
+            {
+                path: "logout",
+                action: logoutAction,
+            },
             { path: "thankyou", element: <ThankYouPage /> },
             {
                 path: "review/:waiterId",
                 element: <ReviewAddPage />,
                 action: reviewAddAction,
+            },
+            {
+                path: "qr",
+                element: (
+                    <ProtectedRoute>
+                        {" "}
+                        <GenerateQRTestPage />{" "}
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "info",
+                element: (
+                    <ProtectedRoute>
+                        {" "}
+                        <UserInfoPage />{" "}
+                    </ProtectedRoute>
+                ),
+                loader: userInfoLoader,
+            },
+            {
+                path: "reviewlist",
+                element: (
+                    <ProtectedRoute>
+                        {" "}
+                        <DisplayReviewsPage />{" "}
+                    </ProtectedRoute>
+                ),
+                loader: reviewDisplayLoader,
+            },
+            {
+                path: "userlist",
+                element: (
+                    <ProtectedRoute>
+                        {" "}
+                        <DisplayUsersPage />{" "}
+                    </ProtectedRoute>
+                ),
+                loader: displayUsersLoader,
+            },
+            {
+                path: "userInfo",
+                element: <UserInfoPage></UserInfoPage>,
+            },
+            {
+                path: "userpanel",
+                element: <UserPanelPage />,
+                loader: userPanelLoader,
             },
         ],
     },
@@ -71,6 +129,16 @@ const router = createBrowserRouter([
                 ),
             },
             {
+                path: "info",
+                element: (
+                    <ProtectedRoute>
+                        {" "}
+                        <UserInfoPage />{" "}
+                    </ProtectedRoute>
+                ),
+                loader: userInfoLoader,
+            },
+            {
                 path: "reviewlist",
                 element: (
                     <ProtectedRoute>
@@ -78,7 +146,7 @@ const router = createBrowserRouter([
                         <DisplayReviewsPage />{" "}
                     </ProtectedRoute>
                 ),
-                loader: reviewDisplayAction,
+                loader: reviewDisplayLoader,
             },
             {
                 path: "userlist",
@@ -88,10 +156,16 @@ const router = createBrowserRouter([
                         <DisplayUsersPage />{" "}
                     </ProtectedRoute>
                 ),
+                loader: displayUsersLoader,
             },
             {
                 path: "userInfo",
-                element: <UserInfo></UserInfo>,
+                element: <UserInfoPage></UserInfoPage>,
+            },
+            {
+                path: "userpanel",
+                element: <UserPanelPage />,
+                loader: userPanelLoader,
             },
         ],
     },

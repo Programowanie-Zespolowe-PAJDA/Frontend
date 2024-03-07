@@ -7,7 +7,7 @@ export default function DisplayReviewsPage() {
     return <ReviewDisplay reviewList={data} />;
 }
 
-export async function reviewDisplayAction() {
+export async function reviewDisplayLoader() {
     const fetchUrl = `http${LOCAL ? "" : "s"}://${
         LOCAL ? "localhost:8080" : "enapiwek-api.onrender.com"
     }/review`;

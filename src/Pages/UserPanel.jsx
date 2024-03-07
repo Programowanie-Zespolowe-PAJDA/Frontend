@@ -9,21 +9,6 @@ import { useLoaderData } from "react-router-dom";
 
 import happyPersonImg from "/happy-person.png";
 
-const EXAMPLE_COMMENTS = [
-    {
-        clientName: "Agnieszka",
-        comment: "Bardzo dobre",
-    },
-    {
-        clientName: "Adam",
-        comment: "Podoba mi sie bardzo to jedzonko",
-    },
-    {
-        clientName: "Ewa",
-        comment: "Skibidi toilet",
-    },
-];
-
 export default function UserPanelPage() {
     const comments = useLoaderData();
 

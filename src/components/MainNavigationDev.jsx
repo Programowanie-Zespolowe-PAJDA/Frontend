@@ -2,7 +2,12 @@ import { Form, NavLink, useRouteLoaderData } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
 export default function MainNavigationDev() {
-    const token = useRouteLoaderData("root");
+    const data = useRouteLoaderData("root");
+    const token = data.token;
+    const isAdmin = data.isAdmin;
+
+    console.log("Navigation");
+    console.log(isAdmin);
 
     return (
         <nav className={classes.mainNav}>
@@ -80,6 +85,7 @@ export default function MainNavigationDev() {
                     <Form action={"logout"} method={"post"}>
                         <button className={classes.logoutButton}>Logout</button>
                     </Form>
+                    {isAdmin && <h1>Admin</h1>}
                 </div>
             )}
             {!token && (

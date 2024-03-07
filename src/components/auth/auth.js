@@ -32,6 +32,33 @@ export function getAuthToken() {
     return token;
 }
 
-export function tokenLoader() {
-    return getAuthToken();
+export async function tokenLoader() {
+    const token = getAuthToken();
+    if (token == null) {
+        return {
+            token: null,
+            isAdmin: false,
+        };
+    }
+    const fetchUrl = getBackendUrl() + "/admin";
+
+    const response = await fetch(fetchUrl, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+
+    if (response.status == 200) {
+        console.log("is admin");
+        return {
+            token: token,
+            isAdmin: true,
+        };
+    } else {
+        console.log("not admin");
+        return {
+            token: token,
+            isAdmin: false,
+        };
+    }
 }

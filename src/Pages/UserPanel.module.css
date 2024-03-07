@@ -11,6 +11,10 @@
     margin-bottom: var(--spacing-10);
 }
 
+.header {
+    margin-top: var(--spacing-8);
+    margin-bottom: var(--spacing-8);
+}
 .headerLine {
     display: flex;
     align-items: center;
@@ -63,6 +67,7 @@
     display: flex;
     justify-content: flex-end;
     list-style: none;
+    gap: var(--spacing-6);
 }
 .rating img {
     width: 10rem;

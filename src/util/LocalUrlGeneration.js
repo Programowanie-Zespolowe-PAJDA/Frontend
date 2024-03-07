@@ -7,5 +7,5 @@ export function getBackendUrl() {
 }
 
 export function getFrontendUrl() {
-    return LOCAL ? "http://localhost:5173" : "https://enapiwek.onrender.com/";
+    return LOCAL ? "http://localhost:5173" : "https://enapiwek.onrender.com";
 }

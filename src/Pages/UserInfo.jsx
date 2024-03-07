@@ -1,24 +1,35 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLoaderData, useSearchParams } from "react-router-dom";
 import { getBackendUrl } from "../util/LocalUrlGeneration.js";
+import { getAuthToken } from "../components/auth/auth.js";
 
-export default function UserInfo() {
-    const [searchParams] = useSearchParams();
-    const [info, setInfo] = useState(null);
-    const id = searchParams.get("id");
-
-    useEffect(() => {
-        fetch(getBackendUrl() + "/user/" + id)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                setInfo(data);
-            });
-    }, []);
+export default function UserInfoPage() {
+    const info = useLoaderData();
 
     return (
-        <>
-            <p>{JSON.stringify(info)}</p>
-        </>
+        <section style={{ fontSize: "10rem" }}>
+            <p>{info.name}</p>
+            <p>{info.surname}</p>
+            <p>{info.mail}</p>
+            <p>{info.location}</p>
+        </section>
     );
+}
+
+export async function userInfoLoader() {
+    const token = getAuthToken();
+    const fetchUrl = getBackendUrl() + "/user/profile";
+
+    const response = await fetch(fetchUrl, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to GET response from /review/read");
+    }
+    const responseData = await response.json();
+
+    return responseData;
 }

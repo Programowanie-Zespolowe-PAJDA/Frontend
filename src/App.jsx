@@ -13,12 +13,12 @@ import ThankYouPage from "./Pages/ThankYou";
 import DisplayReviewsPage, {
     reviewDisplayLoader,
 } from "./Pages/DisplayReviews";
-import DisplayUsersPage from "./Pages/DisplayUsers";
+import DisplayUsersPage, { displayUsersLoader } from "./Pages/DisplayUsers";
 
 import GenerateQRTestPage from "./Pages/GenerateQRTest";
 import RootLayout from "./Pages/Root";
 import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
-import UserInfo from "./Pages/UserInfo.jsx";
+import UserInfoPage, { userInfoLoader } from "./Pages/UserInfo.jsx";
 import UserPanelPage, { userPanelLoader } from "./Pages/UserPanel";
 
 export const LOCAL = true;
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <RootLayout />,
         errorElement: <ErrorPage />,
+        loader: tokenLoader,
         children: [
             { index: true, element: <HomePage /> },
             { path: "auth", element: <AuthenticationPage /> },
@@ -72,6 +73,16 @@ const router = createBrowserRouter([
                 ),
             },
             {
+                path: "info",
+                element: (
+                    <ProtectedRoute>
+                        {" "}
+                        <UserInfoPage />{" "}
+                    </ProtectedRoute>
+                ),
+                loader: userInfoLoader,
+            },
+            {
                 path: "reviewlist",
                 element: (
                     <ProtectedRoute>
@@ -89,10 +100,11 @@ const router = createBrowserRouter([
                         <DisplayUsersPage />{" "}
                     </ProtectedRoute>
                 ),
+                loader: displayUsersLoader,
             },
             {
                 path: "userInfo",
-                element: <UserInfo></UserInfo>,
+                element: <UserInfoPage></UserInfoPage>,
             },
             {
                 path: "userpanel",

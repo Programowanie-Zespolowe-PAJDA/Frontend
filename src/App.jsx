@@ -21,7 +21,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
 import UserInfoPage, { userInfoLoader } from "./Pages/UserInfo.jsx";
 import UserPanelPage, { userPanelLoader } from "./Pages/UserPanel";
 
-export const LOCAL = false;
+export const LOCAL = true;
 
 const router = createBrowserRouter([
     {

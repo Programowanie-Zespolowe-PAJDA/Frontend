@@ -64,9 +64,9 @@ body {
     --color-nav-link: transparent;
     --color-nav-link-current: orange;
 
-    --color-review: #333;
-    --color-review-stars: #999;
-    --color-review-button: #f1dc60;
-    --color-review-button-hover: #eede81;
-    --color-review-button-active: #e2cb47;
+    --color-review: orange;
+    --color-review-bg: #333;
+    --color-review-input: #999;
+    --color-review-tip-hover: rgb(255, 235, 204);
+    --color-review-tip-click: rgb(219, 159, 110);
 }

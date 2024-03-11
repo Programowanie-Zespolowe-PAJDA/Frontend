@@ -1,5 +1,5 @@
 import { json, redirect } from "react-router-dom";
-import ReviewAdd from "../components/ReviewAdd";
+import ReviewAdd from "../components/review/ReviewAdd";
 import { LOCAL } from "../App";
 
 export default function ReviewPage() {

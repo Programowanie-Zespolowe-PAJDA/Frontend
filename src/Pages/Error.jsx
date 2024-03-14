@@ -1,6 +1,8 @@
 import { useRouteError } from "react-router-dom";
 import MainNavigation from "../components/navigation/MainNavigation";
 
+import classes from "./Error.module.css";
+
 export default function ErrorPage() {
     const error = useRouteError();
 
@@ -19,9 +21,21 @@ export default function ErrorPage() {
     return (
         <>
             <MainNavigation />
-            <h1>{title}</h1>
-            <h3>{message}</h3>
-            <p>{response}</p>
+            <section className={classes.container}>
+                <div className={classes.message}>
+                    <h1>
+                        <span>{error.status} </span>
+                        {title}
+                    </h1>
+                    <p>{message}</p>
+                    <p>{response}</p>
+                </div>
+                <img
+                    src="waving-person.png"
+                    alt="waving-person"
+                    className={classes.picturePoints}
+                />
+            </section>
         </>
     );
 }

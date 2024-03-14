@@ -113,7 +113,7 @@
     justify-content: center;
 }
 .send button {
-    border-radius: var(--spacing-2);
+    border-radius: var(--spacing-5);
     border: 0;
     background-color: var(--color-review);
     font-size: var(--font-7);

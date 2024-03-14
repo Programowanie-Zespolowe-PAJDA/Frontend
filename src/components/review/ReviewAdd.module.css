@@ -1,0 +1,125 @@
+.container {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: var(--spacing-6);
+}
+.container input,
+.container textarea {
+    border: 0.3rem solid var(--color-review-input);
+    border-radius: var(--spacing-2);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-8);
+}
+.header h1 {
+    font-size: var(--font-11);
+    letter-spacing: -0.3rem;
+}
+.header p {
+    font-size: var(--font-6);
+}
+
+.tipGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 4rem;
+    gap: var(--spacing-6);
+    justify-content: center;
+    margin-bottom: var(--spacing-7);
+}
+.tipGrid input {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: var(--font-7);
+    font-weight: 600;
+    color: var(--color-review);
+}
+.tipButton {
+    width: 100%;
+    font-size: var(--font-8);
+    border: 0.4rem solid var(--color-review);
+    border-radius: var(--spacing-2);
+    background: 0;
+}
+.tipButton:hover {
+    background-color: var(--color-review-tip-hover);
+}
+.tipButton:active {
+    background-color: var(--color-review-tip-click);
+}
+
+.selectedTip {
+    background-color: var(--color-review);
+    border: 0.4rem solid white;
+    border-radius: var(--spacing-4);
+    position: absolute;
+    /* max-width: 9.2rem; */
+    width: calc(100% + 0.8rem);
+    top: -0.4rem;
+    left: -0.4rem;
+}
+.TipBg {
+    max-width: 100%;
+}
+.selectedTipBg {
+    position: relative;
+    border: 0.4rem solid var(--color-review);
+    border-radius: var(--spacing-2);
+}
+
+.rating ol {
+    display: flex;
+    gap: var(--spacing-4);
+    list-style: none;
+    margin-bottom: var(--spacing-7);
+}
+.rating button {
+    border: 0;
+    background: 0;
+}
+.rating img {
+    max-width: 100%;
+}
+
+.comment {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    margin-bottom: var(--spacing-6);
+}
+.comment input,
+.comment textarea {
+    font-size: var(--font-6);
+    padding: var(--spacing-3) var(--spacing-5);
+}
+.comment input {
+    font-weight: 600;
+    margin-bottom: var(--spacing-2);
+}
+.comment textarea {
+    resize: none;
+    height: calc(var(--font-6) * 12);
+}
+
+.send {
+    display: flex;
+    justify-content: center;
+}
+.send button {
+    border-radius: var(--spacing-2);
+    border: 0;
+    background-color: var(--color-review);
+    font-size: var(--font-7);
+    font-weight: 600;
+    padding: var(--spacing-6) var(--spacing-8);
+}
+
+@media (max-width: 36em) {
+    .container {
+        max-width: 100%;
+        margin: 0;
+        padding: var(--spacing-7);
+    }
+}

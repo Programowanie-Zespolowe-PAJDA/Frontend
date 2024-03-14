@@ -1,0 +1,13 @@
+.container {
+    max-width: 40rem;
+    margin: var(--spacing-9) auto;
+}
+
+.container h2 {
+    font-size: var(--font-13);
+    text-align: center;
+}
+.container p {
+    font-size: var(--font-7);
+    text-align: center;
+}

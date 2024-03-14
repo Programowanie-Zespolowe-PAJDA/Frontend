@@ -2,6 +2,7 @@ import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
+    // This component should be probably split to multiple smaller ones!
     return (
         <div className={classes.index}>
             <header className={classes.mainHeader}>

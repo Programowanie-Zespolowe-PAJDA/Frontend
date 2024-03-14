@@ -1,5 +1,7 @@
 import { LOCAL } from "../App.jsx";
 
+// TODO: Why is this file upper camel case? You probably should use one convention
+
 export function getBackendUrl() {
     return LOCAL
         ? "http://localhost:8080"

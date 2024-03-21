@@ -1,3 +1,7 @@
+:root {
+    --tip-size: 7rem;
+}
+
 .container {
     max-width: 60rem;
     margin: 0 auto;
@@ -23,7 +27,7 @@
 
 .tipGrid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, var(--tip-size));
     grid-template-rows: 1fr 4rem;
     gap: var(--spacing-6);
     justify-content: center;
@@ -37,7 +41,8 @@
     color: var(--color-review);
 }
 .tipButton {
-    width: 100%;
+    width: var(--tip-size);
+    height: var(--tip-size);
     font-size: var(--font-8);
     border: 0.4rem solid var(--color-review);
     border-radius: var(--spacing-2);
@@ -56,12 +61,12 @@
     border-radius: var(--spacing-4);
     position: absolute;
     /* max-width: 9.2rem; */
-    width: calc(100% + 0.8rem);
+    width: var(--tip-size);
     top: -0.4rem;
     left: -0.4rem;
 }
 .TipBg {
-    max-width: 100%;
+    max-width: var(--tip-size);
 }
 .selectedTipBg {
     position: relative;
@@ -108,7 +113,7 @@
     justify-content: center;
 }
 .send button {
-    border-radius: var(--spacing-2);
+    border-radius: var(--spacing-5);
     border: 0;
     background-color: var(--color-review);
     font-size: var(--font-7);

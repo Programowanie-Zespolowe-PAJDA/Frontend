@@ -3,7 +3,7 @@ import TipChart from "../components/UserPanel/TipChart";
 import TipInfo from "../components/UserPanel/TipInfo";
 import UserRating from "../components/UserPanel/UserRating";
 import { getAuthToken } from "../components/auth/auth";
-import { getBackendUrl } from "../util/LocalUrlGeneration";
+import { getBackendUrl } from "../util/localUrlGeneration.js";
 import classes from "./UserPanel.module.css";
 import { useLoaderData } from "react-router-dom";
 

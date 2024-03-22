@@ -1,5 +1,6 @@
 import { redirect } from "react-router-dom";
-import { getBackendUrl } from "../../util/LocalUrlGeneration.js";
+import { getBackendUrl } from "../../util/localUrlGeneration.js";
+import { ROLES } from "./roles.js";
 
 export async function action({ request }) {
     const data = await request.formData();
@@ -21,44 +22,39 @@ export async function action({ request }) {
     }
 
     const responseJson = await response.json();
+    const rToken = responseJson.token;
+    let rRole;
 
-    localStorage.setItem("token", responseJson.token);
+    const responseAdmin = await fetch(getBackendUrl() + "/admin", {
+        headers: {
+            Authorization: "Bearer " + rToken,
+        },
+    });
+
+    if (responseAdmin.status === 200) {
+        rRole = ROLES.ADMIN;
+    } else {
+        rRole = ROLES.USER;
+    }
+
+    const user = {
+        token: rToken,
+        role: rRole,
+    };
+    localStorage.setItem("user", JSON.stringify(user));
+
     console.log("Logged in");
     return redirect("/dev");
 }
 
 export function getAuthToken() {
-    const token = localStorage.getItem("token");
-    return token;
+    return getUser().token;
 }
 
-export async function tokenLoader() {
-    const token = getAuthToken();
-    if (token == null) {
-        return {
-            token: null,
-            isAdmin: false,
-        };
-    }
-    const fetchUrl = getBackendUrl() + "/admin";
+export function getUser() {
+    return JSON.parse(localStorage.getItem("user"));
+}
 
-    const response = await fetch(fetchUrl, {
-        headers: {
-            Authorization: "Bearer " + token,
-        },
-    });
-
-    if (response.status == 200) {
-        console.log("is admin");
-        return {
-            token: token,
-            isAdmin: true,
-        };
-    } else {
-        console.log("not admin");
-        return {
-            token: token,
-            isAdmin: false,
-        };
-    }
+export async function userLoader() {
+    return getUser();
 }

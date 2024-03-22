@@ -1,7 +1,7 @@
 import { Form, NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
-export default function MainNavigationDev({ token }) {
+export default function MainNavigationDev({ user }) {
     return (
         <nav className={classes.mainNav}>
             <div className={classes.leftSide}>
@@ -24,7 +24,7 @@ export default function MainNavigationDev({ token }) {
                     Review Add Test
                 </NavLink>
 
-                {token && (
+                {user && (
                     <NavLink
                         to="qr"
                         className={({ isActive }) =>
@@ -35,7 +35,7 @@ export default function MainNavigationDev({ token }) {
                     </NavLink>
                 )}
 
-                {token && (
+                {user && (
                     <NavLink
                         to="userpanel"
                         className={({ isActive }) =>
@@ -45,7 +45,7 @@ export default function MainNavigationDev({ token }) {
                         Panel użytkownika
                     </NavLink>
                 )}
-                {token && (
+                {user && (
                     <NavLink
                         to="info"
                         className={({ isActive }) =>
@@ -56,14 +56,14 @@ export default function MainNavigationDev({ token }) {
                     </NavLink>
                 )}
             </div>
-            {token && (
+            {user && (
                 <div className={classes.rightSide}>
                     <Form action={"logout"} method={"post"}>
                         <button className={classes.logoutButton}>Logout</button>
                     </Form>
                 </div>
             )}
-            {!token && (
+            {!user && (
                 <div className={classes.rightSide}>
                     <NavLink
                         to="auth"

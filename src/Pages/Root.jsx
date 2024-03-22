@@ -2,6 +2,7 @@ import { Outlet, useLoaderData } from "react-router-dom";
 import MainNavigation from "../components/navigation/MainNavigation";
 import MainNavigationDev from "../components/navigation/MainNavigationDev";
 import AdminNavigation from "../components/navigation/AdminNavigation";
+import { ROLES } from "../components/auth/roles.js";
 
 export default function RootLayout({ dev }) {
     const data = useLoaderData();
@@ -9,11 +10,11 @@ export default function RootLayout({ dev }) {
     return (
         <>
             {dev ? (
-                <MainNavigationDev token={data.token} />
+                <MainNavigationDev user={data} />
             ) : (
-                <MainNavigation token={data.token} />
+                <MainNavigation token={data} />
             )}
-            {data.isAdmin && <AdminNavigation />}
+            {data && data.role === ROLES.ADMIN && <AdminNavigation />}
             <Outlet />
         </>
     );

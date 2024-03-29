@@ -8,6 +8,10 @@
     text-align: center;
 }
 
+.registerForm label {
+    margin-top: 1rem;
+}
+
 .registerForm label,
 .registerForm input {
     display: block;

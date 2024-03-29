@@ -69,10 +69,12 @@ export async function registerAction({ request }) {
         body: JSON.stringify(registerData),
     });
 
+    // TODO: handle 406 error and rare scenarions like email already in use
     if (response.status !== 201) {
         console.log("Błąd rejestracji!");
     } else {
         console.log("Rejestracja udana");
+        return redirect("/dev/thanksRegistration");
     }
 
     return null;

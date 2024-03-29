@@ -45,6 +45,15 @@ export default function RegisterForm() {
                     <input
                         id="bankAccountNumber"
                         name="bankAccountNumber"
+                        minLength="26"
+                        maxLength="26"
+                        pattern="^[0-9]{26}$"
+                        onInvalid={(e) =>
+                            e.target.setCustomValidity(
+                                "Niepoprawny numer konta"
+                            )
+                        }
+                        onInput={(e) => e.target.setCustomValidity("")}
                         required
                     />
                 </p>

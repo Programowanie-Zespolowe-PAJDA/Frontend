@@ -47,6 +47,22 @@ export async function action({ request }) {
     return redirect("/dev");
 }
 
+export async function registerAction({ request }) {
+    const data = await request.formData();
+    const registerData = {
+        name: data.get("name"),
+        surname: data.get("surname"),
+        mail: data.get("mail"),
+        password: data.get("password"),
+        retypedPassword: data.get("retypedPassword"),
+        location: data.get("location"),
+        bankAccountNumber: data.get("bankAccountNumber"),
+    };
+
+    console.log(registerData);
+    return null;
+}
+
 export function getAuthToken() {
     return getUser().token;
 }

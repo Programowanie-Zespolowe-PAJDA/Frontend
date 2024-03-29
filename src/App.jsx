@@ -4,7 +4,10 @@ import "./App.css";
 
 import HomePage from "./Pages/Home";
 import AuthenticationPage from "./Pages/AuthenticationPage.jsx";
-import { action as authAction } from "./components/auth/auth.js";
+import {
+    action as authAction,
+    registerAction,
+} from "./components/auth/auth.js";
 import { action as logoutAction } from "./components/auth/Logout.jsx";
 import { userLoader } from "./components/auth/auth.js";
 import ErrorPage from "./Pages/Error";
@@ -21,6 +24,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
 import UserInfoPage, { userInfoLoader } from "./Pages/UserInfo.jsx";
 import UserPanelPage, { userPanelLoader } from "./Pages/UserPanel";
 import { ROLES } from "./components/auth/roles.js";
+import RegisterPage from "./Pages/RegisterPage.jsx";
 
 export const LOCAL = true;
 
@@ -109,6 +113,11 @@ const router = createBrowserRouter([
                 path: "auth",
                 element: <AuthenticationPage />,
                 action: authAction,
+            },
+            {
+                path: "register",
+                element: <RegisterPage />,
+                action: registerAction,
             },
             {
                 path: "logout",

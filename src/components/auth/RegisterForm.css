@@ -1,0 +1,35 @@
+.registerForm {
+    max-width: 40rem;
+    margin: 2rem auto;
+    font-size: 24px;
+}
+
+.registerForm h1 {
+    text-align: center;
+}
+
+.registerForm label,
+.registerForm input {
+    display: block;
+    width: 100%;
+    font-size: 24px;
+}
+
+.registerForm input {
+    padding: 0.25rem;
+}
+
+.registerForm button {
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+    font-size: 24px;
+    min-height: 50px;
+}
+
+.formError {
+    color: red;
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: bold;
+}

@@ -34,6 +34,7 @@
     background: url("/wall.jpg");
     background-repeat: repeat-x;
     background-size: contain;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 .headerContainer {
     display: grid;
@@ -68,6 +69,7 @@
     border-radius: 1.2rem;
     justify-self: end;
     align-self: start;
+    box-shadow: 0 0.5rem 1rem 0.1rem rgba(0, 0, 0, 0.1);
 }
 .headerContainer a:hover {
     background-color: var(--color-header-button-hover);
@@ -137,6 +139,7 @@
     background-color: var(--color-description);
     border-radius: var(--spacing-5);
     padding: var(--spacing-5);
+    box-shadow: 0 1rem 2rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 .description p {
     line-height: 1.6;

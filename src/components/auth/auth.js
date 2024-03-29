@@ -60,6 +60,21 @@ export async function registerAction({ request }) {
     };
 
     console.log(registerData);
+
+    const response = await fetch(getBackendUrl() + "/register", {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registerData),
+    });
+
+    if (response.status !== 201) {
+        console.log("Błąd rejestracji!");
+    } else {
+        console.log("Rejestracja udana");
+    }
+
     return null;
 }
 

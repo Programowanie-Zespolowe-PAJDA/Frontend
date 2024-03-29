@@ -27,7 +27,7 @@ import { ROLES } from "./components/auth/roles.js";
 import RegisterPage from "./Pages/RegisterPage.jsx";
 import ThanksForRegistration from "./Pages/ThanksForRegistration.jsx";
 
-export const LOCAL = true;
+export const LOCAL = false;
 
 const router = createBrowserRouter([
     {

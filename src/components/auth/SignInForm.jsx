@@ -1,4 +1,4 @@
-import { Form, useSearchParams } from "react-router-dom";
+import { Form, Link, useSearchParams } from "react-router-dom";
 import "./SignInForm.css";
 
 export default function SignInForm() {
@@ -26,6 +26,9 @@ export default function SignInForm() {
                     />
                 </p>
                 <button>Log in</button>
+                <Link to={"/dev/register"}>
+                    <p>Zarejestruj się!</p>
+                </Link>
             </Form>
         </>
     );

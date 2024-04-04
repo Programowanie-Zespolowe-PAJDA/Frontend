@@ -26,6 +26,10 @@
     text-decoration: none;
 }
 
+.logoutButton:hover {
+    cursor: pointer;
+}
+
 .mainNav a:link.active,
 .mainNav a:visited.active {
     background-color: var(--color-nav-link-current);

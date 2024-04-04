@@ -1,6 +1,5 @@
-// import { useEffect, useState } from "react"; unused imports
-// import { useLoaderData, useSearchParams } from "react-router-dom"; unused imports
-import { getBackendUrl } from "../util/LocalUrlGeneration.js";
+import { useLoaderData } from "react-router-dom";
+import { getBackendUrl } from "../util/localUrlGeneration.js";
 import { getAuthToken } from "../components/auth/auth.js";
 
 export default function UserInfoPage() {

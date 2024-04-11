@@ -26,6 +26,7 @@ import UserPanelPage, { userPanelLoader } from "./Pages/UserPanel";
 import { ROLES } from "./components/auth/roles.js";
 import RegisterPage from "./Pages/RegisterPage.jsx";
 import ThanksForRegistration from "./Pages/ThanksForRegistration.jsx";
+import { DarkModeProvider } from "./components/DarkModeProvider.jsx";
 
 export const LOCAL = true;
 
@@ -117,9 +118,9 @@ const router = createBrowserRouter([
 
 export function App() {
     return (
-        <>
+        <DarkModeProvider>
             <RouterProvider router={router} />
-        </>
+        </DarkModeProvider>
     );
 }
 

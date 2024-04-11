@@ -6,6 +6,7 @@
     max-width: 100rem;
     margin: 0 auto;
     margin-top: var(--spacing-10);
+    color: var(--color-text);
 }
 
 .button {

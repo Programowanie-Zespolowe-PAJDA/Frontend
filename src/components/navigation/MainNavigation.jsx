@@ -1,7 +1,15 @@
 import { Form, NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
+import { DarkModeContext } from "../DarkModeProvider";
+import { useContext } from "react";
 
 export default function MainNavigation({ token }) {
+    const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
+    function changeMode() {
+        setDarkMode((prev) => !prev);
+    }
+
     return (
         <nav className={classes.mainNav}>
             <div className={classes.leftSide}>
@@ -52,15 +60,16 @@ export default function MainNavigation({ token }) {
                     </>
                 )}
             </div>
-            {token && (
-                <div className={classes.rightSide}>
+            <div className={classes.rightSide}>
+                <button onClick={changeMode}>
+                    {darkMode ? "light" : "dark"}
+                </button>
+                {token && (
                     <Form action={"logout"} method={"post"}>
                         <button className={classes.logoutButton}>Logout</button>
                     </Form>
-                </div>
-            )}
-            {!token && (
-                <div className={classes.rightSide}>
+                )}
+                {!token && (
                     <NavLink
                         to="auth"
                         className={({ isActive }) =>
@@ -69,8 +78,8 @@ export default function MainNavigation({ token }) {
                     >
                         Login
                     </NavLink>
-                </div>
-            )}
+                )}
+            </div>
         </nav>
     );
 }

@@ -47,6 +47,7 @@
     border: 0.4rem solid var(--color-review);
     border-radius: var(--spacing-2);
     background: 0;
+    background-color: white;
 }
 .tipButton:hover {
     background-color: var(--color-review-tip-hover);

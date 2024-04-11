@@ -1,19 +1,13 @@
 import { json, redirect } from "react-router-dom";
 import ReviewAdd from "../components/review/ReviewAdd";
-import { LOCAL } from "../App";
+import { getBackendUrl } from "../util/localUrlGeneration";
 
 export default function ReviewPage() {
-    return (
-        <>
-            <ReviewAdd />
-        </>
-    );
+    return <ReviewAdd />;
 }
 
 export async function reviewAddAction({ request, params }) {
-    const fetchUrl = `http${LOCAL ? "" : "s"}://${
-        LOCAL ? "localhost:8080" : "enapiwek-api.onrender.com"
-    }/review`;
+    const fetchUrl = getBackendUrl() + "/opinion";
 
     const data = await request.formData();
     const userId = params.waiterId;
@@ -27,6 +21,9 @@ export async function reviewAddAction({ request, params }) {
         clientName: data.get("clientName"),
         hashRevID: ipData.ip,
         userID: userId,
+        amount: data.get("tip"),
+        // TODO - implementacja wyboru waluty
+        currency: "PLN",
     };
     console.log("dane wysylane:");
     console.log(reviewData);

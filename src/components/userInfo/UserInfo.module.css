@@ -1,0 +1,102 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 10rem;
+    gap: var(--spacing-5);
+    max-width: 100rem;
+    margin: 0 auto;
+    margin-top: var(--spacing-10);
+}
+
+.button {
+    justify-self: end;
+    align-self: end;
+    color: black;
+    text-decoration: none;
+    padding: var(--spacing-3) var(--spacing-5);
+    border-radius: var(--spacing-2);
+    border: 0;
+    background-color: orange;
+    color: white;
+    font-size: var(--font-3);
+    font-weight: 600;
+    cursor: pointer;
+}
+.grayButton {
+    background-color: gray;
+    cursor: default;
+}
+.buttonQR {
+    background-color: white;
+    color: rgb(245, 159, 0);
+}
+
+.data,
+.password,
+.qr {
+    justify-items: center;
+    border: 2px solid black;
+    border-radius: var(--spacing-2);
+    box-shadow: 0 1rem 1rem 0rem rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: var(--spacing-5) var(--spacing-7);
+}
+
+.data,
+.password {
+    display: grid;
+    row-gap: var(--spacing-7);
+}
+.data h2,
+.password h2 {
+    font-size: var(--font-8);
+}
+
+.data {
+    grid-row: 1 / span 2;
+}
+.dataInfo {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 15rem 1fr;
+    row-gap: var(--spacing-2);
+    font-size: var(--font-7);
+}
+.dataInfo label {
+    font-weight: 600;
+}
+.data button {
+    justify-self: end;
+    align-self: end;
+    padding: var(--spacing-3) var(--spacing-5);
+    font-size: var(--font-3);
+}
+
+.edit {
+    place-self: center stretch;
+    display: grid;
+    gap: var(--spacing-5);
+    justify-content: stretch;
+}
+.editInput {
+    max-width: 100%;
+    border: 0;
+    padding: var(--spacing-3) var(--spacing-5);
+    font-size: var(--font-4);
+    border-bottom: 2px solid gray;
+}
+.editInput:focus {
+    outline: none;
+    border-bottom: 2px solid orange;
+}
+.edit button {
+}
+
+.qr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.qr img {
+    height: 100%;
+}

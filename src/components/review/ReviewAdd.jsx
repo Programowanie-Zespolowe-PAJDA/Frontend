@@ -69,7 +69,7 @@ export default function Review() {
 
                 <section className={classes.rating}>
                     <ol>
-                        {[...Array(5)].map((a, index) => {
+                        {[...Array(10)].map((a, index) => {
                             const rating = index + 1;
                             return (
                                 <li key={rating}>
@@ -82,8 +82,13 @@ export default function Review() {
                                         <img
                                             src={
                                                 reviewData.rating >= rating
-                                                    ? "/star.png"
-                                                    : "/star-empty.png"
+                                                    ? "/star-half.png"
+                                                    : "/star-empty-half.png"
+                                            }
+                                            className={
+                                                rating % 2 === 0
+                                                    ? classes.mirror
+                                                    : undefined
                                             }
                                         />
                                     </button>

@@ -76,7 +76,7 @@
 
 .rating ol {
     display: flex;
-    gap: var(--spacing-4);
+    /* gap: var(--spacing-4); */
     list-style: none;
     margin-bottom: var(--spacing-7);
 }
@@ -86,6 +86,9 @@
 }
 .rating img {
     max-width: 100%;
+}
+.mirror {
+    transform: scaleX(-1);
 }
 
 .comment {

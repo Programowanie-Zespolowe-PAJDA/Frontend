@@ -26,7 +26,7 @@ export default function SignInForm() {
                     />
                 </p>
                 <button>Log in</button>
-                <Link to={"/dev/register"}>
+                <Link to={"/register"}>
                     <p>Zarejestruj się!</p>
                 </Link>
             </Form>

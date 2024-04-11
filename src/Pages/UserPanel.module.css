@@ -67,10 +67,13 @@
     display: flex;
     justify-content: flex-end;
     list-style: none;
-    gap: var(--spacing-6);
+    /* gap: var(--spacing-6); */
 }
 .rating img {
-    width: 10rem;
+    width: 5rem;
+}
+.mirror {
+    transform: scaleX(-1);
 }
 
 .comments ol {

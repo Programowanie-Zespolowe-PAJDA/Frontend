@@ -28,7 +28,7 @@ import RegisterPage from "./Pages/RegisterPage.jsx";
 import ThanksForRegistration from "./Pages/ThanksForRegistration.jsx";
 import { DarkModeProvider } from "./components/DarkModeProvider.jsx";
 
-export const LOCAL = true;
+export const LOCAL = false;
 
 const router = createBrowserRouter([
     {

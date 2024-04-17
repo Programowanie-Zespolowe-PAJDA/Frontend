@@ -1,10 +1,13 @@
 import { useRouteError } from "react-router-dom";
 import MainNavigation from "../components/navigation/MainNavigation";
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
 
 import classes from "./Error.module.css";
+import { DarkModeContext } from "../components/DarkModeProvider";
 
 export default function ErrorPage() {
+    const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
     const error = useRouteError();
     const { title, message, response } = useMemo(
         () => getErrorMessage(error), // execute this function only...
@@ -29,7 +32,11 @@ export default function ErrorPage() {
         <>
             <MainNavigation />
             <section className={classes.container}>
-                <div className={classes.message}>
+                <div
+                    className={`${classes.message} ${
+                        darkMode ? classes.dark : undefined
+                    }`}
+                >
                     <h1>
                         <span>{error.status} </span>
                         {title}

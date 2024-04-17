@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import classes from "./UserInfo.module.css";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { getAuthToken } from "../auth/auth";
 import { getBackendUrl } from "../../util/localUrlGeneration";
+import { DarkModeContext } from "../DarkModeProvider";
 
 export default function UserInfo({ info }) {
+    const [darkMode, setDarkMode] = useContext(DarkModeContext);
     const nameRef = useRef();
     const surnameRef = useRef();
     const locationRef = useRef();
@@ -12,6 +14,10 @@ export default function UserInfo({ info }) {
     const newPwdRef = useRef();
     const new2PwdRef = useRef();
     const [changedData, setChangedData] = useState(false);
+
+    const inputClass = `${classes.editInput} ${
+        darkMode ? classes.editInputDark : ""
+    }`;
 
     async function sendData(sendPackage, endpoint) {
         const token = getAuthToken();
@@ -79,21 +85,21 @@ export default function UserInfo({ info }) {
                         <input
                             ref={nameRef}
                             defaultValue={info.name}
-                            className={classes.editInput}
+                            className={inputClass}
                             onChange={checkForChange}
                         />
                         <label>Nazwisko</label>
                         <input
                             ref={surnameRef}
                             defaultValue={info.surname}
-                            className={classes.editInput}
+                            className={inputClass}
                             onChange={checkForChange}
                         />
                         <label>Lokalizacja</label>
                         <input
                             ref={locationRef}
                             defaultValue={info.location}
-                            className={classes.editInput}
+                            className={inputClass}
                             onChange={checkForChange}
                         />
                         <h4>Email</h4>
@@ -116,17 +122,17 @@ export default function UserInfo({ info }) {
                     <input
                         ref={oldPwdRef}
                         placeholder="stare hasło"
-                        className={classes.editInput}
+                        className={inputClass}
                     />
                     <input
                         ref={newPwdRef}
                         placeholder="nowe hasło"
-                        className={classes.editInput}
+                        className={inputClass}
                     />
                     <input
                         ref={new2PwdRef}
                         placeholder="powtórz nowe hasło"
-                        className={classes.editInput}
+                        className={inputClass}
                     />
                     <button className={classes.button}>Zmień hasło</button>
                 </form>

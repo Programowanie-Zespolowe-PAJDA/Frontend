@@ -11,12 +11,18 @@ export default function MainNavigation({ token }) {
     }
 
     return (
-        <nav className={classes.mainNav}>
+        <nav
+            className={`${classes.mainNav} ${
+                darkMode ? classes.darkBg : undefined
+            }`}
+        >
             <div className={classes.leftSide}>
                 <NavLink
                     to=""
                     className={({ isActive }) =>
-                        isActive ? classes.active : undefined
+                        `${classes.navLink} ${
+                            isActive ? classes.active : undefined
+                        }`
                     }
                     end
                 >
@@ -25,7 +31,9 @@ export default function MainNavigation({ token }) {
                 <NavLink
                     to="review/1"
                     className={({ isActive }) =>
-                        isActive ? classes.active : undefined
+                        `${classes.navLink} ${
+                            isActive ? classes.active : undefined
+                        }`
                     }
                 >
                     Review Add Test
@@ -36,7 +44,9 @@ export default function MainNavigation({ token }) {
                         <NavLink
                             to="qr"
                             className={({ isActive }) =>
-                                isActive ? classes.active : undefined
+                                `${classes.navLink} ${
+                                    isActive ? classes.active : undefined
+                                }`
                             }
                         >
                             QR
@@ -44,7 +54,9 @@ export default function MainNavigation({ token }) {
                         <NavLink
                             to="userpanel"
                             className={({ isActive }) =>
-                                isActive ? classes.active : undefined
+                                `${classes.navLink} ${
+                                    isActive ? classes.active : undefined
+                                }`
                             }
                         >
                             Panel użytkownika
@@ -52,7 +64,9 @@ export default function MainNavigation({ token }) {
                         <NavLink
                             to="info"
                             className={({ isActive }) =>
-                                isActive ? classes.active : undefined
+                                `${classes.navLink} ${
+                                    isActive ? classes.active : undefined
+                                }`
                             }
                         >
                             Informacje
@@ -61,7 +75,7 @@ export default function MainNavigation({ token }) {
                 )}
             </div>
             <div className={classes.rightSide}>
-                <button onClick={changeMode}>
+                <button onClick={changeMode} className={classes.themeButton}>
                     {darkMode ? "light" : "dark"}
                 </button>
                 {token && (
@@ -73,7 +87,9 @@ export default function MainNavigation({ token }) {
                     <NavLink
                         to="auth"
                         className={({ isActive }) =>
-                            isActive ? classes.active : undefined
+                            `${classes.navLink} ${
+                                isActive ? classes.active : undefined
+                            }`
                         }
                     >
                         Login

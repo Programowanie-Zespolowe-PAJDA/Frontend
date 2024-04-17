@@ -6,7 +6,6 @@
     max-width: 100rem;
     margin: 0 auto;
     margin-top: var(--spacing-10);
-    color: var(--color-text);
 }
 
 .button {
@@ -39,7 +38,7 @@
     border: 2px solid black;
     border-radius: var(--spacing-2);
     box-shadow: 0 1rem 1rem 0rem rgba(0, 0, 0, 0.1);
-    background-color: white;
+    /* background-color: white; */
     padding: var(--spacing-5) var(--spacing-7);
 }
 
@@ -80,17 +79,20 @@
     justify-content: stretch;
 }
 .editInput {
+    color: var(--color-text);
     max-width: 100%;
     border: 0;
+    background: 0;
     padding: var(--spacing-3) var(--spacing-5);
     font-size: var(--font-4);
     border-bottom: 2px solid gray;
 }
+.editInputDark {
+    color: var(--color-text-dark);
+}
 .editInput:focus {
     outline: none;
     border-bottom: 2px solid orange;
-}
-.edit button {
 }
 
 .qr {

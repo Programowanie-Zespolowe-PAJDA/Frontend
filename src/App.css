@@ -50,6 +50,7 @@ body {
     --font-15: 9.8rem;
 
     --color-background: #eee;
+    --color-background-dark: #222;
     --color-text: #444;
     --color-text-dark: white;
     --color-header: lightgray;

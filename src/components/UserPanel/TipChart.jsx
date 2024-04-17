@@ -19,6 +19,7 @@ export default function TipChart({ data }) {
                 options={{
                     legend: {
                         display: false,
+                        reverse: true,
                     },
                     tooltips: {
                         callbacks: {

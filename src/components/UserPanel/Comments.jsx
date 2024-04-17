@@ -7,7 +7,7 @@ export default function Comments({ commentList }) {
             {commentList &&
                 commentList.map((comment, index) => (
                     <li key={index}>
-                        <h3>{comment.clientName}</h3>
+                        <h4>{comment.clientName}</h4>
                         <p>{comment.comment}</p>
                     </li>
                 ))}

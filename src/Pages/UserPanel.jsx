@@ -8,45 +8,19 @@ import classes from "./UserPanel.module.css";
 import { useLoaderData } from "react-router-dom";
 
 import happyPersonImg from "/happy-person.png";
-
-const EXAMPLE_CHART = [
-    {
-        amount: 100,
-        month: "march",
-        year: "2024",
-        currency: "PLN",
-    },
-    {
-        amount: 200,
-        month: "february",
-        year: "2024",
-        currency: "PLN",
-    },
-    {
-        amount: 500,
-        month: "january",
-        year: "2024",
-        currency: "PLN",
-    },
-    {
-        amount: 300,
-        month: "december",
-        year: "2023",
-        currency: "PLN",
-    },
-    {
-        amount: 50,
-        month: "november",
-        year: "2023",
-        currency: "PLN",
-    },
-];
+import { useContext } from "react";
+import { DarkModeContext } from "../components/DarkModeProvider.jsx";
 
 export default function UserPanelPage() {
     const data = useLoaderData();
+    const [darkMode, setDarkMode] = useContext(DarkModeContext);
 
     return (
-        <div className={classes.container}>
+        <div
+            className={`${classes.container} ${
+                darkMode ? classes.dark : undefined
+            }`}
+        >
             <header className={classes.header}>
                 <div className={classes.headerLine}>
                     <h1>Panel</h1>
@@ -66,12 +40,12 @@ export default function UserPanelPage() {
                                 : 0
                         }
                         message="Zarobki w tym miesiącu"
-                        currency={data.currency}
+                        currency="PLN"
                     />
                     <TipInfo
                         value={data.maxTipAmount}
                         message="Najwyższy napiwek"
-                        currency={data.currency}
+                        currency="PLN"
                     />
                     <TipInfo
                         value={data.numberOfTips}
@@ -84,10 +58,13 @@ export default function UserPanelPage() {
                 <h2>Opinia publiczna</h2>
                 <UserRating rating={data.rating} />
             </section>
-            <section className={classes.comments}>
-                <h2>Wykres przychodów z napiwków</h2>
-                <TipChart data={EXAMPLE_CHART} />
-            </section>
+            {data.sumTipValueForEveryMonth && (
+                <section className={classes.comments}>
+                    <h2>Wykres przychodów z napiwków</h2>
+                    <TipChart data={data.sumTipValueForEveryMonth} />
+                </section>
+            )}
+
             <section className={classes.comments}>
                 <h2>Komentarze</h2>
                 <Comments commentList={data.comments} />
@@ -99,20 +76,24 @@ export default function UserPanelPage() {
 export async function userPanelLoader() {
     const token = getAuthToken();
     const fetchUrlComments = getBackendUrl() + "/review/owner";
-    const fetchUrTip = getBackendUrl() + "/tip/stats";
-    const fetchUrRating = getBackendUrl() + "/review/avgRating";
+    // TODO - podawanie wlasnej waluty
+    const fetchUrlTip = getBackendUrl() + "/tip/stats?currency=PLN";
+    const fetchUrlRating = getBackendUrl() + "/review/avgRating";
 
+    console.log("comments");
     const responseComment = await fetch(fetchUrlComments, {
         headers: {
             Authorization: "Bearer " + token,
         },
     });
-    const responseTip = await fetch(fetchUrTip, {
+    console.log("comments");
+    const responseTip = await fetch(fetchUrlTip, {
         headers: {
             Authorization: "Bearer " + token,
         },
     });
-    const responseRating = await fetch(fetchUrRating, {
+    console.log("comments");
+    const responseRating = await fetch(fetchUrlRating, {
         headers: {
             Authorization: "Bearer " + token,
         },

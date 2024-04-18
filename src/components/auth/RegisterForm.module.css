@@ -1,0 +1,72 @@
+.registerForm {
+    margin-top: 4rem;
+    margin-left: 30rem;
+    width: 130rem;
+    border: #7c7c7c 2px solid;
+    display: flex;
+    height: 70rem;
+}
+
+.formArea {
+    width: 40rem;
+    margin: 2rem auto;
+    font-size: 24px;
+}
+
+.registerImage {
+    height: 75rem;
+    margin-left: 5rem;
+    overflow: visible;
+    margin-top: -3rem;
+    padding: 5px;
+}
+
+.registerForm h1 {
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.registerForm label {
+    margin-top: 1rem;
+    letter-spacing: 2px;
+}
+
+.registerForm label,
+.registerForm input {
+    display: block;
+    width: 100%;
+    font-size: 24px;
+}
+
+.registerForm input {
+    padding: 0.25rem;
+}
+
+.registerForm button {
+    margin-top: 3rem;
+    letter-spacing: 2px;
+    display: block;
+    width: 50%;
+    margin-left: 50%;
+    font-size: 18px;
+    font-weight: 600;
+    min-height: 50px;
+    border: #fb6107 solid 3px;
+    border-radius: 6px;
+    color: #fb6107;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.registerForm button:hover {
+    background-color: #fb6107;
+    color: white;
+}
+
+.formError {
+    color: red;
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: bold;
+}

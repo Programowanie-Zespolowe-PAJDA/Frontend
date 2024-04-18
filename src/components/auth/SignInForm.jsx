@@ -1,5 +1,5 @@
 import { Form, Link, useSearchParams } from "react-router-dom";
-import "./SignInForm.css";
+import classes from "./SignInForm.module.css";
 
 export default function SignInForm() {
     const [searchParams] = useSearchParams();
@@ -7,16 +7,26 @@ export default function SignInForm() {
 
     return (
         <>
-            <Form method={"post"} className="loginForm">
-                <h1>Log in</h1>
-                <p className="formError">
-                    {isRetry && "Incorrect login or password"}
-                </p>
-                <p>
+            <Form method={"post"}>
+                <div className={classes.loginForm}>
+                    <h1 className={classes.mainHeader}>eNapiwek</h1>
+                    <h6 className={classes.descriptionHeader}>
+                        Aplikacja do napiwków QR
+                    </h6>
+
+                    <p
+                        className={
+                            isRetry
+                                ? classes.errorMessage
+                                : classes.clearMessage
+                        }
+                    >
+                        {isRetry && "Incorrect login or password"}
+                    </p>
+
                     <label htmlFor="email">Email</label>
                     <input id="mail" type="email" name="mail" required />
-                </p>
-                <p>
+
                     <label htmlFor="password">Password</label>
                     <input
                         id="password"
@@ -24,11 +34,12 @@ export default function SignInForm() {
                         name="password"
                         required
                     />
-                </p>
-                <button>Log in</button>
-                <Link to={"/register"}>
-                    <p>Zarejestruj się!</p>
-                </Link>
+
+                    <button className={classes.loginButton}>Zaloguj się</button>
+                    <Link to={"/register"} className={classes.registerButton}>
+                        Zarejestruj się
+                    </Link>
+                </div>
             </Form>
         </>
     );

@@ -5,7 +5,7 @@ export default function thanksForRegistration() {
         <center>
             <h1>Registration Successfull</h1>
             <h2>Thank you, you can now log into your account</h2>
-            <Link to={"/dev/auth"}>Log in</Link>
+            <Link to={"/auth"}>Log in</Link>
         </center>
     );
 }

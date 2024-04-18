@@ -1,34 +1,30 @@
 import { useRouteError } from "react-router-dom";
 import MainNavigation from "../components/navigation/MainNavigation";
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
 
 import classes from "./Error.module.css";
+import darkClass from "./dark.module.css";
+import { DarkModeContext } from "../components/DarkModeProvider";
+import { getAuthToken } from "../components/auth/auth";
 
 export default function ErrorPage() {
+    const [darkMode, setDarkMode] = useContext(DarkModeContext);
+    const token = getAuthToken();
+
     const error = useRouteError();
     const { title, message, response } = useMemo(
-        () => getErrorMessage(error), // execute this function only...
-        [error] // when dependency array changes!
-    ); // example
-
-    // Inefficient, calculated on every render, you could utilize useMemo() here to prevent that
-    // let title = "Błąd!";
-    // let message = "Coś poszło nie tak";
-    // let response = "";
-
-    // if (error.status === 500) {
-    //     message = error.data.message;
-    //     response = error.response;
-    // }
-    // if (error.status === 404) {
-    //     title = "Nie znaleziono";
-    //     message = "Nie można znaleźć docelowej strony";
-    // }
+        () => getErrorMessage(error),
+        [error]
+    );
 
     return (
-        <>
-            <MainNavigation />
-            <section className={classes.container}>
+        <div className={darkMode ? darkClass.dark : undefined}>
+            <MainNavigation token={token} />
+            <section
+                className={`${classes.container} ${
+                    darkMode ? classes.dark : undefined
+                }`}
+            >
                 <div className={classes.message}>
                     <h1>
                         <span>{error.status} </span>
@@ -43,7 +39,7 @@ export default function ErrorPage() {
                     className={classes.picturePoints}
                 />
             </section>
-        </>
+        </div>
     );
 }
 

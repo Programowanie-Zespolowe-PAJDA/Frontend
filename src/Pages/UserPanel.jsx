@@ -8,12 +8,19 @@ import classes from "./UserPanel.module.css";
 import { useLoaderData } from "react-router-dom";
 
 import happyPersonImg from "/happy-person.png";
+import { useContext } from "react";
+import { DarkModeContext } from "../components/DarkModeProvider.jsx";
 
 export default function UserPanelPage() {
-    const comments = useLoaderData();
+    const data = useLoaderData();
+    const [darkMode, setDarkMode] = useContext(DarkModeContext);
 
     return (
-        <div className={classes.container}>
+        <div
+            className={`${classes.container} ${
+                darkMode ? classes.dark : undefined
+            }`}
+        >
             <header className={classes.header}>
                 <div className={classes.headerLine}>
                     <h1>Panel</h1>
@@ -27,30 +34,40 @@ export default function UserPanelPage() {
             <section className={classes.earnings}>
                 <ol>
                     <TipInfo
-                        value="208"
+                        value={
+                            data.sumTipValueForEveryMonth
+                                ? data.sumTipValueForEveryMonth[0].amount
+                                : 0
+                        }
                         message="Zarobki w tym miesiącu"
                         currency="PLN"
                     />
                     <TipInfo
-                        value="35"
+                        value={data.maxTipAmount}
                         message="Najwyższy napiwek"
                         currency="PLN"
                     />
-                    <TipInfo value="721" message="Ilość wpłaconych napiwków" />
+                    <TipInfo
+                        value={data.numberOfTips}
+                        message="Ilość wpłaconych napiwków"
+                    />
                 </ol>
                 <img src={happyPersonImg} alt="happy-person" />
             </section>
             <section className={classes.rating}>
                 <h2>Opinia publiczna</h2>
-                <UserRating rating={4} />
+                <UserRating rating={data.rating} />
             </section>
-            <section className={classes.comments}>
-                <h2>Wykres przychodów z napiwków</h2>
-                <TipChart />
-            </section>
+            {data.sumTipValueForEveryMonth && (
+                <section className={classes.comments}>
+                    <h2>Wykres przychodów z napiwków</h2>
+                    <TipChart data={data.sumTipValueForEveryMonth} />
+                </section>
+            )}
+
             <section className={classes.comments}>
                 <h2>Komentarze</h2>
-                <Comments commentList={comments} />
+                <Comments commentList={data.comments} />
             </section>
         </div>
     );
@@ -58,21 +75,69 @@ export default function UserPanelPage() {
 
 export async function userPanelLoader() {
     const token = getAuthToken();
-    const fetchUrl = getBackendUrl() + "/review/owner";
+    const fetchUrlComments = getBackendUrl() + "/review/owner";
+    // TODO - podawanie wlasnej waluty
+    const fetchUrlTip = getBackendUrl() + "/tip/stats?currency=PLN";
+    const fetchUrlRating = getBackendUrl() + "/review/avgRating";
 
-    const response = await fetch(fetchUrl, {
+    console.log("comments");
+    const responseComment = await fetch(fetchUrlComments, {
         headers: {
             Authorization: "Bearer " + token,
         },
     });
-    const responseData = await response.json();
+    console.log("comments");
+    const responseTip = await fetch(fetchUrlTip, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+    console.log("comments");
+    const responseRating = await fetch(fetchUrlRating, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
 
-    if (!response.ok) {
-        throw new Error("Failed to GET response from /review/read");
+    const responseCommentData = await responseComment.json();
+    const responseRatingData = await responseRating.json();
+
+    let responseTipData;
+
+    if (!responseComment.ok) {
+        throw new Error("Failed to GET response from user panel");
+    }
+    if (responseTip.ok) {
+        responseTipData = await responseTip.json();
+    } else if (responseTip.status === 406) {
+        responseTipData = {
+            numberOfTips: 0,
+            minTipAmount: 0,
+            maxTipAmount: 0,
+            avgTipAmount: 0,
+            // TODO - co tu wstawić
+            currency: "???",
+        };
+    } else {
+        throw new Error("Failed to GET response from user panel");
     }
 
     console.log("komentarze");
-    console.log(responseData);
+    console.log(responseCommentData);
+    console.log("napiwki");
+    console.log(responseTipData);
 
-    return responseData;
+    console.log(responseRatingData.avgRating);
+    console.log("polaczone");
+    console.log({
+        comments: responseCommentData,
+        rating: responseRatingData.avgRating,
+        ...responseTipData,
+    });
+
+    return {
+        comments: responseCommentData,
+        rating: responseRatingData.avgRating,
+        ...responseTipData,
+    };
 }

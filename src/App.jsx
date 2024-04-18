@@ -26,6 +26,7 @@ import UserPanelPage, { userPanelLoader } from "./Pages/UserPanel";
 import { ROLES } from "./components/auth/roles.js";
 import RegisterPage from "./Pages/RegisterPage.jsx";
 import ThanksForRegistration from "./Pages/ThanksForRegistration.jsx";
+import { DarkModeProvider } from "./components/DarkModeProvider.jsx";
 
 export const LOCAL = false;
 
@@ -35,79 +36,6 @@ const router = createBrowserRouter([
         element: <RootLayout />,
         errorElement: <ErrorPage />,
         loader: userLoader,
-        children: [
-            { index: true, element: <HomePage /> },
-            {
-                path: "auth",
-                element: <AuthenticationPage />,
-                action: authAction,
-            },
-            {
-                path: "logout",
-                action: logoutAction,
-            },
-            {
-                path: "qr",
-                element: (
-                    <ProtectedRoute>
-                        {" "}
-                        <QRPage />{" "}
-                    </ProtectedRoute>
-                ),
-            },
-            {
-                path: "info",
-                element: (
-                    <ProtectedRoute>
-                        {" "}
-                        <UserInfoPage />{" "}
-                    </ProtectedRoute>
-                ),
-                loader: userInfoLoader,
-            },
-            {
-                path: "reviewlist",
-                element: (
-                    <ProtectedRoute>
-                        {" "}
-                        <DisplayReviewsPage />{" "}
-                    </ProtectedRoute>
-                ),
-                loader: reviewDisplayLoader,
-            },
-            {
-                path: "userlist",
-                element: (
-                    <ProtectedRoute>
-                        {" "}
-                        <DisplayUsersPage />{" "}
-                    </ProtectedRoute>
-                ),
-                loader: displayUsersLoader,
-            },
-            {
-                path: "userInfo",
-                element: <UserInfoPage></UserInfoPage>,
-            },
-            {
-                path: "userpanel",
-                element: <UserPanelPage />,
-                loader: userPanelLoader,
-            },
-        ],
-    },
-    {
-        path: "review/:waiterId",
-        element: <ReviewAddPage />,
-        action: reviewAddAction,
-    },
-    { path: "thankyou", element: <ThankYouPage /> },
-    {
-        path: "/dev",
-        element: <RootLayout dev={true} />,
-        // errorElement: <ErrorPage />,
-        loader: userLoader,
-        id: "root",
         children: [
             { index: true, element: <HomePage /> },
             {
@@ -145,9 +73,8 @@ const router = createBrowserRouter([
             {
                 path: "info",
                 element: (
-                    <ProtectedRoute allowedRoles={[ROLES.USER]}>
-                        {" "}
-                        <UserInfoPage />{" "}
+                    <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.USER]}>
+                        <UserInfoPage />
                     </ProtectedRoute>
                 ),
                 loader: userInfoLoader,
@@ -156,8 +83,7 @@ const router = createBrowserRouter([
                 path: "reviewlist",
                 element: (
                     <ProtectedRoute>
-                        {" "}
-                        <DisplayReviewsPage />{" "}
+                        <DisplayReviewsPage />
                     </ProtectedRoute>
                 ),
                 loader: reviewDisplayLoader,
@@ -166,30 +92,35 @@ const router = createBrowserRouter([
                 path: "userlist",
                 element: (
                     <ProtectedRoute>
-                        {" "}
-                        <DisplayUsersPage />{" "}
+                        <DisplayUsersPage />
                     </ProtectedRoute>
                 ),
                 loader: displayUsersLoader,
             },
             {
-                path: "userInfo",
-                element: <UserInfoPage></UserInfoPage>,
-            },
-            {
                 path: "userpanel",
-                element: <UserPanelPage />,
+                element: (
+                    <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.USER]}>
+                        <UserPanelPage />
+                    </ProtectedRoute>
+                ),
                 loader: userPanelLoader,
             },
         ],
     },
+    {
+        path: "review/:waiterId",
+        element: <ReviewAddPage />,
+        action: reviewAddAction,
+    },
+    { path: "thankyou", element: <ThankYouPage /> },
 ]);
 
 export function App() {
     return (
-        <>
+        <DarkModeProvider>
             <RouterProvider router={router} />
-        </>
+        </DarkModeProvider>
     );
 }
 

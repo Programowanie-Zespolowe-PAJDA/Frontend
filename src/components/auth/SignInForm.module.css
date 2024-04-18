@@ -1,0 +1,93 @@
+.loginForm {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 40rem;
+    margin: auto;
+    border: #7c7c7c 2px solid;
+    text-align: center;
+    padding-bottom: 5rem;
+}
+
+.mainHeader {
+    margin-top: 5rem;
+    letter-spacing: 4px;
+    font-size: 72px;
+    font-weight: 500;
+    color: #143109;
+}
+
+.descriptionHeader {
+    margin-top: 1rem;
+    font-size: 24px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    color: #7c7c7c;
+}
+
+.loginForm > input {
+    min-height: 40px;
+    width: 35rem;
+    margin: auto;
+}
+
+.loginForm > label {
+    margin-top: 1rem;
+    text-align: left;
+    position: relative;
+    left: 2.5rem;
+    font-size: 20px;
+    padding-bottom: 4px;
+}
+
+.loginButton {
+    min-height: 40px;
+    width: 35rem;
+    margin: 3rem auto auto;
+    background-color: #fb6107;
+    color: #fff9fb;
+    font-size: 20px;
+    letter-spacing: 1px;
+    border: #fb6107 solid 1px;
+    border-radius: 3px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.registerButton {
+    min-height: 40px;
+    width: 35rem;
+    margin: 3rem auto auto;
+    font-size: 20px;
+    letter-spacing: 1px;
+    border: #fb6107 solid 3px;
+    border-radius: 3px;
+    color: #fb6107;
+    text-decoration: none;
+    padding-top: 4px;
+    font-weight: 700;
+}
+
+.loginForm > a {
+    text-decoration: none;
+}
+
+.errorMessage {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    background-color: #b61010;
+    height: 60px;
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    padding-top: 14px;
+}
+
+.clearMessage {
+    margin-top: 1rem;
+    height: 20px;
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    padding-top: 14px;
+}

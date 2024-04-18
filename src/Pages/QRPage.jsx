@@ -23,7 +23,7 @@ export default function QRPage() {
         <div className={classes.qrContainer}>
             {id && (
                 <QRCode
-                    value={getFrontendUrl() + "/dev/userinfo?id=" + id}
+                    value={getFrontendUrl() + "/userinfo?id=" + id}
                 ></QRCode>
             )}
         </div>

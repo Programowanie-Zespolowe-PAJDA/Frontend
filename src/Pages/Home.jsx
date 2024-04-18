@@ -113,7 +113,9 @@ export default function HomePage() {
                 <textarea id="story" name="story" />
             </section>
 
-            <footer>Wszelkie prawa zastrzeżone</footer>
+            <footer className={classes.footer}>
+                Wszelkie prawa zastrzeżone
+            </footer>
         </div>
     );
 }

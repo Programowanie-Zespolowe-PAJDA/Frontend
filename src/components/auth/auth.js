@@ -44,7 +44,7 @@ export async function action({ request }) {
     localStorage.setItem("user", JSON.stringify(user));
 
     console.log("Logged in");
-    return redirect("/dev");
+    return redirect("/userpanel");
 }
 
 export async function registerAction({ request }) {
@@ -74,7 +74,7 @@ export async function registerAction({ request }) {
         console.log("Błąd rejestracji!");
     } else {
         console.log("Rejestracja udana");
-        return redirect("/dev/thanksRegistration");
+        return redirect("/thanksRegistration");
     }
 
     return null;

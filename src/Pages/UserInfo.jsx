@@ -1,17 +1,21 @@
 import { useLoaderData } from "react-router-dom";
 import { getBackendUrl } from "../util/localUrlGeneration.js";
 import { getAuthToken } from "../components/auth/auth.js";
+import UserInfo from "../components/userInfo/UserInfo.jsx";
 
 export default function UserInfoPage() {
     const info = useLoaderData();
 
     return (
-        <section style={{ fontSize: "10rem" }}>
-            <p>{info.name}</p>
-            <p>{info.surname}</p>
-            <p>{info.mail}</p>
-            <p>{info.location}</p>
-        </section>
+        <>
+            <UserInfo info={info} />
+            {/* <section style={{ fontSize: "10rem" }}>
+                <p>{info.name}</p>
+                <p>{info.surname}</p>
+                <p>{info.mail}</p>
+                <p>{info.location}</p>
+            </section> */}
+        </>
     );
 }
 

@@ -26,3 +26,6 @@
 .message {
     padding-top: var(--spacing-8);
 }
+
+.dark {
+}

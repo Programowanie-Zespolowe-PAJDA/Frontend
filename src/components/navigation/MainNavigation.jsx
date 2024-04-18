@@ -1,14 +1,28 @@
 import { Form, NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
+import { DarkModeContext } from "../DarkModeProvider";
+import { useContext } from "react";
 
 export default function MainNavigation({ token }) {
+    const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
+    function changeMode() {
+        setDarkMode((prev) => !prev);
+    }
+
     return (
-        <nav className={classes.mainNav}>
+        <nav
+            className={`${classes.mainNav} ${
+                darkMode ? classes.darkBg : undefined
+            }`}
+        >
             <div className={classes.leftSide}>
                 <NavLink
                     to=""
                     className={({ isActive }) =>
-                        isActive ? classes.active : undefined
+                        `${classes.navLink} ${
+                            isActive ? classes.active : undefined
+                        }`
                     }
                     end
                 >
@@ -17,7 +31,9 @@ export default function MainNavigation({ token }) {
                 <NavLink
                     to="review/1"
                     className={({ isActive }) =>
-                        isActive ? classes.active : undefined
+                        `${classes.navLink} ${
+                            isActive ? classes.active : undefined
+                        }`
                     }
                 >
                     Review Add Test
@@ -28,7 +44,9 @@ export default function MainNavigation({ token }) {
                         <NavLink
                             to="qr"
                             className={({ isActive }) =>
-                                isActive ? classes.active : undefined
+                                `${classes.navLink} ${
+                                    isActive ? classes.active : undefined
+                                }`
                             }
                         >
                             QR
@@ -36,7 +54,9 @@ export default function MainNavigation({ token }) {
                         <NavLink
                             to="userpanel"
                             className={({ isActive }) =>
-                                isActive ? classes.active : undefined
+                                `${classes.navLink} ${
+                                    isActive ? classes.active : undefined
+                                }`
                             }
                         >
                             Panel użytkownika
@@ -44,7 +64,9 @@ export default function MainNavigation({ token }) {
                         <NavLink
                             to="info"
                             className={({ isActive }) =>
-                                isActive ? classes.active : undefined
+                                `${classes.navLink} ${
+                                    isActive ? classes.active : undefined
+                                }`
                             }
                         >
                             Informacje
@@ -52,25 +74,28 @@ export default function MainNavigation({ token }) {
                     </>
                 )}
             </div>
-            {token && (
-                <div className={classes.rightSide}>
+            <div className={classes.rightSide}>
+                <button onClick={changeMode} className={classes.themeButton}>
+                    {darkMode ? "light" : "dark"}
+                </button>
+                {token && (
                     <Form action={"logout"} method={"post"}>
                         <button className={classes.logoutButton}>Logout</button>
                     </Form>
-                </div>
-            )}
-            {!token && (
-                <div className={classes.rightSide}>
+                )}
+                {!token && (
                     <NavLink
                         to="auth"
                         className={({ isActive }) =>
-                            isActive ? classes.active : undefined
+                            `${classes.navLink} ${
+                                isActive ? classes.active : undefined
+                            }`
                         }
                     >
                         Login
                     </NavLink>
-                </div>
-            )}
+                )}
+            </div>
         </nav>
     );
 }

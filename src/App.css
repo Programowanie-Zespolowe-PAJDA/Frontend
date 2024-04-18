@@ -16,6 +16,7 @@ html {
 
 body {
     font-family: "Inter", sans-serif;
+    color: var(--color-text);
 }
 
 :root {
@@ -49,7 +50,9 @@ body {
     --font-15: 9.8rem;
 
     --color-background: #eee;
-    --color-text: #222;
+    --color-background-dark: #222;
+    --color-text: #444;
+    --color-text-dark: white;
     --color-header: lightgray;
     --color-header-button: lightgreen;
     --color-header-button-hover: rgb(109, 218, 109);

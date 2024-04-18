@@ -67,10 +67,13 @@
     display: flex;
     justify-content: flex-end;
     list-style: none;
-    gap: var(--spacing-6);
+    /* gap: var(--spacing-6); */
 }
 .rating img {
-    width: 10rem;
+    width: 5rem;
+}
+.mirror {
+    transform: scaleX(-1);
 }
 
 .comments ol {
@@ -85,10 +88,20 @@
 .comments li:last-child {
     margin-bottom: 0;
 }
-.comments h3 {
+.comments h4 {
     font-size: var(--font-7);
 }
 .comments p {
     font-size: var(--font-5);
     margin: var(--spacing-4) var(--spacing-6);
+}
+
+.dark hr {
+    border-bottom: 0.1rem solid white;
+}
+.dark span {
+    color: var(--color-text-dark);
+}
+.dark h3 {
+    border-bottom: 0.1rem solid var(--color-text-dark);
 }

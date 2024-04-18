@@ -47,6 +47,7 @@
     border: 0.4rem solid var(--color-review);
     border-radius: var(--spacing-2);
     background: 0;
+    background-color: white;
 }
 .tipButton:hover {
     background-color: var(--color-review-tip-hover);
@@ -76,7 +77,7 @@
 
 .rating ol {
     display: flex;
-    gap: var(--spacing-4);
+    /* gap: var(--spacing-4); */
     list-style: none;
     margin-bottom: var(--spacing-7);
 }
@@ -86,6 +87,9 @@
 }
 .rating img {
     max-width: 100%;
+}
+.mirror {
+    transform: scaleX(-1);
 }
 
 .comment {

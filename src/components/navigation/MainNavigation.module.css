@@ -12,8 +12,8 @@
     display: flex;
     gap: var(--spacing-3);
 }
-.mainNav a:link,
-.mainNav a:visited,
+.navLink:link,
+.navLink:visited,
 .logoutButton {
     font-size: var(--font-4);
     padding: var(--spacing-4) var(--spacing-6);
@@ -30,7 +30,23 @@
     cursor: pointer;
 }
 
-.mainNav a:link.active,
-.mainNav a:visited.active {
+.navLink:link.active,
+.navLink:visited.active {
+    color: var(--color-text);
     background-color: var(--color-nav-link-current);
+}
+.themeButton {
+    color: black;
+    font-size: var(--font-3);
+    border: 0;
+    border-radius: 100rem;
+    align-self: center;
+    padding: var(--spacing-4) var(--spacing-5);
+}
+.darkBg {
+    background-color: darkslategray;
+}
+
+.darkText {
+    color: var(--color-text-dark);
 }

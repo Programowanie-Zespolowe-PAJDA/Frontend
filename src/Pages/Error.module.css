@@ -1,0 +1,28 @@
+.container {
+    padding-top: var(--spacing-10);
+    max-width: 70rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-8);
+}
+
+.container h1 {
+    font-size: var(--font-10);
+    margin-bottom: var(--spacing-4);
+}
+.container span {
+    color: var(--color-review);
+}
+.container img {
+    grid-row: 1 / -1;
+    grid-column: 2;
+    max-width: 20rem;
+}
+.container p {
+    padding: 0 var(--spacing-5);
+    font-size: var(--font-6);
+}
+.message {
+    padding-top: var(--spacing-8);
+}

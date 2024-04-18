@@ -46,12 +46,6 @@ const router = createBrowserRouter([
                 path: "logout",
                 action: logoutAction,
             },
-            { path: "thankyou", element: <ThankYouPage /> },
-            {
-                path: "review/:waiterId",
-                element: <ReviewAddPage />,
-                action: reviewAddAction,
-            },
             {
                 path: "qr",
                 element: (
@@ -102,6 +96,12 @@ const router = createBrowserRouter([
             },
         ],
     },
+    {
+        path: "review/:waiterId",
+        element: <ReviewAddPage />,
+        action: reviewAddAction,
+    },
+    { path: "thankyou", element: <ThankYouPage /> },
     {
         path: "/dev",
         element: <RootLayout dev={true} />,

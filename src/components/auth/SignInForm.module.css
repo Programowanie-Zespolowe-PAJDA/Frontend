@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 70rem;
+    width: 40rem;
     margin: auto;
     border: #7c7c7c 2px solid;
     text-align: center;
@@ -27,7 +27,7 @@
 
 .loginForm > input {
     min-height: 40px;
-    width: 55rem;
+    width: 35rem;
     margin: auto;
 }
 
@@ -35,16 +35,15 @@
     margin-top: 1rem;
     text-align: left;
     position: relative;
-    left: 7.5rem;
+    left: 2.5rem;
     font-size: 20px;
     padding-bottom: 4px;
 }
 
 .loginButton {
     min-height: 40px;
-    width: 55rem;
-    margin: auto;
-    margin-top: 3rem;
+    width: 35rem;
+    margin: 3rem auto auto;
     background-color: #fb6107;
     color: #fff9fb;
     font-size: 20px;
@@ -57,9 +56,8 @@
 
 .registerButton {
     min-height: 40px;
-    width: 55rem;
-    margin: auto;
-    margin-top: 3rem;
+    width: 35rem;
+    margin: 3rem auto auto;
     font-size: 20px;
     letter-spacing: 1px;
     border: #fb6107 solid 3px;

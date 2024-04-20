@@ -30,6 +30,18 @@
     background-color: white;
     color: rgb(245, 159, 0);
 }
+.passwordButtons {
+    display: flex;
+    justify-content: end;
+    gap: var(--spacing-4);
+}
+.buttonReset {
+    background: 0;
+    border: 0;
+    color: var(--color-text);
+    font-size: var(--font-3);
+    cursor: pointer;
+}
 
 .data,
 .password,
@@ -45,7 +57,7 @@
 .data,
 .password {
     display: grid;
-    row-gap: var(--spacing-7);
+    row-gap: var(--spacing-4);
 }
 .data h2,
 .password h2 {
@@ -102,4 +114,24 @@
 }
 .qr img {
     height: 100%;
+}
+
+.validElement {
+    color: green;
+}
+
+.passwordValid {
+    justify-self: start;
+    font-size: var(--font-3);
+}
+.validationButtonsContainer {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
+.errorMessage {
+    background-color: lightcoral;
+    padding: var(--spacing-3) var(--spacing-5);
+    font-size: var(--font-3);
+    border-radius: var(--spacing-2);
 }

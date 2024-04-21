@@ -26,7 +26,7 @@ export default function MainNavigation({ token }) {
                     }
                     end
                 >
-                    Home
+                    Główna
                 </NavLink>
                 <NavLink
                     to="review/1"
@@ -36,7 +36,7 @@ export default function MainNavigation({ token }) {
                         }`
                     }
                 >
-                    Review Add Test
+                    REVIEW TEST
                 </NavLink>
 
                 {token && (
@@ -76,11 +76,13 @@ export default function MainNavigation({ token }) {
             </div>
             <div className={classes.rightSide}>
                 <button onClick={changeMode} className={classes.themeButton}>
-                    {darkMode ? "light" : "dark"}
+                    {darkMode ? "jasny" : "ciemny"}
                 </button>
                 {token && (
                     <Form action={"logout"} method={"post"}>
-                        <button className={classes.logoutButton}>Logout</button>
+                        <button className={classes.logoutButton}>
+                            Wyloguj się
+                        </button>
                     </Form>
                 )}
                 {!token && (
@@ -92,7 +94,7 @@ export default function MainNavigation({ token }) {
                             }`
                         }
                     >
-                        Login
+                        Zaloguj się
                     </NavLink>
                 )}
             </div>

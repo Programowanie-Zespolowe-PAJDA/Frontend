@@ -27,7 +27,7 @@ export default function SignInForm() {
                     <label htmlFor="email">Email</label>
                     <input id="mail" type="email" name="mail" required />
 
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Hasło</label>
                     <input
                         id="password"
                         type="password"

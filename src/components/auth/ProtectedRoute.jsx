@@ -7,6 +7,9 @@ export default function ProtectedRoute({
 }) {
     const user = getUser();
 
+    console.log("protexted route");
+    console.log(user);
+
     if (!user || !allowedRoles.includes(user.role)) {
         return <Navigate to={"../auth"} />;
     } else {

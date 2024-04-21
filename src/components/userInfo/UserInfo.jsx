@@ -12,6 +12,11 @@ export default function UserInfo({ info }) {
         password: "",
         retypedPassword: "",
     });
+    const [enteredInfo, setEnteredInfo] = useState({
+        name: info.name,
+        surname: info.surname,
+        location: info.location,
+    });
     const validPasswordElements = {
         length:
             enteredPassword.password.length >= 8 &&
@@ -27,10 +32,25 @@ export default function UserInfo({ info }) {
         (value) => value === true
     );
     const [errorMessage, setErrorMessage] = useState(false);
-    const nameRef = useRef();
-    const surnameRef = useRef();
-    const locationRef = useRef();
-    const [changedData, setChangedData] = useState(false);
+    const validInfoElements = {
+        name:
+            enteredInfo.name.length >= 2 &&
+            enteredInfo.name.length <= 30 &&
+            /^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*$/.test(enteredInfo.name),
+        surname:
+            enteredInfo.surname.length >= 2 &&
+            enteredInfo.surname.length <= 30 &&
+            /^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*(?:[- ]?[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*)?$/.test(
+                enteredInfo.surname
+            ),
+        different:
+            enteredInfo.name !== info.name ||
+            enteredInfo.surname !== info.surname ||
+            enteredInfo.location !== info.location,
+    };
+    const validInfo = Object.values(validInfoElements).every(
+        (value) => value === true
+    );
 
     const inputClass = `${classes.editInput} ${
         darkMode ? classes.editInputDark : ""
@@ -58,16 +78,14 @@ export default function UserInfo({ info }) {
         }
     }
 
-    function checkForChange() {
-        setChangedData(
-            nameRef.current.value !== info.name ||
-                surnameRef.current.value !== info.surname ||
-                locationRef.current.value !== info.location
-        );
-    }
-
-    function handleInputChange(identifier, event) {
+    function handlePasswordInputChange(identifier, event) {
         setEnteredPassword((prev) => ({
+            ...prev,
+            [identifier]: event.target.value,
+        }));
+    }
+    function handleInfoInputChange(identifier, event) {
+        setEnteredInfo((prev) => ({
             ...prev,
             [identifier]: event.target.value,
         }));
@@ -76,23 +94,12 @@ export default function UserInfo({ info }) {
     function editData(event) {
         event.preventDefault();
 
-        const sendPackage = {
-            name: nameRef.current.value,
-            surname: surnameRef.current.value,
-            location: locationRef.current.value,
-        };
-        console.log("sendPackage");
-        console.log(sendPackage);
-
-        sendData(sendPackage, "/user/editInformations");
+        sendData(enteredInfo, "/user/editInformations");
+        window.location.reload();
     }
 
     function editPassword(event) {
         event.preventDefault();
-
-        console.log("enteredPassword");
-        console.log(enteredPassword);
-
         sendData(enteredPassword, "/user/editPassword", "password");
     }
     function clearPassword() {
@@ -104,6 +111,7 @@ export default function UserInfo({ info }) {
         setErrorMessage(false);
     }
 
+    console.log(validInfoElements);
     return (
         <section className={classes.container}>
             <div className={classes.data}>
@@ -112,24 +120,27 @@ export default function UserInfo({ info }) {
                     <div className={classes.dataInfo}>
                         <label>Imię</label>
                         <input
-                            ref={nameRef}
                             defaultValue={info.name}
                             className={inputClass}
-                            onChange={checkForChange}
+                            onChange={(event) =>
+                                handleInfoInputChange("name", event)
+                            }
                         />
                         <label>Nazwisko</label>
                         <input
-                            ref={surnameRef}
                             defaultValue={info.surname}
                             className={inputClass}
-                            onChange={checkForChange}
+                            onChange={(event) =>
+                                handleInfoInputChange("surname", event)
+                            }
                         />
                         <label>Lokalizacja</label>
                         <input
-                            ref={locationRef}
                             defaultValue={info.location}
                             className={inputClass}
-                            onChange={checkForChange}
+                            onChange={(event) =>
+                                handleInfoInputChange("location", event)
+                            }
                         />
                         <h4>Email</h4>
                         <p>{info.mail}</p>
@@ -137,9 +148,9 @@ export default function UserInfo({ info }) {
                         <p>{info.bankAccountNumber}</p>
                     </div>
                     <button
-                        disabled={!changedData}
+                        disabled={!validInfo}
                         className={`${classes.button} ${
-                            !changedData && classes.grayButton
+                            !validInfo && classes.grayButton
                         }`}
                     >
                         Zapisz
@@ -158,7 +169,7 @@ export default function UserInfo({ info }) {
                         placeholder="stare hasło"
                         className={inputClass}
                         onChange={(event) =>
-                            handleInputChange("oldPassword", event)
+                            handlePasswordInputChange("oldPassword", event)
                         }
                         value={enteredPassword.oldPassword}
                     />
@@ -168,7 +179,7 @@ export default function UserInfo({ info }) {
                         placeholder="nowe hasło"
                         className={inputClass}
                         onChange={(event) =>
-                            handleInputChange("password", event)
+                            handlePasswordInputChange("password", event)
                         }
                         value={enteredPassword.password}
                     />
@@ -178,7 +189,7 @@ export default function UserInfo({ info }) {
                         placeholder="powtórz nowe hasło"
                         className={inputClass}
                         onChange={(event) =>
-                            handleInputChange("retypedPassword", event)
+                            handlePasswordInputChange("retypedPassword", event)
                         }
                         value={enteredPassword.retypedPassword}
                     />

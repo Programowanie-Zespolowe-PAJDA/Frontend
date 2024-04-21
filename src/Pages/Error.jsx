@@ -5,11 +5,11 @@ import { useContext, useMemo } from "react";
 import classes from "./Error.module.css";
 import darkClass from "./dark.module.css";
 import { DarkModeContext } from "../components/DarkModeProvider";
-import { getAuthToken } from "../components/auth/auth";
+import { getUser } from "../components/auth/auth";
 
 export default function ErrorPage() {
     const [darkMode, setDarkMode] = useContext(DarkModeContext);
-    const token = getAuthToken();
+    const token = getUser();
 
     const error = useRouteError();
     const { title, message, response } = useMemo(

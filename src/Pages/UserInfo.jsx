@@ -6,22 +6,15 @@ import UserInfo from "../components/userInfo/UserInfo.jsx";
 export default function UserInfoPage() {
     const info = useLoaderData();
 
-    return (
-        <>
-            <UserInfo info={info} />
-            {/* <section style={{ fontSize: "10rem" }}>
-                <p>{info.name}</p>
-                <p>{info.surname}</p>
-                <p>{info.mail}</p>
-                <p>{info.location}</p>
-            </section> */}
-        </>
-    );
+    return <UserInfo info={info} />;
 }
 
 export async function userInfoLoader() {
+    console.log("userInfoLoader");
     const token = getAuthToken();
+    console.log("userInfoLoader");
     const fetchUrl = getBackendUrl() + "/user/profile";
+    console.log("userInfoLoader");
 
     const response = await fetch(fetchUrl, {
         headers: {

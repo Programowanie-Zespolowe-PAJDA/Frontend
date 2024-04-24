@@ -26,10 +26,7 @@
     background-color: gray;
     cursor: default;
 }
-.buttonQR {
-    background-color: white;
-    color: rgb(245, 159, 0);
-}
+
 .passwordButtons {
     display: flex;
     justify-content: end;
@@ -109,11 +106,22 @@
 
 .qr {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
 }
-.qr img {
-    height: 100%;
+.qrImg {
+    max-height: 100%;
+    width: auto;
+}
+.buttonQRView {
+    background-color: white;
+    color: rgb(245, 159, 0);
+    align-self: center;
+}
+.buttonQRDownload {
+    color: white;
+    background-color: rgb(245, 159, 0);
+    align-self: center;
 }
 
 .validElement {

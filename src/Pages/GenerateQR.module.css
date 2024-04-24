@@ -1,7 +1,16 @@
 .qrContainer {
-    max-width: 100rem;
-    margin: 0 auto;
+    display: grid;
+    justify-content: center;
+    gap: var(--spacing-7);
+    margin-top: var(--spacing-7);
 }
-.qr {
-    width: 100%;
+.linkBack:link,
+.linkBack:visited {
+    background-color: orange;
+    color: white;
+    text-decoration: none;
+    padding: var(--spacing-3) var(--spacing-5);
+    border-radius: var(--spacing-3);
+    font-size: var(--font-7);
+    justify-self: center;
 }

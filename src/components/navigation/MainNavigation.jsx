@@ -42,16 +42,6 @@ export default function MainNavigation({ token }) {
                 {token && (
                     <>
                         <NavLink
-                            to="qr"
-                            className={({ isActive }) =>
-                                `${classes.navLink} ${
-                                    isActive ? classes.active : undefined
-                                }`
-                            }
-                        >
-                            QR
-                        </NavLink>
-                        <NavLink
                             to="userpanel"
                             className={({ isActive }) =>
                                 `${classes.navLink} ${

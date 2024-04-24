@@ -1,8 +1,41 @@
+import { useRef, useState } from "react";
+import { getAuthToken } from "../components/auth/auth";
+import { getBackendUrl } from "../util/localUrlGeneration";
 import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
     // This component should be probably split to multiple smaller ones!
+    const nickRef = useRef();
+    const textRef = useRef();
+    const [reportSuccess, setReportSuccess] = useState(false);
+
+    async function sendReport(event) {
+        event.preventDefault();
+        const fetchUrl = getBackendUrl() + "/reports";
+
+        const reportData = {
+            nick: nickRef.current.value,
+            text: textRef.current.value,
+        };
+        console.log("report");
+        console.log(reportData);
+
+        const response = await fetch(fetchUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(reportData),
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to send report");
+        }
+
+        setReportSuccess(true);
+    }
+
     return (
         <div className={classes.index}>
             <header className={classes.mainHeader}>
@@ -110,7 +143,28 @@ export default function HomePage() {
             <section className={classes.contact}>
                 <h3>Zainteresowany?</h3>
                 <p>Napisz do nas aby dowiedzieć się szczegółów</p>
-                <textarea id="story" name="story" />
+                <form onSubmit={sendReport} className={classes.contactForm}>
+                    <input
+                        ref={nickRef}
+                        placeholder="Imię"
+                        minLength={1}
+                        maxLength={20}
+                        required
+                    />
+                    <textarea
+                        ref={textRef}
+                        placeholder="Pytanie, pomysł, propozycja..."
+                        minLength={1}
+                        maxLength={1500}
+                        required
+                    />
+                    <button type="submit">Wyślij</button>
+                    {reportSuccess && (
+                        <div className={classes.reportSuccess}>
+                            Pomyślnie wysłano wiadomość
+                        </div>
+                    )}
+                </form>
             </section>
 
             <footer className={classes.footer}>

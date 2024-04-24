@@ -115,7 +115,9 @@ export default function UserInfo({ info }) {
         const canvas = document.getElementById("qr-code");
         console.log("canvas");
         console.log(canvas);
-        const qrURL = canvas.toDataURL("image/png");
+        const qrURL = canvas
+            .toDataURL("image/png")
+            .replace("image/png", "image/octet-stream");
         console.log("qrURL");
         console.log(qrURL);
         let downloadLink = document.createElement("a");

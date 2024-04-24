@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { getAuthToken } from "../components/auth/auth";
 import { getBackendUrl } from "../util/localUrlGeneration";
 import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
@@ -45,7 +44,7 @@ export default function HomePage() {
                     <img src="qr-code.jpg" alt="qr-code" />
                     <h1>eNapiwek</h1>
                     <p>Aplikacja do napiwków QR</p>
-                    <Link to="auth">Zarejestruj się</Link>
+                    <Link to="register">Zarejestruj się</Link>
                 </div>
             </header>
             <div className={classes.container}>

@@ -29,7 +29,7 @@ export default function QRPage() {
                 ></QRCode>
             )}
             <Link to="/info" className={classes.linkBack}>
-                Wróc
+                Wróć
             </Link>
         </div>
     );

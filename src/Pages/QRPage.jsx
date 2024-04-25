@@ -24,7 +24,7 @@ export default function QRPage() {
         <div className={classes.qrContainer}>
             {id && (
                 <QRCode
-                    value={getFrontendUrl() + "/review/" + id}
+                    value={`${getFrontendUrl()}/review/${id}`}
                     className={classes.qr}
                 ></QRCode>
             )}

@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import classes from "./UserInfo.module.css";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { getAuthToken } from "../auth/auth";
 import { getBackendUrl } from "../../util/localUrlGeneration";
 import { DarkModeContext } from "../DarkModeProvider";
+import QRCode from "react-qr-code";
 
 export default function UserInfo({ info }) {
     const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
+    const qrURL = `${getBackendUrl()}/review/${info.id}`;
+
     const [enteredPassword, setEnteredPassword] = useState({
         oldPassword: "",
         password: "",
@@ -51,10 +55,6 @@ export default function UserInfo({ info }) {
     const validInfo = Object.values(validInfoElements).every(
         (value) => value === true
     );
-
-    const inputClass = `${classes.editInput} ${
-        darkMode ? classes.editInputDark : ""
-    }`;
 
     async function sendData(sendPackage, endpoint, type) {
         const token = getAuthToken();
@@ -111,7 +111,20 @@ export default function UserInfo({ info }) {
         setErrorMessage(false);
     }
 
-    console.log(validInfoElements);
+    function downloadQRCode() {
+        const canvas = document.getElementById("qr-code").outerHTML;
+        const qrURL = "data:image/svg+xml," + encodeURIComponent(canvas);
+        let downloadLink = document.createElement("a");
+        downloadLink.href = qrURL;
+        downloadLink.download = "QRCode.png";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
+
+    const inputClass = `${classes.editInput} ${
+        darkMode ? classes.editInputDark : ""
+    }`;
     return (
         <section className={classes.container}>
             <div className={classes.data}>
@@ -281,14 +294,19 @@ export default function UserInfo({ info }) {
                 </form>
             </div>
             <div className={classes.qr}>
-                <img src="qr-code.jpg" alt="qr-code" />
-                {/* TODO - display png/jpg file fullscreen to download, or download directly */}
+                <QRCode id="qr-code" value={qrURL} className={classes.qrImg} />
                 <Link
                     to="/qr"
-                    className={`${classes.button} ${classes.buttonQR}`}
+                    className={`${classes.button} ${classes.buttonQRView}`}
                 >
-                    pobierz
+                    Wyświetl
                 </Link>
+                <button
+                    onClick={downloadQRCode}
+                    className={`${classes.button} ${classes.buttonQRDownload}`}
+                >
+                    Pobierz
+                </button>
             </div>
         </section>
     );

@@ -56,20 +56,6 @@ const router = createBrowserRouter([
                 path: "thanksRegistration",
                 element: <ThanksForRegistration />,
             },
-            { path: "thankyou", element: <ThankYouPage /> },
-            {
-                path: "review/:waiterId",
-                element: <ReviewAddPage />,
-                action: reviewAddAction,
-            },
-            {
-                path: "qr",
-                element: (
-                    <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.USER]}>
-                        <QRPage />
-                    </ProtectedRoute>
-                ),
-            },
             {
                 path: "info",
                 element: (
@@ -109,11 +95,19 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path: "review/:waiterId",
+        path: "/review/:waiterId",
         element: <ReviewAddPage />,
         action: reviewAddAction,
     },
-    { path: "thankyou", element: <ThankYouPage /> },
+    { path: "/thankyou", element: <ThankYouPage /> },
+    {
+        path: "/qr",
+        element: (
+            <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.USER]}>
+                <QRPage />
+            </ProtectedRoute>
+        ),
+    },
 ]);
 
 export function App() {

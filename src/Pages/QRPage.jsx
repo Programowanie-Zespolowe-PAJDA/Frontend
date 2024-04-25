@@ -1,5 +1,6 @@
 import QRCode from "react-qr-code";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import classes from "./GenerateQR.module.css";
 import { getAuthToken } from "../components/auth/auth.js";
@@ -23,9 +24,13 @@ export default function QRPage() {
         <div className={classes.qrContainer}>
             {id && (
                 <QRCode
-                    value={getFrontendUrl() + "/userinfo?id=" + id}
+                    value={`${getFrontendUrl()}/review/${id}`}
+                    className={classes.qr}
                 ></QRCode>
             )}
+            <Link to="/info" className={classes.linkBack}>
+                Wróć
+            </Link>
         </div>
     );
 }

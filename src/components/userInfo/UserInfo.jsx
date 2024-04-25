@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import classes from "./UserInfo.module.css";
-import React, { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { getAuthToken } from "../auth/auth";
 import { getBackendUrl } from "../../util/localUrlGeneration";
 import { DarkModeContext } from "../DarkModeProvider";
@@ -8,7 +8,6 @@ import QRCode from "react-qr-code";
 
 export default function UserInfo({ info }) {
     const [darkMode, setDarkMode] = useContext(DarkModeContext);
-    const qrCodeRef = React.createRef();
     const qrURL = getBackendUrl() + "/review/" + info.id;
 
     const [enteredPassword, setEnteredPassword] = useState({
@@ -112,17 +111,8 @@ export default function UserInfo({ info }) {
     }
 
     function downloadQRCode() {
-        // const canvas = qrCodeRef.current.querySelector('canvas');
-        // const canvas = document.getElementById("qr-code");
         const canvas = document.getElementById("qr-code").outerHTML;
-        console.log("canvas");
-        console.log(canvas);
         const qrURL = "data:image/svg+xml," + encodeURIComponent(canvas);
-        // const qrURL = canvas
-        //     .toDataURL("image/png")
-        //     .replace("image/png", "image/octet-stream");
-        console.log("qrURL");
-        console.log(qrURL);
         let downloadLink = document.createElement("a");
         downloadLink.href = qrURL;
         downloadLink.download = "QRCode.png";
@@ -303,12 +293,7 @@ export default function UserInfo({ info }) {
                 </form>
             </div>
             <div className={classes.qr}>
-                <QRCode
-                    id="qr-code"
-                    value={qrURL}
-                    ref={qrCodeRef}
-                    className={classes.qrImg}
-                />
+                <QRCode id="qr-code" value={qrURL} className={classes.qrImg} />
                 <Link
                     to="/qr"
                     className={`${classes.button} ${classes.buttonQRView}`}

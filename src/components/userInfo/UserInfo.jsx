@@ -8,7 +8,8 @@ import QRCode from "react-qr-code";
 
 export default function UserInfo({ info }) {
     const [darkMode, setDarkMode] = useContext(DarkModeContext);
-    const qrURL = getBackendUrl() + "/review/" + info.id;
+
+    const qrURL = `${getBackendUrl()}/review/${info.id}`;
 
     const [enteredPassword, setEnteredPassword] = useState({
         oldPassword: "",

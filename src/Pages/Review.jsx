@@ -25,8 +25,6 @@ export async function reviewAddAction({ request, params }) {
         // TODO - implementacja wyboru waluty
         currency: "PLN",
     };
-    console.log("dane wysylane:");
-    console.log(reviewData);
 
     const response = await fetch(fetchUrl, {
         method: "POST",

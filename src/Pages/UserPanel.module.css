@@ -63,6 +63,9 @@
     margin-bottom: var(--spacing-6);
 }
 
+.rating {
+    display: grid;
+}
 .rating ol {
     display: flex;
     justify-content: flex-end;
@@ -71,6 +74,16 @@
 }
 .rating img {
     width: 5rem;
+}
+.rating button {
+    justify-self: end;
+    border: 0;
+    border-radius: var(--spacing-3);
+    background-color: orange;
+    color: var(--color-text-dark);
+    font-size: var(--font-3);
+    font-weight: 600;
+    padding: var(--spacing-3) var(--spacing-5);
 }
 .mirror {
     transform: scaleX(-1);

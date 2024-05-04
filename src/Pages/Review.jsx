@@ -21,12 +21,11 @@ export async function reviewAddAction({ request, params }) {
         clientName: data.get("clientName"),
         hashRevID: ipData.ip,
         userID: userId,
-        amount: data.get("tip"),
-        // TODO - implementacja wyboru waluty
-        currency: "PLN",
+        amount: data.get("tip") * 100,
+        currency: data.get("currency"),
     };
     console.log("dane wysylane:");
-    console.log(reviewData);
+    console.log(JSON.stringify(reviewData));
 
     const response = await fetch(fetchUrl, {
         method: "POST",
@@ -47,5 +46,6 @@ export async function reviewAddAction({ request, params }) {
         );
     }
 
-    return redirect("/thankYou");
+    const responseData = await response.json();
+    return redirect(responseData.redirectUri);
 }

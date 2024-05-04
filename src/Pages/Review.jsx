@@ -24,8 +24,6 @@ export async function reviewAddAction({ request, params }) {
         amount: data.get("tip") * 100,
         currency: data.get("currency"),
     };
-    console.log("dane wysylane:");
-    console.log(JSON.stringify(reviewData));
 
     const response = await fetch(fetchUrl, {
         method: "POST",

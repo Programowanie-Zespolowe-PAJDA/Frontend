@@ -22,7 +22,7 @@
     font-weight: 600;
     cursor: pointer;
 }
-.grayButton {
+.button:disabled {
     background-color: gray;
     cursor: default;
 }

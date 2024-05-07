@@ -5,101 +5,80 @@ import { getAuthToken } from "../auth/auth";
 import { getBackendUrl } from "../../util/localUrlGeneration";
 import { DarkModeContext } from "../DarkModeProvider";
 import QRCode from "react-qr-code";
-import { Formik, Form } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 
+const validationSchemaPassword = Yup.object().shape({
+    oldPassword: Yup.string().required(),
+    password: Yup.string()
+        .min(8, "min")
+        .max(30, "max")
+        .matches(/[a-z]/, "lower")
+        .matches(/[A-Z]/, "upper")
+        .matches(/[0-9]/, "number")
+        .matches(/[!@#$%^&*]/, "special"),
+    retypedPassword: Yup.string()
+        .required("required")
+        .oneOf([Yup.ref("password"), null], "match"),
+});
+
+const validationSchemaInfo = Yup.object().shape({
+    name: Yup.string()
+        .required()
+        .min(2)
+        .max(30)
+        .matches(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*$/),
+    surname: Yup.string()
+        .required()
+        .min(2)
+        .max(30)
+        .matches(
+            /^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*(?:[- ]?[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*)?$/
+        ),
+    location: Yup.string().required(),
+});
+
 export default function UserInfo({ info }) {
+    const [errorMessage, setErrorMessage] = useState(false);
     const [darkMode, setDarkMode] = useContext(DarkModeContext);
     const qrURL = `${getBackendUrl()}/review/${info.id}`;
+    const passwordFormik = useFormik({
+        initialValues: {
+            oldPassword: "",
+            password: "",
+            retypedPassword: "",
+        },
+        onSubmit: async (values) =>
+            sendData(values, "/user/editPassword", "password"),
+        validateOnChange: true,
+        validateOnMount: true,
+        validate: (values) => {
+            try {
+                validationSchemaPassword.validateSync(values, {
+                    abortEarly: false,
+                });
+                return {};
+            } catch (error) {
+                return error.errors;
+            }
+        },
+    });
 
     // --------------------------------------------
 
-    const initialPassword = {
-        oldPassword: "",
-        password: "",
-        retypedPassword: "",
-    };
-    const initialInfo = {
-        name: info.name,
-        surname: info.surname,
-        location: info.location,
-    };
+    // const initialInfo = {
+    //     name: info.name,
+    //     surname: info.surname,
+    //     location: info.location,
+    // };
 
-    const validationSchemaPassword = Yup.object().shape({
-        oldPassword: Yup.string().required(),
-        password: Yup.string()
-            .min(8, "min")
-            .max(30, "max")
-            .matches(/[a-z]/, "lower")
-            .matches(/[A-Z]/, "upper")
-            .matches(/[0-9]/, "number")
-            .matches(/[!@#$%^&*]/, "special"),
-        retypedPassword: Yup.string()
-            .required()
-            .oneOf([Yup.ref("password"), null]),
-    });
-    const validationSchemaInfo = Yup.object()
-        .shape({
-            name: Yup.string()
-                .required()
-                .min(2)
-                .max(30)
-                .matches(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*$/),
-            surname: Yup.string()
-                .required()
-                .min(2)
-                .max(30)
-                .matches(
-                    /^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*(?:[- ]?[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*)?$/
-                ),
-            location: Yup.string().required(),
-        })
-        .test("changed", null, (values) => {
-            const { name, surname, location } = values;
-
-            const result = Object.keys(values).some(
-                (key) => values[key] !== initialInfo[key]
-            );
-            return result
-                ? true
-                : new Yup.ValidationError(
-                      "At least one field should be changed",
-                      values,
-                      "changed"
-                  );
-        });
-
-    function handleSubmitInfo(values) {
-        console.log(values);
-        sendData(values, "/user/editInformations");
-        window.location.reload();
-    }
-    function handleSubmitPassword(values) {
-        sendData(values, "/user/editPassword", "password");
-    }
+    // function handleSubmitInfo(values) {
+    //     console.log(values);
+    //     sendData(values, "/user/editInformations");
+    //     window.location.reload();
+    // }
 
     // --------------------------------------------
-
-    const [enteredPassword, setEnteredPassword] = useState({
-        oldPassword: "",
-        password: "",
-        retypedPassword: "",
-    });
-    const validPasswordElements = {
-        length:
-            enteredPassword.password.length >= 8 &&
-            enteredPassword.password.length <= 30,
-        lower: /[a-z]/.test(enteredPassword.password),
-        upper: /[A-Z]/.test(enteredPassword.password),
-        number: /[0-9]/.test(enteredPassword.password),
-        special: /[!@#$%^&*]/.test(enteredPassword.password),
-        match: enteredPassword.password === enteredPassword.retypedPassword,
-        different: enteredPassword.password !== enteredPassword.oldPassword,
-    };
-    const validPassword = Object.values(validPasswordElements).every(
-        (value) => value === true
-    );
-    const [errorMessage, setErrorMessage] = useState(false);
 
     async function sendData(sendPackage, endpoint, type) {
         const token = getAuthToken();
@@ -123,26 +102,6 @@ export default function UserInfo({ info }) {
         }
     }
 
-    function handlePasswordInputChange(identifier, event) {
-        setEnteredPassword((prev) => ({
-            ...prev,
-            [identifier]: event.target.value,
-        }));
-    }
-
-    function editPassword(event) {
-        event.preventDefault();
-        sendData(enteredPassword, "/user/editPassword", "password");
-    }
-    function clearPassword() {
-        setEnteredPassword({
-            oldPassword: "",
-            password: "",
-            retypedPassword: "",
-        });
-        setErrorMessage(false);
-    }
-
     function downloadQRCode() {
         const canvas = document.getElementById("qr-code").outerHTML;
         const qrURL = "data:image/svg+xml," + encodeURIComponent(canvas);
@@ -161,7 +120,7 @@ export default function UserInfo({ info }) {
         <section className={classes.container}>
             <div className={classes.data}>
                 <h2>Twoje dane</h2>
-                <Formik
+                {/* <Formik
                     initialValues={initialInfo}
                     validationSchema={validationSchemaInfo}
                     onSubmit={handleSubmitInfo}
@@ -220,156 +179,153 @@ export default function UserInfo({ info }) {
                             </Form>
                         );
                     }}
-                </Formik>
+                </Formik> */}
             </div>
             <div className={classes.password}>
                 <h2>Zmień hasło</h2>
                 {errorMessage && (
                     <div className={classes.errorMessage}>{errorMessage}</div>
                 )}
-                <Formik
-                    initialValues={initialPassword}
-                    validationSchema={validationSchemaPassword}
-                    onSubmit={handleSubmitPassword}
+
+                <form
+                    className={classes.edit}
+                    onSubmit={passwordFormik.handleSubmit}
                 >
-                    {(props) => {
-                        console.log(props);
-                        validationSchemaPassword
-                            .validate(props.values, { abortEarly: false })
-                            .then(() => {
-                                console.log("success");
-                            })
-                            .catch((err) => {
-                                err.inner.forEach((e) => {
-                                    console.log(e.message);
-                                });
-                            });
-                        return (
-                            <Form className={classes.edit}>
-                                <input
-                                    id="oldPassword"
-                                    name="oldPassword"
-                                    type="password"
-                                    className={inputClass}
-                                    placeholder="stare hasło"
-                                    value={props.values.oldPassword}
-                                    onChange={props.handleChange}
-                                    onBlurCapture={props.handleBlur}
-                                />
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    className={inputClass}
-                                    placeholder="nowe hasło"
-                                    value={props.values.password}
-                                    onChange={props.handleChange}
-                                    onBlurCapture={props.handleBlur}
-                                />
-                                <input
-                                    id="retypedPassword"
-                                    name="retypedPassword"
-                                    type="password"
-                                    className={inputClass}
-                                    placeholder="powtórz nowe hasło"
-                                    value={props.values.retypedPassword}
-                                    onChange={props.handleChange}
-                                    onBlurCapture={props.handleBlur}
-                                />
-                                <div
-                                    className={
-                                        classes.validationButtonsContainer
-                                    }
-                                >
-                                    <section className={classes.passwordValid}>
-                                        <p
-                                            className={
-                                                validPasswordElements.length
-                                                    ? classes.validElement
-                                                    : undefined
-                                            }
-                                        >
-                                            długość (8-30)
-                                        </p>
-                                        <p
-                                            className={
-                                                validPasswordElements.lower
-                                                    ? classes.validElement
-                                                    : undefined
-                                            }
-                                        >
-                                            mała litera
-                                        </p>
-                                        <p
-                                            className={
-                                                validPasswordElements.upper
-                                                    ? classes.validElement
-                                                    : undefined
-                                            }
-                                        >
-                                            wielka litera
-                                        </p>
-                                        <p
-                                            className={
-                                                validPasswordElements.number
-                                                    ? classes.validElement
-                                                    : undefined
-                                            }
-                                        >
-                                            cyfra
-                                        </p>
-                                        <p
-                                            className={
-                                                validPasswordElements.special
-                                                    ? classes.validElement
-                                                    : undefined
-                                            }
-                                        >
-                                            znak specjalny
-                                        </p>
-                                        <p
-                                            className={
-                                                validPasswordElements.match
-                                                    ? classes.validElement
-                                                    : undefined
-                                            }
-                                        >
-                                            hasła pasują
-                                        </p>
-                                        <p
-                                            className={
-                                                validPasswordElements.different
-                                                    ? classes.validElement
-                                                    : undefined
-                                            }
-                                        >
-                                            nowe hasło jest inne
-                                        </p>
-                                    </section>
-                                    <div className={classes.passwordButtons}>
-                                        <button
-                                            type="reset"
-                                            className={classes.buttonReset}
-                                            onClick={clearPassword}
-                                        >
-                                            wyczyść
-                                        </button>
-                                        <button
-                                            disabled={!validPassword}
-                                            type="submit"
-                                            className={`${classes.button} ${
-                                                !validPassword &&
-                                                classes.grayButton
-                                            }`}
-                                        >
-                                            Zmień hasło
-                                        </button>
-                                    </div>
-                                </div>
-                            </Form>
-                        );
-                    }}
-                </Formik>
+                    <input
+                        id="oldPassword"
+                        name="oldPassword"
+                        type="password"
+                        className={inputClass}
+                        placeholder="stare hasło"
+                        value={passwordFormik.values.oldPassword}
+                        onChange={passwordFormik.handleChange}
+                        onBlurCapture={passwordFormik.handleBlur}
+                    />
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        className={inputClass}
+                        placeholder="nowe hasło"
+                        value={passwordFormik.values.password}
+                        onChange={passwordFormik.handleChange}
+                        onBlurCapture={passwordFormik.handleBlur}
+                    />
+                    <input
+                        id="retypedPassword"
+                        name="retypedPassword"
+                        type="password"
+                        className={inputClass}
+                        placeholder="powtórz nowe hasło"
+                        value={passwordFormik.values.retypedPassword}
+                        onChange={passwordFormik.handleChange}
+                        onBlurCapture={passwordFormik.handleBlur}
+                    />
+                    <div className={classes.validationButtonsContainer}>
+                        <section className={classes.passwordValid}>
+                            <p
+                                className={`${
+                                    passwordFormik.dirty &&
+                                    !passwordFormik.errors?.includes?.("min") &&
+                                    !passwordFormik.errors?.includes?.("max")
+                                        ? classes.validElement
+                                        : undefined
+                                }`}
+                            >
+                                długość (8-30)
+                            </p>
+                            <p
+                                className={`${
+                                    passwordFormik.dirty &&
+                                    !passwordFormik.errors?.includes?.("lower")
+                                        ? classes.validElement
+                                        : undefined
+                                }`}
+                            >
+                                mała litera
+                            </p>
+                            <p
+                                className={`${
+                                    passwordFormik.dirty &&
+                                    !passwordFormik.errors?.includes?.("upper")
+                                        ? classes.validElement
+                                        : undefined
+                                }`}
+                            >
+                                wielka litera
+                            </p>
+                            <p
+                                className={`${
+                                    passwordFormik.dirty &&
+                                    !passwordFormik.errors?.includes?.("number")
+                                        ? classes.validElement
+                                        : undefined
+                                }`}
+                            >
+                                cyfra
+                            </p>
+                            <p
+                                className={`${
+                                    passwordFormik.dirty &&
+                                    !passwordFormik.errors?.includes?.(
+                                        "special"
+                                    )
+                                        ? classes.validElement
+                                        : undefined
+                                }`}
+                            >
+                                znak specjalny
+                            </p>
+                            <p
+                                className={`${
+                                    passwordFormik.dirty &&
+                                    !passwordFormik.errors?.includes?.(
+                                        "match"
+                                    ) &&
+                                    !passwordFormik.errors?.includes?.(
+                                        "required"
+                                    )
+                                        ? classes.validElement
+                                        : undefined
+                                }`}
+                            >
+                                hasła pasują
+                            </p>
+                            <p
+                                className={`${
+                                    passwordFormik.dirty &&
+                                    passwordFormik.values.oldPassword !==
+                                        passwordFormik.values.password
+                                        ? classes.validElement
+                                        : undefined
+                                }`}
+                            >
+                                nowe hasło jest inne
+                            </p>
+                        </section>
+                        <div className={classes.passwordButtons}>
+                            <button
+                                onClick={passwordFormik.handleReset}
+                                type="reset"
+                                className={classes.buttonReset}
+                            >
+                                wyczyść
+                            </button>
+                            <button
+                                disabled={
+                                    !(
+                                        passwordFormik.isValid &&
+                                        passwordFormik.dirty
+                                    )
+                                }
+                                type="submit"
+                                className={classes.button}
+                            >
+                                Zmień hasło
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div className={classes.qr}>
                 <QRCode id="qr-code" value={qrURL} className={classes.qrImg} />

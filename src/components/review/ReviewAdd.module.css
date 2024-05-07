@@ -34,12 +34,20 @@
     margin-bottom: var(--spacing-7);
 }
 .tipGrid input {
-    grid-column: 1 / -1;
+    grid-column: 1 / span 4;
     text-align: center;
     font-size: var(--font-7);
     font-weight: 600;
     color: var(--color-review);
 }
+
+.tipGrid select {
+    font-size: var(--font-6);
+    font-weight: 600;
+    color: var(--color-review);
+    border: 3px grey solid;
+}
+
 .tipButton {
     width: var(--tip-size);
     height: var(--tip-size);

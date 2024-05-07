@@ -64,6 +64,12 @@ export default function Review() {
                             value={reviewData.tipAmount}
                             placeholder="Podaj wartość napiwku"
                         />
+                        <select id="currency" name="currency">
+                            <option>PLN</option>
+                            <option>EUR</option>
+                            <option>USD</option>
+                            <option>CHF</option>
+                        </select>
                     </div>
                 </section>
 
@@ -80,6 +86,7 @@ export default function Review() {
                                         }
                                     >
                                         <img
+                                            alt="Rating scale"
                                             src={
                                                 reviewData.rating >= rating
                                                     ? "/star-half.png"

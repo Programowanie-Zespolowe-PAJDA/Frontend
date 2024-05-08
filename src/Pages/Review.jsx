@@ -1,9 +1,19 @@
-import { json, redirect } from "react-router-dom";
+import { json, redirect, useLoaderData } from "react-router-dom";
 import ReviewAdd from "../components/review/ReviewAdd";
 import { getBackendUrl } from "../util/localUrlGeneration";
 
 export default function ReviewPage() {
-    return <ReviewAdd />;
+    const userData = useLoaderData();
+    return <ReviewAdd userData={userData} />;
+}
+
+export async function reviewAddLoader({ params }) {
+    const { waiterId } = params;
+    const fetchUrl = getBackendUrl() + `/user/${waiterId}`;
+    console.log(fetchUrl);
+    const response = await fetch(fetchUrl);
+    const responseData = await response.json();
+    return responseData;
 }
 
 export async function reviewAddAction({ request, params }) {

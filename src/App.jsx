@@ -11,7 +11,10 @@ import {
 import { action as logoutAction } from "./components/auth/Logout.jsx";
 import { userLoader } from "./components/auth/auth.js";
 import ErrorPage from "./Pages/Error";
-import ReviewAddPage, { reviewAddAction } from "./Pages/Review";
+import ReviewAddPage, {
+    reviewAddAction,
+    reviewAddLoader,
+} from "./Pages/Review";
 import ThankYouPage from "./Pages/ThankYou";
 import DisplayReviewsPage, {
     reviewDisplayLoader,
@@ -97,6 +100,7 @@ const router = createBrowserRouter([
     {
         path: "/review/:waiterId",
         element: <ReviewAddPage />,
+        loader: reviewAddLoader,
         action: reviewAddAction,
     },
     { path: "/thankyou", element: <ThankYouPage /> },

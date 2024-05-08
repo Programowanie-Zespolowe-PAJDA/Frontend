@@ -116,7 +116,7 @@ export default function UserInfo({ info }) {
         const qrURL = "data:image/svg+xml," + encodeURIComponent(canvas);
         let downloadLink = document.createElement("a");
         downloadLink.href = qrURL;
-        downloadLink.download = "QRCode.png";
+        downloadLink.download = "QRCode.svg";
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);

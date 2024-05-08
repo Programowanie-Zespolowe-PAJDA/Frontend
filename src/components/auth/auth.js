@@ -39,8 +39,6 @@ export async function action({ request }) {
         rRole = ROLES.USER;
     }
 
-    console.log(responseJson);
-
     const user = {
         token: rToken,
         refreshToken: responseJson.refreshToken,
@@ -63,8 +61,6 @@ export async function registerAction({ request }) {
         location: data.get("location"),
         bankAccountNumber: data.get("bankAccountNumber"),
     };
-
-    console.log(registerData);
 
     const response = await fetch(getBackendUrl() + "/register", {
         method: "post",

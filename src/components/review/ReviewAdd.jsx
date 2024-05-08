@@ -17,7 +17,6 @@ export default function Review({ userData }) {
         }));
     }
 
-    console.log(userData);
     return (
         <div className={classes.container}>
             <header className={classes.header}>

@@ -10,7 +10,6 @@ export default function ReviewPage() {
 export async function reviewAddLoader({ params }) {
     const { waiterId } = params;
     const fetchUrl = getBackendUrl() + `/user/${waiterId}`;
-    console.log(fetchUrl);
     const response = await fetch(fetchUrl);
     const responseData = await response.json();
     return responseData;

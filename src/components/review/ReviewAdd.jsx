@@ -58,6 +58,8 @@ export default function Review() {
                             id="tip"
                             type="number"
                             name="tip"
+                            min="1"
+                            required
                             onChange={(event) =>
                                 selectHandler("tipAmount", event.target.value)
                             }

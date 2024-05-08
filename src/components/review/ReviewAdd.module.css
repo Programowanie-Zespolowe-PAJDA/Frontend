@@ -126,11 +126,17 @@
 }
 .send button {
     border-radius: var(--spacing-5);
-    border: 0;
+    border: 2px solid var(--color-review);
     background-color: var(--color-review);
     font-size: var(--font-7);
     font-weight: 600;
     padding: var(--spacing-6) var(--spacing-8);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.send button:hover {
+    border: 2px solid black;
 }
 
 @media (max-width: 36em) {

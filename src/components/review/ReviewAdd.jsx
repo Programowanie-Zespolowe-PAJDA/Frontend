@@ -22,7 +22,8 @@ export default function Review({ userData }) {
             <header className={classes.header}>
                 <h1>eNapiwek</h1>
                 <p>Aplikacja do napiwków QR</p>
-                <h3>{`${userData.name} ${userData.surname}`}</h3>
+                <h3 className={classes.location}>{userData.location}</h3>
+                <h3>{userData.name}</h3>
             </header>
             <Form method="post">
                 <section className={classes.tip}>

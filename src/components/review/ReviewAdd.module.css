@@ -28,6 +28,9 @@
 .header h3 {
     font-size: var(--font-10);
 }
+.location {
+    color: orange;
+}
 
 .tipGrid {
     display: grid;

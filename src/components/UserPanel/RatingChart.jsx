@@ -16,6 +16,11 @@ export default function RatingChart({ chartData }) {
             }}
             options={{
                 indexAxis: "y",
+                scales: {
+                    y: {
+                        suggestedMin: 20,
+                    },
+                },
             }}
         />
     );

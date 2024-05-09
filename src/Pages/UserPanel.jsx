@@ -92,6 +92,7 @@ export async function userPanelLoader() {
             Authorization: "Bearer " + token,
         },
     });
+
     const responseTip = await fetch(fetchUrlTip, {
         headers: {
             Authorization: "Bearer " + token,

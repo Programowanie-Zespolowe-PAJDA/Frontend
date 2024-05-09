@@ -1,9 +1,18 @@
-import { json, redirect } from "react-router-dom";
+import { json, redirect, useLoaderData } from "react-router-dom";
 import ReviewAdd from "../components/review/ReviewAdd";
 import { getBackendUrl } from "../util/localUrlGeneration";
 
 export default function ReviewPage() {
-    return <ReviewAdd />;
+    const userData = useLoaderData();
+    return <ReviewAdd userData={userData} />;
+}
+
+export async function reviewAddLoader({ params }) {
+    const { waiterId } = params;
+    const fetchUrl = getBackendUrl() + `/user/${waiterId}`;
+    const response = await fetch(fetchUrl);
+    const responseData = await response.json();
+    return responseData;
 }
 
 export async function reviewAddAction({ request, params }) {
@@ -21,9 +30,8 @@ export async function reviewAddAction({ request, params }) {
         clientName: data.get("clientName"),
         hashRevID: ipData.ip,
         userID: userId,
-        amount: data.get("tip"),
-        // TODO - implementacja wyboru waluty
-        currency: "PLN",
+        amount: data.get("tip") * 100,
+        currency: data.get("currency"),
     };
 
     const response = await fetch(fetchUrl, {
@@ -45,5 +53,6 @@ export async function reviewAddAction({ request, params }) {
         );
     }
 
-    return redirect("/thankYou");
+    const responseData = await response.json();
+    return redirect(responseData.redirectUri);
 }

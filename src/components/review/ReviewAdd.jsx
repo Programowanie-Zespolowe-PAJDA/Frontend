@@ -4,7 +4,7 @@ import { Form } from "react-router-dom";
 
 const TIPS_AMOUNT = [5, 10, 20, 30, 40];
 
-export default function Review() {
+export default function Review({ userData }) {
     const [reviewData, setReviewData] = useState({
         rating: 0,
         tipAmount: "",
@@ -22,6 +22,8 @@ export default function Review() {
             <header className={classes.header}>
                 <h1>eNapiwek</h1>
                 <p>Aplikacja do napiwków QR</p>
+                <h3 className={classes.location}>{userData.location}</h3>
+                <h3>{userData.name}</h3>
             </header>
             <Form method="post">
                 <section className={classes.tip}>
@@ -58,6 +60,8 @@ export default function Review() {
                             id="tip"
                             type="number"
                             name="tip"
+                            min="1"
+                            required
                             onChange={(event) =>
                                 selectHandler("tipAmount", event.target.value)
                             }

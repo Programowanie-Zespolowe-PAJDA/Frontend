@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import classes from "./UserInfo.module.css";
 import { useContext, useState } from "react";
 import { getAuthToken } from "../auth/auth";
-import { getBackendUrl } from "../../util/localUrlGeneration";
+import { getBackendUrl, getFrontendUrl } from "../../util/localUrlGeneration";
 import { DarkModeContext } from "../DarkModeProvider";
 import QRCode from "react-qr-code";
 
 export default function UserInfo({ info }) {
     const [darkMode, setDarkMode] = useContext(DarkModeContext);
 
-    const qrURL = `${getBackendUrl()}/review/${info.id}`;
+    const qrURL = `${getFrontendUrl()}/review/${info.id}`;
 
     const [enteredPassword, setEnteredPassword] = useState({
         oldPassword: "",
@@ -116,7 +116,7 @@ export default function UserInfo({ info }) {
         const qrURL = "data:image/svg+xml," + encodeURIComponent(canvas);
         let downloadLink = document.createElement("a");
         downloadLink.href = qrURL;
-        downloadLink.download = "QRCode.png";
+        downloadLink.download = "QRCode.svg";
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);

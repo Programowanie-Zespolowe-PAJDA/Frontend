@@ -10,11 +10,8 @@ export default function UserInfoPage() {
 }
 
 export async function userInfoLoader() {
-    console.log("userInfoLoader");
     const token = getAuthToken();
-    console.log("userInfoLoader");
     const fetchUrl = getBackendUrl() + "/user/profile";
-    console.log("userInfoLoader");
 
     const response = await fetch(fetchUrl, {
         headers: {

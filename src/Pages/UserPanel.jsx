@@ -80,19 +80,18 @@ export async function userPanelLoader() {
     const fetchUrlTip = getBackendUrl() + "/tip/stats?currency=PLN";
     const fetchUrlRating = getBackendUrl() + "/review/avgRating";
 
-    console.log("comments");
     const responseComment = await fetch(fetchUrlComments, {
         headers: {
             Authorization: "Bearer " + token,
         },
     });
-    console.log("comments");
+
     const responseTip = await fetch(fetchUrlTip, {
         headers: {
             Authorization: "Bearer " + token,
         },
     });
-    console.log("comments");
+
     const responseRating = await fetch(fetchUrlRating, {
         headers: {
             Authorization: "Bearer " + token,
@@ -121,19 +120,6 @@ export async function userPanelLoader() {
     } else {
         throw new Error("Failed to GET response from user panel");
     }
-
-    console.log("komentarze");
-    console.log(responseCommentData);
-    console.log("napiwki");
-    console.log(responseTipData);
-
-    console.log(responseRatingData.avgRating);
-    console.log("polaczone");
-    console.log({
-        comments: responseCommentData,
-        rating: responseRatingData.avgRating,
-        ...responseTipData,
-    });
 
     return {
         comments: responseCommentData,

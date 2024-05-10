@@ -154,6 +154,7 @@
 /* 672px or less */
 @media (max-width: 42em) {
     .container {
+        max-width: 65rem;
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto 10rem;
     }

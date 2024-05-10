@@ -64,6 +64,25 @@ export default function UserInfo({ info }) {
         },
     });
 
+    const infoFormik = useFormik({
+        initialValues: {
+            name: info.name,
+            surname: info.surname,
+            location: info.location,
+        },
+        onSubmit: async (values) => sendData(values, "/user/editInformations"),
+        validateOnChange: true,
+        validateOnMount: true,
+        validate: (values) => {
+            try {
+                validationSchemaInfo.validateSync(values);
+                return {};
+            } catch (error) {
+                return error.errors;
+            }
+        },
+    });
+
     // --------------------------------------------
 
     // const initialInfo = {
@@ -180,6 +199,54 @@ export default function UserInfo({ info }) {
                         );
                     }}
                 </Formik> */}
+                <form
+                    onSubmit={infoFormik.handleSubmit}
+                    className={classes.dataForm}
+                >
+                    <div className={classes.dataInfo}>
+                        <label htmlFor="name">Imię</label>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            className={inputClass}
+                            value={infoFormik.values.name}
+                            onChange={infoFormik.handleChange}
+                            onBlurCapture={infoFormik.handleBlur}
+                        />
+                        <label htmlFor="surname">Nazwisko</label>
+                        <input
+                            id="surname"
+                            name="surname"
+                            type="text"
+                            className={inputClass}
+                            value={infoFormik.values.surname}
+                            onChange={infoFormik.handleChange}
+                            onBlurCapture={infoFormik.handleBlur}
+                        />
+                        <label htmlFor="location">Lokalizacja</label>
+                        <input
+                            id="location"
+                            name="location"
+                            type="text"
+                            className={inputClass}
+                            value={infoFormik.values.location}
+                            onChange={infoFormik.handleChange}
+                            onBlurCapture={infoFormik.handleBlur}
+                        />
+                        <h4>Email</h4>
+                        <p>{info.mail}</p>
+                        <h4>Nr. konta</h4>
+                        <p>{info.bankAccountNumber}</p>
+                    </div>
+                    <button
+                        disabled={!(infoFormik.isValid && infoFormik.dirty)}
+                        type="submit"
+                        className={classes.button}
+                    >
+                        Zmień dane
+                    </button>
+                </form>
             </div>
             <div className={classes.password}>
                 <h2>Zmień hasło</h2>

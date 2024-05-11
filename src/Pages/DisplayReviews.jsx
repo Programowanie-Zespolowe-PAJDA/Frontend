@@ -21,7 +21,5 @@ export async function reviewDisplayLoader() {
         throw new Error("Failed to GET response from /review/read");
     }
 
-    console.log(responseData);
-
     return responseData;
 }

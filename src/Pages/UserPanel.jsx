@@ -8,10 +8,12 @@ import classes from "./UserPanel.module.css";
 import { useLoaderData } from "react-router-dom";
 
 import happyPersonImg from "/happy-person.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DarkModeContext } from "../components/DarkModeProvider.jsx";
+import RatingChart from "../components/UserPanel/RatingChart.jsx";
 
 export default function UserPanelPage() {
+    const [showReviewChart, setShowReviewChart] = useState(false);
     const data = useLoaderData();
     const [darkMode, setDarkMode] = useContext(DarkModeContext);
 
@@ -57,6 +59,10 @@ export default function UserPanelPage() {
             <section className={classes.rating}>
                 <h2>Opinia publiczna</h2>
                 <UserRating rating={data.rating} />
+                <button onClick={() => setShowReviewChart((prev) => !prev)}>
+                    {`${showReviewChart ? "Schowaj" : "Rozwiń"}`}
+                </button>
+                {showReviewChart && <RatingChart chartData={data.ratingAll} />}
             </section>
             {data.sumTipValueForEveryMonth && (
                 <section className={classes.comments}>
@@ -78,7 +84,8 @@ export async function userPanelLoader() {
     const fetchUrlComments = getBackendUrl() + "/review/owner";
     // TODO - podawanie wlasnej waluty
     const fetchUrlTip = getBackendUrl() + "/tip/stats?currency=PLN";
-    const fetchUrlRating = getBackendUrl() + "/review/avgRating";
+    const fetchUrlRatingAvg = getBackendUrl() + "/review/avgRating";
+    const fetchUrlRatingAll = getBackendUrl() + "/review/numberOfEachRating";
 
     const responseComment = await fetch(fetchUrlComments, {
         headers: {
@@ -91,15 +98,20 @@ export async function userPanelLoader() {
             Authorization: "Bearer " + token,
         },
     });
-
-    const responseRating = await fetch(fetchUrlRating, {
+    const responseRatingAvg = await fetch(fetchUrlRatingAvg, {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+    const responseRatingAll = await fetch(fetchUrlRatingAll, {
         headers: {
             Authorization: "Bearer " + token,
         },
     });
 
     const responseCommentData = await responseComment.json();
-    const responseRatingData = await responseRating.json();
+    const responseRatingAvgData = await responseRatingAvg.json();
+    const responseRatingAllData = await responseRatingAll.json();
 
     let responseTipData;
 
@@ -123,7 +135,8 @@ export async function userPanelLoader() {
 
     return {
         comments: responseCommentData,
-        rating: responseRatingData.avgRating,
+        rating: responseRatingAvgData.avgRating,
+        ratingAll: responseRatingAllData,
         ...responseTipData,
     };
 }

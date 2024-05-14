@@ -14,10 +14,11 @@ const validationSchemaPassword = Yup.object().shape({
         .matches(/[a-z]/, "lower")
         .matches(/[A-Z]/, "upper")
         .matches(/[0-9]/, "number")
-        .matches(/[!@#$%^&*]/, "special"),
+        .matches(/[!@#$%^&*]/, "special")
+        .notOneOf([Yup.ref("oldPassword")], "oldSame"),
     retypedPassword: Yup.string()
         .required("required")
-        .oneOf([Yup.ref("password"), null], "match"),
+        .oneOf([Yup.ref("password")], "match"),
 });
 
 export default function PasswordBox() {
@@ -65,12 +66,15 @@ export default function PasswordBox() {
         if (!response.ok) {
             throw new Error("Failed to edit data");
         }
+
+        passwordFormik.resetForm();
     }
 
     const inputClass = `${classes.editInput} ${
         darkMode ? classes.editInputDark : ""
     }`;
 
+    console.log(passwordFormik);
     return (
         <div className={classes.password}>
             <h2>Zmień hasło</h2>
@@ -179,8 +183,7 @@ export default function PasswordBox() {
                         <p
                             className={`${
                                 passwordFormik.dirty &&
-                                passwordFormik.values.oldPassword !==
-                                    passwordFormik.values.password
+                                !passwordFormik.errors?.includes?.("oldSame")
                                     ? classes.validElement
                                     : undefined
                             }`}

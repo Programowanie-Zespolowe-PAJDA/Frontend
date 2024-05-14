@@ -7,9 +7,9 @@ import { DarkModeContext } from "../components/DarkModeProvider.jsx";
 import classes from "./dark.module.css";
 import { msTokenLife } from "../components/auth/auth.js";
 
-export default function RootLayout({ dev }) {
+export default function RootLayout() {
     const user = useLoaderData();
-    const [darkMode, setDarkMode] = useContext(DarkModeContext);
+    const [darkMode] = useContext(DarkModeContext);
     const submit = useSubmit();
 
     useEffect(() => {

@@ -7,7 +7,7 @@ import { DarkModeContext } from "../DarkModeProvider";
 import QRCode from "react-qr-code";
 
 export default function UserInfo({ info }) {
-    const [darkMode, setDarkMode] = useContext(DarkModeContext);
+    const [darkMode] = useContext(DarkModeContext);
 
     const qrURL = `${getFrontendUrl()}/review/${info.id}`;
 

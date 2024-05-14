@@ -1,7 +1,4 @@
 export default function Comments({ commentList }) {
-    console.log("commentList");
-    console.log(commentList);
-
     return (
         <ol>
             {commentList &&

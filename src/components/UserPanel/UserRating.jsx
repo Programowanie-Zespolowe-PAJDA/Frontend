@@ -1,9 +1,6 @@
 import classes from "../../Pages/UserPanel.module.css";
 
 export default function UserRating({ rating }) {
-    console.log("gwiazdki");
-    console.log(rating);
-
     return (
         <ol>
             {[...Array(10)].map((a, index) => {

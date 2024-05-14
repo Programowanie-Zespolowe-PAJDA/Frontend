@@ -17,8 +17,6 @@ export default function HomePage() {
             nick: nickRef.current.value,
             text: textRef.current.value,
         };
-        console.log("report");
-        console.log(reportData);
 
         const response = await fetch(fetchUrl, {
             method: "POST",

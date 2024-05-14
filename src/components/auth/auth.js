@@ -2,6 +2,8 @@ import { redirect } from "react-router-dom";
 import { getBackendUrl } from "../../util/localUrlGeneration.js";
 import { ROLES } from "./roles.js";
 
+export const msTokenLife = 1000 * 60 * 10;
+
 export async function action({ request }) {
     const data = await request.formData();
     const authData = {
@@ -39,11 +41,12 @@ export async function action({ request }) {
 
     const user = {
         token: rToken,
+        refreshToken: responseJson.refreshToken,
         role: rRole,
+        lastRefresh: Date.now(),
     };
     localStorage.setItem("user", JSON.stringify(user));
 
-    console.log("Logged in");
     return redirect("/userpanel");
 }
 
@@ -58,8 +61,6 @@ export async function registerAction({ request }) {
         location: data.get("location"),
         bankAccountNumber: data.get("bankAccountNumber"),
     };
-
-    console.log(registerData);
 
     const response = await fetch(getBackendUrl() + "/register", {
         method: "post",

@@ -28,8 +28,5 @@ export async function displayUsersLoader() {
     }
     const responseData = await response.json();
 
-    console.log("response data");
-    console.log(responseData);
-
     return responseData;
 }

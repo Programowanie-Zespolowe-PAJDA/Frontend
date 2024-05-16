@@ -50,13 +50,6 @@ export async function userPanelLoader() {
     }
     if (responseTip.ok) {
         responseTipData = await responseTip.json();
-    } else if (responseTip.status === 406) {
-        responseTipData = {
-            numberOfTips: 0,
-            minTipAmount: 0,
-            maxTipAmount: 0,
-            avgTipAmount: 0,
-        };
     } else {
         throw new Error("Failed to GET response from user panel");
     }

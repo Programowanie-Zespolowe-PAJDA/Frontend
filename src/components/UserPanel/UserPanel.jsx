@@ -60,15 +60,6 @@ export default function UserPanel({ initialData }) {
         }
         if (responseTip.ok) {
             responseTipData = await responseTip.json();
-        } else if (responseTip.status === 406) {
-            responseTipData = {
-                numberOfTips: 0,
-                minTipAmount: 0,
-                maxTipAmount: 0,
-                avgTipAmount: 0,
-                // TODO - co tu wstawić
-                currency: currency,
-            };
         } else {
             throw new Error("Failed to GET response from user panel");
         }
@@ -78,6 +69,7 @@ export default function UserPanel({ initialData }) {
             rating: responseRatingAvgData.avgRating,
             ratingAll: responseRatingAllData,
             ...responseTipData,
+            currency: currency,
         });
     }
 
@@ -93,6 +85,10 @@ export default function UserPanel({ initialData }) {
                 <div className={classes.headerLine}>
                     <h1>Panel</h1>
                     <hr />
+                    <CurrencySelector
+                        changeFunction={setCurrency}
+                        current={data.currency}
+                    />
                 </div>
                 <div className={classes.headerLine}>
                     <h1>Napiwków</h1>
@@ -100,7 +96,6 @@ export default function UserPanel({ initialData }) {
                 </div>
             </header>
             <section className={classes.earnings}>
-                <CurrencySelector changeFunction={setCurrency} />
                 <ol>
                     <TipInfo
                         value={

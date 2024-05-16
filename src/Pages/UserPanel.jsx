@@ -6,7 +6,7 @@ import { useLoaderData } from "react-router-dom";
 export default function UserPanelPage() {
     const data = useLoaderData();
     console.log(data);
-    return <UserPanel data={data} />;
+    return <UserPanel initialData={data} />;
 }
 
 export async function userPanelLoader() {
@@ -56,8 +56,6 @@ export async function userPanelLoader() {
             minTipAmount: 0,
             maxTipAmount: 0,
             avgTipAmount: 0,
-            // TODO - co tu wstawić
-            currency: "???",
         };
     } else {
         throw new Error("Failed to GET response from user panel");
@@ -68,5 +66,6 @@ export async function userPanelLoader() {
         rating: responseRatingAvgData.avgRating,
         ratingAll: responseRatingAllData,
         ...responseTipData,
+        currency: "PLN",
     };
 }

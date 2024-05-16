@@ -7,21 +7,82 @@ import classes from "./UserPanel.module.css";
 import happyPersonImg from "/happy-person.png";
 import { useContext, useState } from "react";
 import { DarkModeContext } from "../DarkModeProvider.jsx";
+import CurrencySelector from "./CurrencySelector.jsx";
+import { getAuthToken } from "../auth/auth.js";
+import { getBackendUrl } from "../../util/localUrlGeneration.js";
 
-const EXAMPLE_DATA = {
-    numberOfTips: 10,
-    minTipAmount: 506,
-    maxTipAmount: 1245,
-    avgTipAmount: 905,
-    // TODO - co tu wstawić
-    currency: "PLN",
-};
-
-export default function UserPanel({ data }) {
+export default function UserPanel({ initialData }) {
     const [showReviewChart, setShowReviewChart] = useState(false);
-    const [darkMode, setDarkMode] = useContext(DarkModeContext);
+    const [data, setData] = useState(initialData);
+    const [darkMode] = useContext(DarkModeContext);
 
-    data = EXAMPLE_DATA;
+    async function setCurrency(currency) {
+        const token = getAuthToken();
+        const fetchUrlComments = getBackendUrl() + "/review/owner";
+        // TODO - podawanie wlasnej waluty
+        const fetchUrlTip = getBackendUrl() + "/tip/stats?currency=" + currency;
+        const fetchUrlRatingAvg = getBackendUrl() + "/review/avgRating";
+        const fetchUrlRatingAll =
+            getBackendUrl() + "/review/numberOfEachRating";
+
+        console.log(fetchUrlTip);
+
+        const responseComment = await fetch(fetchUrlComments, {
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        });
+
+        const responseTip = await fetch(fetchUrlTip, {
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        });
+        const responseRatingAvg = await fetch(fetchUrlRatingAvg, {
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        });
+        const responseRatingAll = await fetch(fetchUrlRatingAll, {
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        });
+
+        const responseCommentData = await responseComment.json();
+        const responseRatingAvgData = await responseRatingAvg.json();
+        const responseRatingAllData = await responseRatingAll.json();
+
+        let responseTipData;
+
+        if (!responseComment.ok) {
+            throw new Error("Failed to GET response from user panel");
+        }
+        if (responseTip.ok) {
+            responseTipData = await responseTip.json();
+        } else if (responseTip.status === 406) {
+            responseTipData = {
+                numberOfTips: 0,
+                minTipAmount: 0,
+                maxTipAmount: 0,
+                avgTipAmount: 0,
+                // TODO - co tu wstawić
+                currency: currency,
+            };
+        } else {
+            throw new Error("Failed to GET response from user panel");
+        }
+
+        setData({
+            comments: responseCommentData,
+            rating: responseRatingAvgData.avgRating,
+            ratingAll: responseRatingAllData,
+            ...responseTipData,
+        });
+    }
+
+    console.log(data);
+
     return (
         <div
             className={`${classes.container} ${
@@ -39,6 +100,7 @@ export default function UserPanel({ data }) {
                 </div>
             </header>
             <section className={classes.earnings}>
+                <CurrencySelector changeFunction={setCurrency} />
                 <ol>
                     <TipInfo
                         value={
@@ -47,12 +109,12 @@ export default function UserPanel({ data }) {
                                 : 0
                         }
                         message="Zarobki w tym miesiącu"
-                        currency="PLN"
+                        currency={data.currency}
                     />
                     <TipInfo
                         value={data.maxTipAmount / 100}
                         message="Najwyższy napiwek"
-                        currency="PLN"
+                        currency={data.currency}
                     />
                     <TipInfo
                         value={data.numberOfTips}
@@ -64,6 +126,7 @@ export default function UserPanel({ data }) {
             <section className={classes.rating}>
                 <h2>Opinia publiczna</h2>
                 <UserRating rating={data.rating} />
+                {data.ge}
                 <button onClick={() => setShowReviewChart((prev) => !prev)}>
                     {`${showReviewChart ? "Schowaj" : "Rozwiń"}`}
                 </button>

@@ -10,7 +10,7 @@ export default function TipChart({ data }) {
                     datasets: [
                         {
                             label: "Zarobki",
-                            data: data.map((elem) => elem.amount),
+                            data: data.map((elem) => elem.amount / 100),
                             backgroundColor: "white",
                             borderColor: "orange",
                         },

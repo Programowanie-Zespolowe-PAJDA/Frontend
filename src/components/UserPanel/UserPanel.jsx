@@ -8,9 +8,20 @@ import happyPersonImg from "/happy-person.png";
 import { useContext, useState } from "react";
 import { DarkModeContext } from "../DarkModeProvider.jsx";
 
+const EXAMPLE_DATA = {
+    numberOfTips: 10,
+    minTipAmount: 506,
+    maxTipAmount: 1245,
+    avgTipAmount: 905,
+    // TODO - co tu wstawić
+    currency: "PLN",
+};
+
 export default function UserPanel({ data }) {
     const [showReviewChart, setShowReviewChart] = useState(false);
     const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
+    data = EXAMPLE_DATA;
     return (
         <div
             className={`${classes.container} ${
@@ -32,14 +43,14 @@ export default function UserPanel({ data }) {
                     <TipInfo
                         value={
                             data.sumTipValueForEveryMonth
-                                ? data.sumTipValueForEveryMonth[0].amount
+                                ? data.sumTipValueForEveryMonth[0].amount / 100
                                 : 0
                         }
                         message="Zarobki w tym miesiącu"
                         currency="PLN"
                     />
                     <TipInfo
-                        value={data.maxTipAmount}
+                        value={data.maxTipAmount / 100}
                         message="Najwyższy napiwek"
                         currency="PLN"
                     />

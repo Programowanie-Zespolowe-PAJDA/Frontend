@@ -7,9 +7,13 @@ import { DarkModeContext } from "../components/DarkModeProvider.jsx";
 import classes from "./dark.module.css";
 import { msTokenLife } from "../components/auth/auth.js";
 
-export default function RootLayout({ dev }) {
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import toastClasses from "./Toast.module.css";
+
+export default function RootLayout() {
     const user = useLoaderData();
-    const [darkMode, setDarkMode] = useContext(DarkModeContext);
+    const [darkMode] = useContext(DarkModeContext);
     const submit = useSubmit();
 
     useEffect(() => {
@@ -30,6 +34,10 @@ export default function RootLayout({ dev }) {
         <div className={darkMode ? classes.dark : undefined}>
             <MainNavigation token={user} />
             {user && user.role === ROLES.ADMIN && <AdminNavigation />}
+            <ToastContainer
+                position="top-center"
+                className={toastClasses.toast}
+            />
             <Outlet />
         </div>
     );

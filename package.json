@@ -18,7 +18,8 @@
         "react-chartjs-2": "^5.2.0",
         "react-charts": "^3.0.0-beta.57",
         "react-dom": "^18.2.0",
-        "react-qr-code": "^2.0.12"
+        "react-qr-code": "^2.0.12",
+        "react-toastify": "^10.0.5"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "^6.1.4",

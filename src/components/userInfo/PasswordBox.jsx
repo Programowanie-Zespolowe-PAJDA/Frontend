@@ -74,7 +74,6 @@ export default function PasswordBox() {
         darkMode ? classes.editInputDark : ""
     }`;
 
-    console.log(passwordFormik);
     return (
         <div className={classes.password}>
             <h2>Zmień hasło</h2>

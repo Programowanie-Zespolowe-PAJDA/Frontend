@@ -1,9 +1,9 @@
-import { redirect, useSubmit } from "react-router-dom";
+import { redirect } from "react-router-dom";
 import { getBackendUrl } from "../../util/localUrlGeneration.js";
 import { ROLES } from "./roles.js";
-import { setTimeout } from "timers";
 
-export const msTokenLife = 1000 * 60 * 5.2;
+// 15 mins token life
+export const msTokenLife = 1000 * 60 * 15;
 
 export async function action({ request }) {
     const data = await request.formData();
@@ -101,16 +101,13 @@ export function getTimeLeft() {
 export async function handleTokenRefresh(user, submit) {
     if (user) {
         const msLeft = getTimeLeft();
-        console.log("AUTH: Time left: " + msLeft / 1000 / 60);
 
         // Expired
         if (msLeft <= 0) {
-            console.log("AUTH: TOKEN EXPIRED");
             return submit(null, { action: "/logout", method: "post" });
         }
         // 5 mins left or less
         else if (msLeft <= 1000 * 60 * 5) {
-            console.log("AUTH: TOKEN REFRESH START");
             const requestData = {
                 token: user.token,
             };
@@ -128,7 +125,6 @@ export async function handleTokenRefresh(user, submit) {
                     user.lastRefresh = Date.now();
                     localStorage.setItem("user", JSON.stringify(user));
                 })
-                .then(() => console.log("Updated token!"))
                 .catch((error) => console.error("Refresh error: " + error));
         }
     }

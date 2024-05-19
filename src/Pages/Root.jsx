@@ -5,19 +5,11 @@ import { ROLES } from "../components/auth/roles.js";
 import { useContext, useEffect, useState } from "react";
 import { DarkModeContext } from "../components/DarkModeProvider.jsx";
 import classes from "./dark.module.css";
-import {
-    getAuthToken,
-    getTimeLeft,
-    handleTokenRefresh,
-    msTokenLife,
-} from "../components/auth/auth.js";
+import { getTimeLeft, handleTokenRefresh } from "../components/auth/auth.js";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import toastClasses from "./Toast.module.css";
-import { getBackendUrl } from "../util/localUrlGeneration.js";
-import { setTimeout } from "timers";
-import { set } from "husky";
 
 export default function RootLayout() {
     const user = useLoaderData();

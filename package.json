@@ -21,6 +21,7 @@
         "react-dom": "^18.2.0",
         "react-qr-code": "^2.0.12",
         "react-toastify": "^10.0.5",
+        "timers": "^0.1.1",
         "yup": "^1.4.0"
     },
     "devDependencies": {

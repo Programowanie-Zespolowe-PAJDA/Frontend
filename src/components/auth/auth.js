@@ -1,8 +1,9 @@
-import { redirect } from "react-router-dom";
+import { redirect, useSubmit } from "react-router-dom";
 import { getBackendUrl } from "../../util/localUrlGeneration.js";
 import { ROLES } from "./roles.js";
+import { setTimeout } from "timers";
 
-export const msTokenLife = 1000 * 60 * 10;
+export const msTokenLife = 1000 * 60 * 5.2;
 
 export async function action({ request }) {
     const data = await request.formData();
@@ -91,4 +92,44 @@ export function getUser() {
 
 export async function userLoader() {
     return getUser();
+}
+
+export function getTimeLeft() {
+    return msTokenLife - (Date.now() - getUser().lastRefresh);
+}
+
+export async function handleTokenRefresh(user, submit) {
+    if (user) {
+        const msLeft = getTimeLeft();
+        console.log("AUTH: Time left: " + msLeft / 1000 / 60);
+
+        // Expired
+        if (msLeft <= 0) {
+            console.log("AUTH: TOKEN EXPIRED");
+            return submit(null, { action: "/logout", method: "post" });
+        }
+        // 5 mins left or less
+        else if (msLeft <= 1000 * 60 * 5) {
+            console.log("AUTH: TOKEN REFRESH START");
+            const requestData = {
+                token: user.token,
+            };
+
+            await fetch(getBackendUrl() + "/refresh", {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(requestData),
+            })
+                .then((response) => response.json())
+                .then((response) => {
+                    user.token = response.token;
+                    user.lastRefresh = Date.now();
+                    localStorage.setItem("user", JSON.stringify(user));
+                })
+                .then(() => console.log("Updated token!"))
+                .catch((error) => console.error("Refresh error: " + error));
+        }
+    }
 }

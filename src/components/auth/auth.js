@@ -2,7 +2,8 @@ import { redirect } from "react-router-dom";
 import { getBackendUrl } from "../../util/localUrlGeneration.js";
 import { ROLES } from "./roles.js";
 
-export const msTokenLife = 1000 * 60 * 10;
+// 15 mins token life
+export const msTokenLife = 1000 * 60 * 15;
 
 export async function action({ request }) {
     const data = await request.formData();
@@ -91,4 +92,40 @@ export function getUser() {
 
 export async function userLoader() {
     return getUser();
+}
+
+export function getTimeLeft() {
+    return msTokenLife - (Date.now() - getUser().lastRefresh);
+}
+
+export async function handleTokenRefresh(user, submit) {
+    if (user) {
+        const msLeft = getTimeLeft();
+
+        // Expired
+        if (msLeft <= 0) {
+            return submit(null, { action: "/logout", method: "post" });
+        }
+        // 5 mins left or less
+        else if (msLeft <= 1000 * 60 * 5) {
+            const requestData = {
+                token: user.token,
+            };
+
+            await fetch(getBackendUrl() + "/refresh", {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(requestData),
+            })
+                .then((response) => response.json())
+                .then((response) => {
+                    user.token = response.token;
+                    user.lastRefresh = Date.now();
+                    localStorage.setItem("user", JSON.stringify(user));
+                })
+                .catch((error) => console.error("Refresh error: " + error));
+        }
+    }
 }

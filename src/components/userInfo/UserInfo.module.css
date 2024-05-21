@@ -5,6 +5,7 @@
     gap: var(--spacing-5);
     max-width: 100rem;
     margin: 0 auto;
+    padding: 0 var(--spacing-5);
     margin-top: var(--spacing-10);
 }
 
@@ -22,7 +23,7 @@
     font-weight: 600;
     cursor: pointer;
 }
-.grayButton {
+.button:disabled {
     background-color: gray;
     cursor: default;
 }
@@ -54,7 +55,7 @@
 .data,
 .password {
     display: grid;
-    row-gap: var(--spacing-4);
+    gap: var(--spacing-6);
 }
 .data h2,
 .password h2 {
@@ -63,6 +64,18 @@
 
 .data {
     grid-row: 1 / span 2;
+    grid-template-rows: auto 1fr;
+}
+.dataForm {
+    display: grid;
+    gap: var(--spacing-4);
+    grid-template-rows: auto 1fr;
+}
+.dataForm button {
+    align-self: start;
+    justify-self: end;
+    padding: var(--spacing-3) var(--spacing-5);
+    font-size: var(--font-3);
 }
 .dataInfo {
     display: grid;
@@ -73,12 +86,6 @@
 }
 .dataInfo label {
     font-weight: 600;
-}
-.data button {
-    justify-self: end;
-    align-self: end;
-    padding: var(--spacing-3) var(--spacing-5);
-    font-size: var(--font-3);
 }
 
 .edit {
@@ -142,4 +149,13 @@
     padding: var(--spacing-3) var(--spacing-5);
     font-size: var(--font-3);
     border-radius: var(--spacing-2);
+}
+
+/* 672px or less */
+@media (max-width: 42em) {
+    .container {
+        max-width: 65rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto 10rem;
+    }
 }

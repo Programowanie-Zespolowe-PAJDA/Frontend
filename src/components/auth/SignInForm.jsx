@@ -9,6 +9,13 @@ export default function SignInForm() {
     const emailNotify = searchParams.get("isEmailConfirmed");
 
     useEffect(() => {
+        if (searchParams.has("notConfirmed"))
+            toast.warning("Email nie został jeszcze potwierdzony!");
+        if (searchParams.has("goConfirm"))
+            toast.success(
+                "Rejestracja udana! Prosimy teraz potwierdzić adres email."
+            );
+
         if (emailNotify === "true") {
             toast.success("Email został potwierdzony!", {
                 closeOnClick: true,

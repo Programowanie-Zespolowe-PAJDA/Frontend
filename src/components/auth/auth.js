@@ -19,6 +19,10 @@ export async function action({ request }) {
         body: JSON.stringify(authData),
     });
 
+    if (response.status === 401) {
+        return redirect("?notConfirmed");
+    }
+
     if (response.status !== 200) {
         return redirect("?retry=true");
     }
@@ -75,7 +79,7 @@ export async function registerAction({ request }) {
         console.log("Błąd rejestracji!");
     } else {
         console.log("Rejestracja udana");
-        return redirect("/thanksRegistration");
+        return redirect("/auth?goConfirm");
     }
 
     return null;

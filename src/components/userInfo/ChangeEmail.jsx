@@ -50,13 +50,13 @@ export default function ChangeEmail({ oldEmail }) {
         console.log(response);
 
         if (!response.ok) {
-            throw new Error("Nie udało się zmienić maila");
+            toast.error("Nie udało się zmienić maila");
+        } else {
+            toast.success(
+                "Należy teraz potwierdzić nowy mail, aby został zmieniony."
+            );
+            mailFormik.resetForm();
         }
-
-        toast.success(
-            "Należy teraz potwierdzić nowy mail, aby został zmieniony."
-        );
-        mailFormik.resetForm();
     }
 
     return (

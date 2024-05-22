@@ -10,7 +10,7 @@ export default function UserInfo({ info }) {
             <DataBox info={info} />
             <PasswordBox />
             <QRBox id={info.id} />
-            <ChangeEmail />
+            <ChangeEmail oldEmail={info.mail} />
         </section>
     );
 }

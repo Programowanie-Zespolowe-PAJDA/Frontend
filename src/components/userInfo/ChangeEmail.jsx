@@ -2,42 +2,29 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { getAuthToken } from "../auth/auth";
 import { getBackendUrl } from "../../util/localUrlGeneration";
+import { toast } from "react-toastify";
 
-const validationSchemaPassword = Yup.object().shape({
-    oldPassword: Yup.string().required(),
-    password: Yup.string()
-        .min(8, "min")
-        .max(30, "max")
-        .matches(/[a-z]/, "lower")
-        .matches(/[A-Z]/, "upper")
-        .matches(/[0-9]/, "number")
-        .matches(/[!@#$%^&*]/, "special")
-        .notOneOf([Yup.ref("oldPassword")], "oldSame"),
-    retypedPassword: Yup.string()
-        .required("required")
-        .oneOf([Yup.ref("password")], "match"),
-});
-
-export default function ChangeEmail() {
+export default function ChangeEmail({ oldEmail }) {
+    const validationSchemaEmail = Yup.object().shape({
+        mail: Yup.string()
+            .email("Zła forma emaila")
+            .notOneOf([oldEmail], "Taki sam jak stary email")
+            .required(""),
+        retypedMail: Yup.string()
+            .oneOf([Yup.ref("mail")], "Maile nie są takie same")
+            .required(""),
+    });
     const mailFormik = useFormik({
         initialValues: {
             mail: "",
             retypedMail: "",
         },
         onSubmit: (values) => sendChange(values),
-        // validateOnChange: true,
-        // validateOnMount: true,
-        // validate: (values) => {
-        //     try {
-        //         validationSchemaPassword.validateSync(values, {
-        //             abortEarly: false,
-        //         });
-        //         return {};
-        //     } catch (error) {
-        //         return error.errors;
-        //     }
-        // },
+        validateOnChange: true,
+        validationSchema: validationSchemaEmail,
     });
+
+    console.log(mailFormik);
 
     async function sendChange(values) {
         console.log("zmieniam");
@@ -66,11 +53,17 @@ export default function ChangeEmail() {
             throw new Error("Nie udało się zmienić maila");
         }
 
+        toast.success(
+            "Należy teraz potwierdzić nowy mail, aby został zmieniony."
+        );
         mailFormik.resetForm();
     }
 
     return (
         <form onSubmit={mailFormik.handleSubmit}>
+            {mailFormik.errors.mail && mailFormik.touched.mail && (
+                <div>{mailFormik.errors.mail}</div>
+            )}
             <input
                 id="mail"
                 name="mail"
@@ -80,6 +73,10 @@ export default function ChangeEmail() {
                 onChange={mailFormik.handleChange}
                 onBlurCapture={mailFormik.handleBlur}
             />
+            {mailFormik.errors.retypedMail &&
+                mailFormik.touched.retypedMail && (
+                    <div>{mailFormik.errors.retypedMail}</div>
+                )}
             <input
                 id="retypedMail"
                 name="retypedMail"
@@ -89,7 +86,12 @@ export default function ChangeEmail() {
                 onChange={mailFormik.handleChange}
                 onBlurCapture={mailFormik.handleBlur}
             />
-            <button type="submit">Wyślij</button>
+            <button
+                disabled={!(mailFormik.isValid && mailFormik.dirty)}
+                type="submit"
+            >
+                Wyślij
+            </button>
         </form>
     );
 }

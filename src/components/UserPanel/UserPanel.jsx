@@ -11,6 +11,45 @@ import CurrencySelector from "./CurrencySelector.jsx";
 import { getAuthToken } from "../auth/auth.js";
 import { getBackendUrl } from "../../util/localUrlGeneration.js";
 
+const EXAMPLE_COMMENTS = [
+    {
+        rating: 8,
+        comment: "string",
+        clientName: "string",
+        hashRevID: "string",
+        userID: 1,
+        amount: 10,
+        currency: "USD",
+    },
+    {
+        rating: 5,
+        comment: "string",
+        clientName: "string",
+        hashRevID: "string",
+        userID: 0,
+        amount: 13526,
+        currency: "USD",
+    },
+    {
+        rating: 0,
+        comment: "string",
+        clientName: "string",
+        hashRevID: "string",
+        userID: 0,
+        amount: 0,
+        currency: "USD",
+    },
+    {
+        rating: 0,
+        comment: "string",
+        clientName: "string",
+        hashRevID: "string",
+        userID: 0,
+        amount: 0,
+        currency: "USD",
+    },
+];
+
 export default function UserPanel({ initialData }) {
     const [showReviewChart, setShowReviewChart] = useState(false);
     const [data, setData] = useState(initialData);
@@ -136,7 +175,7 @@ export default function UserPanel({ initialData }) {
 
             <section className={classes.comments}>
                 <h2>Komentarze</h2>
-                <Comments commentList={data.comments} />
+                <Comments commentList={EXAMPLE_COMMENTS} />
             </section>
         </div>
     );

@@ -28,7 +28,6 @@ import UserInfoPage, { userInfoLoader } from "./Pages/UserInfo.jsx";
 import UserPanelPage, { userPanelLoader } from "./Pages/UserPanel";
 import { ROLES } from "./components/auth/roles.js";
 import RegisterPage from "./Pages/RegisterPage.jsx";
-import ThanksForRegistration from "./Pages/ThanksForRegistration.jsx";
 import { DarkModeProvider } from "./components/DarkModeProvider.jsx";
 
 export const LOCAL = false;
@@ -54,10 +53,6 @@ const router = createBrowserRouter([
             {
                 path: "logout",
                 action: logoutAction,
-            },
-            {
-                path: "thanksRegistration",
-                element: <ThanksForRegistration />,
             },
             {
                 path: "info",

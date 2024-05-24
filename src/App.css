@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&display=swap");
+/*@import url('https://fonts.googleapis.com/css2?family=Danfo&family=Kameron:wght@400..700&display=swap');*/
+
 * {
     margin: 0;
     padding: 0;
@@ -15,8 +18,13 @@ html {
 }
 
 body {
-    font-family: "Inter", sans-serif;
+    /*font-family: "Inter", sans-serif;*/
+    font-family: "Kameron", serif;
+    /*font-family: "Danfo", serif;*/
+    font-optical-sizing: auto;
     color: var(--color-text);
+
+    background-color: var(--color-white);
 }
 
 :root {
@@ -48,6 +56,7 @@ body {
     --font-13: 7.4rem;
     --font-14: 8.6rem;
     --font-15: 9.8rem;
+    --font-16: 12rem;
 
     --color-background: #eee;
     --color-background-dark: #222;
@@ -72,4 +81,10 @@ body {
     --color-review-input: #999;
     --color-review-tip-hover: rgb(255, 235, 204);
     --color-review-tip-click: rgb(219, 159, 110);
+
+    --color-black: #120309;
+    --color-gray: #7c7c7c;
+    --color-green: #143109;
+    --color-orange: #fb6107;
+    --color-white: #fff9fb;
 }

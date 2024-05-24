@@ -39,11 +39,19 @@ export default function HomePage() {
                 <div
                     className={`${classes.container} ${classes.headerContainer}`}
                 >
-                    <img src="qr-code.jpg" alt="qr-code" />
+                    <img src="qr6.png" alt="qr-code" className={classes.aaa} />
+
                     <h1>eNapiwek</h1>
                     <p>Aplikacja do napiwków QR</p>
-                    <Link to="register">Zarejestruj się</Link>
+                    <Link to="register" className={classes.fff}>
+                        Zarejestruj się
+                    </Link>
                 </div>
+                <video autoPlay muted loop>
+                    <source src="/video.mp4" type="video/mp4" />
+                </video>
+
+                <div className={classes.carpet}></div>
             </header>
             <div className={classes.container}>
                 <section className={classes.comparison}>

@@ -57,7 +57,8 @@ export default function RegisterForm() {
     console.log(registerFormik);
 
     return (
-        <div className={"rightSideRegister"}>
+        <div className={classes.rightSideRegister2}>
+            {/* <div className={"rightSideRegister", classes.rightSideRegister2}> */}
             <Form method={"post"} className={classes.registerForm}>
                 <img
                     src="/register.png"
@@ -67,108 +68,71 @@ export default function RegisterForm() {
                 <div className={classes.formArea}>
                     <h1>Rejestracja</h1>
                     <p>
-                        <label htmlFor="name">Imię</label>
-                        {registerFormik.errors.name &&
-                            registerFormik.touched.name && (
-                                <div>{registerFormik.errors.name}</div>
-                            )}
                         <input
                             id="name"
                             name="name"
-                            value={registerFormik.values.name}
-                            onChange={registerFormik.handleChange}
-                            onBlurCapture={registerFormik.handleBlur}
+                            placeholder="Wpisz imię"
+                            required
                         />
                     </p>
                     <p>
-                        <label htmlFor="surname">Nazwisko</label>
-                        {registerFormik.errors.surname &&
-                            registerFormik.touched.surname && (
-                                <div>{registerFormik.errors.surname}</div>
-                            )}
                         <input
                             id="surname"
                             name="surname"
-                            value={registerFormik.values.surname}
-                            onChange={registerFormik.handleChange}
-                            onBlurCapture={registerFormik.handleBlur}
+                            placeholder="Wpisz nazwisko"
+                            required
                         />
                     </p>
                     <p>
-                        <label htmlFor="mail">E-mail</label>
-                        {registerFormik.errors.mail &&
-                            registerFormik.touched.mail && (
-                                <div>{registerFormik.errors.mail}</div>
-                            )}
                         <input
                             id="mail"
                             type="email"
                             name="mail"
-                            value={registerFormik.values.mail}
-                            onChange={registerFormik.handleChange}
-                            onBlurCapture={registerFormik.handleBlur}
+                            placeholder="Wpisz e-mail"
+                            required
                         />
                     </p>
                     <p>
-                        <label htmlFor="password">Hasło</label>
-                        {registerFormik.errors.password &&
-                            registerFormik.touched.password && (
-                                <div>{registerFormik.errors.password}</div>
-                            )}
                         <input
                             id="password"
                             type="password"
                             name="password"
-                            value={registerFormik.values.password}
-                            onChange={registerFormik.handleChange}
-                            onBlurCapture={registerFormik.handleBlur}
+                            placeholder="Wpisz hasło"
+                            required
                         />
                     </p>
                     <p>
-                        <label htmlFor="mail">Powtórz Hasło</label>
-                        {registerFormik.errors.retypedPassword &&
-                            registerFormik.touched.retypedPassword && (
-                                <div>
-                                    {registerFormik.errors.retypedPassword}
-                                </div>
-                            )}
                         <input
                             id="retypedPassword"
                             type="password"
                             name="retypedPassword"
-                            value={registerFormik.values.retypedPassword}
-                            onChange={registerFormik.handleChange}
-                            onBlurCapture={registerFormik.handleBlur}
+                            placeholder="powtórz Hasło"
+                            required
                         />
                     </p>
                     <p>
-                        <label htmlFor="location">Lokacja</label>
-                        {registerFormik.errors.location &&
-                            registerFormik.touched.location && (
-                                <div>{registerFormik.errors.location}</div>
-                            )}
                         <input
                             id="location"
                             name="location"
-                            value={registerFormik.values.location}
-                            onChange={registerFormik.handleChange}
-                            onBlurCapture={registerFormik.handleBlur}
+                            placeholder="Wpisz lokacja"
+                            required
                         />
                     </p>
                     <p>
-                        <label htmlFor="bankNumber">Numer konta</label>
-                        {registerFormik.errors.bankAccountNumber &&
-                            registerFormik.touched.bankAccountNumber && (
-                                <div>
-                                    {registerFormik.errors.bankAccountNumber}
-                                </div>
-                            )}
                         <input
                             id="bankAccountNumber"
                             name="bankAccountNumber"
-                            value={registerFormik.values.bankAccountNumber}
-                            onChange={registerFormik.handleChange}
-                            onBlurCapture={registerFormik.handleBlur}
+                            minLength="26"
+                            maxLength="26"
+                            pattern="^[0-9]{26}$"
+                            onInvalid={(e) =>
+                                e.target.setCustomValidity(
+                                    "Niepoprawny numer konta"
+                                )
+                            }
+                            onInput={(e) => e.target.setCustomValidity("")}
+                            required
+                            placeholder="Wpisz numer konta"
                         />
                     </p>
                     <button

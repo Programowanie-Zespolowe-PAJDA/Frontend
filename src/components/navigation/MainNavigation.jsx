@@ -26,7 +26,9 @@ export default function MainNavigation({ token }) {
                     }
                     end
                 >
-                    Główna
+
+                    Strona główna
+
                 </NavLink>
 
                 {token && (

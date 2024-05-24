@@ -31,7 +31,7 @@ import RegisterPage from "./Pages/RegisterPage.jsx";
 import { DarkModeProvider } from "./components/DarkModeProvider.jsx";
 import ReviewCooldownPage from "./Pages/ReviewCooldown.jsx";
 
-export const LOCAL = false;
+export const LOCAL = true;
 
 const router = createBrowserRouter([
     {
@@ -41,16 +41,7 @@ const router = createBrowserRouter([
         loader: userLoader,
         children: [
             { index: true, element: <HomePage /> },
-            {
-                path: "auth",
-                element: <AuthenticationPage />,
-                action: authAction,
-            },
-            {
-                path: "register",
-                element: <RegisterPage />,
-                action: registerAction,
-            },
+
             {
                 path: "logout",
                 action: logoutAction,
@@ -92,6 +83,17 @@ const router = createBrowserRouter([
                 loader: userPanelLoader,
             },
         ],
+    },
+
+    {
+        path: "register",
+        element: <RegisterPage />,
+        action: registerAction,
+    },
+    {
+        path: "auth",
+        element: <AuthenticationPage />,
+        action: authAction,
     },
     {
         path: "/review/:waiterId",

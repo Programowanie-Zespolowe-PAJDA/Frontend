@@ -1,5 +1,5 @@
 .container {
-    max-width: 100rem;
+    max-width: 1920px;
     padding: 0 var(--spacing-8);
     margin: 0 auto;
 }
@@ -31,12 +31,43 @@
 }
 
 .mainHeader {
-    background: url("/wall.jpg");
+    /*background: url("/wall.jpg");
     background-repeat: repeat-x;
-    background-size: contain;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    background-size: contain;*/
     color: var(--color-text);
+
+    position: relative;
+
+    height: -moz-calc(100% - var(--spacing-10));
+    height: -webkit-calc(100% - var(--spacing-10));
+    height: calc(100% - var(--spacing-10));
+
+    overflow: hidden;
+    margin-bottom: var(--spacing-12);
 }
+
+.mainHeader video {
+    position: absolute;
+    z-index: -2;
+    left: 0px;
+    top: -70px;
+    width: 100%;
+    height: 860px;
+
+    object-fit: cover;
+}
+
+.mainHeader .carpet {
+    background-color: #120309bb;
+    position: absolute;
+    z-index: -1;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+/*
 .headerContainer {
     display: grid;
     grid-template-columns: 25rem 1fr;
@@ -44,37 +75,100 @@
     padding-bottom: var(--spacing-10);
     padding-top: var(--spacing-10);
     margin-bottom: var(--spacing-12);
+
+    position: relative;
 }
-.headerContainer img {
-    width: 25rem;
-    grid-row: 1 / span 3;
+*/
+
+.headerContainer {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--spacing-5);
+
+    padding-bottom: var(--spacing-10);
+    padding-top: var(--spacing-10);
+    margin-bottom: var(--spacing-12);
+
+    height: 100%;
+
+    position: relative;
+}
+
+.aaa {
+    width: 43rem;
+    scale: 0.5;
+    opacity: 0;
+    transform: rotate(-100deg);
+
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+
+    transition:
+        0.2s opacity linear,
+        0.4s transform linear;
 }
 
 .headerContainer h1 {
-    font-size: var(--font-15);
-    font-weight: bold;
-    letter-spacing: -0.3rem;
+    font-size: 220px;
+    font-weight: 100;
+    letter-spacing: var(--spacing-6);
     justify-self: end;
+
+    padding-top: 80px;
+    mix-blend-mode: difference;
+
+    color: var(--color-orange);
 }
+
 .headerContainer p {
-    font-size: var(--font-6);
+    font-size: var(--font-5);
     justify-self: end;
-    align-self: center;
+    color: var(--color-white);
+    opacity: 0.5;
+    letter-spacing: var(--spacing-4);
 }
 .headerContainer a:link,
 .headerContainer a:visited {
-    background-color: var(--color-header-button);
-    color: black;
+    /*background-color: var(--color-orange);*/
+    color: var(--color-white);
+
+    border: solid 2px var(--color-orange);
+    letter-spacing: var(--spacing-1);
+
     font-size: var(--font-5);
-    padding: var(--spacing-4) var(--spacing-6);
+    padding: var(--spacing-5) var(--spacing-8);
     border-radius: 1.2rem;
-    justify-self: end;
-    align-self: start;
+    justify-self: flex-end;
+
+    margin-top: 40px;
     box-shadow: 0 0.5rem 1rem 0.1rem rgba(0, 0, 0, 0.1);
+    transition:
+        0.2s background-color linear,
+        0.1s letter-spacing linear;
 }
+
 .headerContainer a:hover {
-    background-color: var(--color-header-button-hover);
+    background-color: var(--color-orange);
+    border: solid 2px var(--color-orange);
+    letter-spacing: var(--spacing-2);
+    transition:
+        0.4s background-color linear,
+        0.2s letter-spacing linear;
 }
+
+body:has(.fff:hover) .aaa {
+    opacity: 1;
+    transform: rotate(-15deg);
+
+    transition:
+        0.5s opacity linear,
+        0.2s transform linear;
+}
+
 .headerContainer a:active {
     background-color: var(--color-header-button-click);
 }
@@ -86,8 +180,13 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--spacing-1);
 }
+
+.comparison img {
+    height: 300px;
+}
+
 .comparison h2 {
     margin-bottom: var(--spacing-2);
     font-size: var(--font-12);
@@ -252,6 +351,15 @@
     color: var(--color-text);
 }
 
+.boxTogehter {
+    background-color: var(--color-black);
+    padding: var(--spacing-6) var(--spacing-12);
+    position: relative;
+    left: 170px;
+
+    width: 80%;
+}
+
 /* 880px or less */
 @media (max-width: 55em) {
     .headerContainer h1 {
@@ -292,6 +400,8 @@
         grid-template-rows: 1fr 0.5fr 1fr;
 
         background-size: contain;
+
+        position: relative;
     }
     .headerContainer img {
         grid-row: 2 / span 2;

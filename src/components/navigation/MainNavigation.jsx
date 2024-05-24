@@ -28,16 +28,6 @@ export default function MainNavigation({ token }) {
                 >
                     Główna
                 </NavLink>
-                <NavLink
-                    to="review/1"
-                    className={({ isActive }) =>
-                        `${classes.navLink} ${
-                            isActive ? classes.active : undefined
-                        }`
-                    }
-                >
-                    REVIEW TEST
-                </NavLink>
 
                 {token && (
                     <>

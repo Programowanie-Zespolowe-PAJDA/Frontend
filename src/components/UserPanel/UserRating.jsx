@@ -1,4 +1,4 @@
-import classes from "../../Pages/UserPanel.module.css";
+import classes from "./UserPanel.module.css";
 
 export default function UserRating({ rating }) {
     return (

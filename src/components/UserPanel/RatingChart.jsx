@@ -4,7 +4,7 @@ export default function RatingChart({ chartData }) {
     return (
         <Bar
             data={{
-                labels: chartData.map((_, index) => index),
+                labels: chartData?.map((_, index) => index),
                 datasets: [
                     {
                         label: "Opinie",

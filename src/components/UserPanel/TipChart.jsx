@@ -1,4 +1,3 @@
-import { Chart } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 
 export default function TipChart({ data }) {
@@ -10,7 +9,7 @@ export default function TipChart({ data }) {
                     datasets: [
                         {
                             label: "Zarobki",
-                            data: data.map((elem) => elem.amount),
+                            data: data.map((elem) => elem.amount / 100),
                             backgroundColor: "white",
                             borderColor: "orange",
                         },

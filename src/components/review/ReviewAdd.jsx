@@ -7,24 +7,25 @@ const TIPS_AMOUNT = [5, 10, 20, 30, 40];
 
 const validationSchemaReview = Yup.object().shape({
     tip: Yup.string()
-        .required()
-        .matches(/^\d+(\.\d{1,2})?$/, ""),
-
-    rating: Yup.string().min(1).max(10),
-    clientName: "",
-    comment: "",
+        .required("Ilość jest wymagana")
+        .matches(/^\d+(\.\d{1,2})?$/, "Zły format!"),
+    rating: Yup.string()
+        .required("Ocena jest wymagana")
+        .max(10, "Za duża ocena, jak ty to zrobiłeś?!"),
+    clientName: Yup.string().max(30, "Za długa nazwa, max 30 znaków"),
+    comment: Yup.string().max(1500, "Za długi opis, max 1500 znaków"),
 });
 
 export default function Review({ userData }) {
     const reviewFormik = useFormik({
         initialValues: {
             tip: "",
-            // currency: "",
             rating: "",
             clientName: "",
             comment: "",
         },
         validateOnChange: true,
+        validateOnMount: true,
         validationSchema: validationSchemaReview,
     });
 
@@ -46,6 +47,9 @@ export default function Review({ userData }) {
             </header>
             <Form method="post">
                 <section className={classes.tip}>
+                    {reviewFormik.errors.tip && (
+                        <div>{reviewFormik.errors.tip}</div>
+                    )}
                     <div className={classes.tipGrid}>
                         {TIPS_AMOUNT.map((tipValue, index) => (
                             <div
@@ -97,6 +101,9 @@ export default function Review({ userData }) {
                 </section>
 
                 <section className={classes.rating}>
+                    {reviewFormik.errors.rating && (
+                        <div>{reviewFormik.errors.rating}</div>
+                    )}
                     <ol>
                         {[...Array(10)].map((a, index) => {
                             const rating = index + 1;
@@ -135,24 +142,43 @@ export default function Review({ userData }) {
                         id="rating"
                         name="rating"
                         value={reviewFormik.values.rating}
+                        onChange={reviewFormik.handleChange}
+                        onBlurCapture={reviewFormik.handleBlur}
                     />
                 </section>
 
                 <section className={classes.comment}>
+                    {reviewFormik.errors.clientName && (
+                        <div>{reviewFormik.errors.clientName}</div>
+                    )}
                     <input
                         id="clientName"
                         name="clientName"
                         placeholder="Twoje imię"
+                        value={reviewFormik.values.clientName}
+                        onChange={reviewFormik.handleChange}
+                        onBlurCapture={reviewFormik.handleBlur}
                     />
+                    {reviewFormik.errors.comment && (
+                        <div>{reviewFormik.errors.comment}</div>
+                    )}
                     <textarea
                         id="comment"
                         name="comment"
                         placeholder="Komentarz"
+                        value={reviewFormik.values.comment}
+                        onChange={reviewFormik.handleChange}
+                        onBlurCapture={reviewFormik.handleBlur}
                     />
                 </section>
 
                 <section className={classes.send}>
-                    <button>Prześlij napiwek</button>
+                    <button
+                        disabled={!(reviewFormik.isValid && reviewFormik.dirty)}
+                        type="submit"
+                    >
+                        Prześlij napiwek
+                    </button>
                 </section>
             </Form>
         </div>

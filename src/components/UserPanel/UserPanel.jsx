@@ -11,75 +11,6 @@ import CurrencySelector from "./CurrencySelector.jsx";
 import { getAuthToken } from "../auth/auth.js";
 import { getBackendUrl } from "../../util/localUrlGeneration.js";
 
-const EXAMPLE_COMMENTS = [
-    {
-        rating: 8,
-        comment: "string",
-        clientName: "string",
-        hashRevID: "string",
-        userID: 1,
-        amount: 10,
-        currency: "USD",
-    },
-    {
-        rating: 5,
-        comment: "string",
-        clientName: "string",
-        hashRevID: "string",
-        userID: 0,
-        amount: 13526,
-        currency: "USD",
-    },
-    {
-        rating: 0,
-        comment: "string",
-        clientName: "string",
-        hashRevID: "string",
-        userID: 0,
-        amount: 0,
-        currency: "USD",
-    },
-    {
-        rating: 0,
-        comment: "string",
-        clientName: "string",
-        hashRevID: "string",
-        userID: 0,
-        amount: 0,
-        currency: "USD",
-    },
-];
-
-const EXAMPLE_TIPS = [
-    {
-        amount: 1242,
-        month: "Wa",
-        year: "124",
-    },
-    {
-        amount: 3346,
-        month: "W123a",
-        year: "124",
-    },
-    {
-        amount: 235,
-        month: "W4sdfsa",
-        year: "124",
-    },
-    {
-        amount: 2666,
-        month: "sdfWa",
-        year: "12224",
-    },
-    {
-        amount: 1242,
-        month: "fdsfWa",
-        year: "124",
-    },
-];
-
-const EXAMPLE_RATING = [1, 6, 8, 4, 5, 9, 3, 1, 0, 0, 9];
-
 export default function UserPanel({ initialData }) {
     const [showReviewChart, setShowReviewChart] = useState(false);
     const [data, setData] = useState(initialData);
@@ -193,17 +124,17 @@ export default function UserPanel({ initialData }) {
                 <button onClick={() => setShowReviewChart((prev) => !prev)}>
                     {`${showReviewChart ? "Schowaj" : "Rozwiń"}`}
                 </button>
-                {showReviewChart && <RatingChart chartData={EXAMPLE_RATING} />}
+                {showReviewChart && <RatingChart chartData={data.ratingAll} />}
             </section>
 
             <section className={classes.comments}>
                 <h2>Wykres przychodów z napiwków</h2>
-                <TipChart tipData={EXAMPLE_TIPS} />
+                <TipChart tipData={data.sumTipValueForEveryMonth} />
             </section>
 
             <section className={classes.comments}>
                 <h2>Komentarze</h2>
-                <Comments commentList={EXAMPLE_COMMENTS} />
+                <Comments commentList={data.comments} />
             </section>
         </div>
     );

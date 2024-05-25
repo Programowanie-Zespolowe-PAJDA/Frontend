@@ -19,42 +19,47 @@ ChartJS.register(
 );
 
 export default function RatingChart({ chartData }) {
-    console.log("chart");
-    console.log(chartData);
+    const options = {
+        indexAxis: "y",
+        plugins: {
+            legend: {
+                display: false,
+                reverse: true,
+            },
+            tooltip: {
+                enabled: false,
+            },
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                },
+                suggestedMax: 10,
+            },
+            y: {
+                grid: {
+                    display: false,
+                },
+            },
+        },
+    };
 
-    const options = {};
+    const indexes = chartData?.map((_, index) => index);
+    const chartDataArray = chartData?.map((value) => value);
+    chartDataArray.reverse();
+    indexes.reverse();
+
     const data = {
-        labels: chartData?.map((_, index) => index),
+        labels: indexes,
         datasets: [
             {
                 label: "Zarobki",
-                data: chartData,
+                data: chartDataArray,
+                backgroundColor: "orange",
             },
         ],
     };
 
-    return (
-        // <Bar
-        //     data={{
-        //         labels: chartData?.map((_, index) => index),
-        //         datasets: [
-        //             {
-        //                 label: "Opinie",
-        //                 data: chartData,
-        //                 backgroundColor: "orange",
-        //                 borderColor: "orange",
-        //             },
-        //         ],
-        //     }}
-        //     options={{
-        //         indexAxis: "y",
-        //         scales: {
-        //             y: {
-        //                 suggestedMin: 20,
-        //             },
-        //         },
-        //     }}
-        // />
-        <Bar options={options} data={data} />
-    );
+    return <Bar options={options} data={data} />;
 }

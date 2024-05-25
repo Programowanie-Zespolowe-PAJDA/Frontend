@@ -26,44 +26,31 @@ export default function TipChart({ tipData }) {
             {
                 label: "Zarobki",
                 data: tipData?.map((tipMonth) => tipMonth.amount / 100),
+                backgroundColor: "rgba(255,165,0, 0.5)",
             },
         ],
     };
-    const options = {};
-    return (
-        <>
-            {/* <Line
-                data={{
-                    labels: data.map((elem) => elem.month),
-                    datasets: [
-                        {
-                            label: "Zarobki",
-                            data: data.map((elem) => elem.amount / 100),
-                            backgroundColor: "white",
-                            borderColor: "orange",
-                        },
-                    ],
-                }}
-                options={{
-                    legend: {
-                        display: false,
-                        reverse: true,
-                    },
-                    tooltips: {
-                        callbacks: {
-                            label: function (tooltipItem) {
-                                return tooltipItem.yLabel;
-                            },
-                        },
-                    },
-                    elements: {
-                        line: {
-                            tension: 0.4,
-                        },
-                    },
-                }}
-            /> */}
-            <Bar options={options} data={data} />
-        </>
-    );
+    const options = {
+        plugins: {
+            legend: {
+                display: false,
+                reverse: true,
+            },
+            tooltip: {
+                enabled: false,
+            },
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                },
+                suggestedMax: 100,
+            },
+            y: {
+                suggestedMax: 10,
+            },
+        },
+    };
+    return <Bar options={options} data={data} />;
 }

@@ -1,21 +1,40 @@
-import { useState } from "react";
 import classes from "./ReviewAdd.module.css";
 import { Form } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const TIPS_AMOUNT = [5, 10, 20, 30, 40];
 
+const validationSchemaReview = Yup.object().shape({
+    tip: Yup.string()
+        .required()
+        .matches(/^\d+(\.\d{1,2})?$/, ""),
+
+    rating: Yup.string().min(1).max(10),
+    clientName: "",
+    comment: "",
+});
+
 export default function Review({ userData }) {
-    const [reviewData, setReviewData] = useState({
-        rating: 0,
-        tipAmount: "",
+    const reviewFormik = useFormik({
+        initialValues: {
+            tip: "",
+            // currency: "",
+            rating: "",
+            clientName: "",
+            comment: "",
+        },
+        validateOnChange: true,
+        validationSchema: validationSchemaReview,
     });
 
-    function selectHandler(type, value) {
-        setReviewData((oldData) => ({
-            ...oldData,
-            [type]: value,
-        }));
+    function checkCurrency(event) {
+        if (/^\d+(\.\d{0,2})?$/.test(event.target.value)) {
+            reviewFormik.setFieldValue("tip", event.target.value);
+        }
     }
+
+    console.log(reviewFormik);
 
     return (
         <div className={classes.container}>
@@ -33,7 +52,7 @@ export default function Review({ userData }) {
                                 key={index}
                                 className={`${classes.TipBg}
                                 ${
-                                    tipValue === reviewData.tipAmount
+                                    tipValue === reviewFormik.values.tip
                                         ? classes.selectedTipBg
                                         : ""
                                 }
@@ -42,11 +61,14 @@ export default function Review({ userData }) {
                                 <button
                                     type="button"
                                     onClick={() =>
-                                        selectHandler("tipAmount", tipValue)
+                                        reviewFormik.setFieldValue(
+                                            "tip",
+                                            tipValue
+                                        )
                                     }
                                     className={`${classes.tipButton}
                                     ${
-                                        tipValue === reviewData.tipAmount
+                                        tipValue === reviewFormik.values.tip
                                             ? classes.selectedTip
                                             : ""
                                     }
@@ -60,12 +82,9 @@ export default function Review({ userData }) {
                             id="tip"
                             type="number"
                             name="tip"
-                            min="1"
-                            required
-                            onChange={(event) =>
-                                selectHandler("tipAmount", event.target.value)
-                            }
-                            value={reviewData.tipAmount}
+                            value={reviewFormik.values.tip}
+                            onChange={checkCurrency}
+                            onBlurCapture={reviewFormik.handleBlur}
                             placeholder="Podaj wartość napiwku"
                         />
                         <select id="currency" name="currency">
@@ -86,13 +105,17 @@ export default function Review({ userData }) {
                                     <button
                                         type="button"
                                         onClick={() =>
-                                            selectHandler("rating", rating)
+                                            reviewFormik.setFieldValue(
+                                                "rating",
+                                                rating
+                                            )
                                         }
                                     >
                                         <img
                                             alt="Rating scale"
                                             src={
-                                                reviewData.rating >= rating
+                                                reviewFormik.values.rating >=
+                                                rating
                                                     ? "/star-half.png"
                                                     : "/star-empty-half.png"
                                             }
@@ -111,7 +134,7 @@ export default function Review({ userData }) {
                         type="hidden"
                         id="rating"
                         name="rating"
-                        value={reviewData.rating}
+                        value={reviewFormik.values.rating}
                     />
                 </section>
 

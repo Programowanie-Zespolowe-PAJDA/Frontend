@@ -42,6 +42,10 @@ export async function reviewAddAction({ request, params }) {
         },
     });
 
+    if (response.status === 429) {
+        redirect("/cooldown");
+    }
+
     if (!response.ok) {
         const responseData = await response.text();
         throw json(

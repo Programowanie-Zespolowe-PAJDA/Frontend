@@ -50,6 +50,36 @@ const EXAMPLE_COMMENTS = [
     },
 ];
 
+const EXAMPLE_TIPS = [
+    {
+        amount: 1242,
+        month: "Wa",
+        year: "124",
+    },
+    {
+        amount: 3346,
+        month: "W123a",
+        year: "124",
+    },
+    {
+        amount: 235,
+        month: "W4sdfsa",
+        year: "124",
+    },
+    {
+        amount: 2666,
+        month: "sdfWa",
+        year: "12224",
+    },
+    {
+        amount: 1242,
+        month: "fdsfWa",
+        year: "124",
+    },
+];
+
+const EXAMPLE_RATING = [1, 6, 8, 4, 5, 9, 3, 1, 0, 0, 9];
+
 export default function UserPanel({ initialData }) {
     const [showReviewChart, setShowReviewChart] = useState(false);
     const [data, setData] = useState(initialData);
@@ -58,7 +88,6 @@ export default function UserPanel({ initialData }) {
     async function setCurrency(currency) {
         const token = getAuthToken();
         const fetchUrlComments = getBackendUrl() + "/review/owner";
-        // TODO - podawanie wlasnej waluty
         const fetchUrlTip = getBackendUrl() + "/tip/stats?currency=" + currency;
         const fetchUrlRatingAvg = getBackendUrl() + "/review/avgRating";
         const fetchUrlRatingAll =
@@ -164,14 +193,13 @@ export default function UserPanel({ initialData }) {
                 <button onClick={() => setShowReviewChart((prev) => !prev)}>
                     {`${showReviewChart ? "Schowaj" : "Rozwiń"}`}
                 </button>
-                {showReviewChart && <RatingChart chartData={data.ratingAll} />}
+                {showReviewChart && <RatingChart chartData={EXAMPLE_RATING} />}
             </section>
-            {data.sumTipValueForEveryMonth && (
-                <section className={classes.comments}>
-                    <h2>Wykres przychodów z napiwków</h2>
-                    <TipChart data={data.sumTipValueForEveryMonth} />
-                </section>
-            )}
+
+            <section className={classes.comments}>
+                <h2>Wykres przychodów z napiwków</h2>
+                <TipChart tipData={EXAMPLE_TIPS} />
+            </section>
 
             <section className={classes.comments}>
                 <h2>Komentarze</h2>

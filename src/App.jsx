@@ -30,7 +30,7 @@ import { ROLES } from "./components/auth/roles.js";
 import RegisterPage from "./Pages/RegisterPage.jsx";
 import { DarkModeProvider } from "./components/DarkModeProvider.jsx";
 
-export const LOCAL = false;
+export const LOCAL = true;
 
 const router = createBrowserRouter([
     {

@@ -1,9 +1,38 @@
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from "chart.js";
 
-export default function TipChart({ data }) {
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+);
+export default function TipChart({ tipData }) {
+    const data = {
+        labels: tipData?.map(
+            (tipMonth) => `${tipMonth.month} ${tipMonth.year}`
+        ),
+        datasets: [
+            {
+                label: "Zarobki",
+                data: tipData?.map((tipMonth) => tipMonth.amount / 100),
+            },
+        ],
+    };
+    const options = {};
     return (
         <>
-            <Line
+            {/* <Line
                 data={{
                     labels: data.map((elem) => elem.month),
                     datasets: [
@@ -33,7 +62,8 @@ export default function TipChart({ data }) {
                         },
                     },
                 }}
-            />
+            /> */}
+            <Bar options={options} data={data} />
         </>
     );
 }

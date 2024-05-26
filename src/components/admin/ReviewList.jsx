@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 export default function ReviewDisplay({ initialData }) {
     const [data, setData] = useState(initialData.sort(sortByTime));
     const [searchedList, setSearchedList] = useState(data);
-    console.log(data);
 
     function sortByTime(a, b) {
         if (a.createdAt < b.createdAt) return 1;
@@ -23,22 +22,16 @@ export default function ReviewDisplay({ initialData }) {
         }/${dateObject.getDate()} ${dateObject.getHours()}:${dateObject.getMinutes()}:${dateObject.getSeconds()}`;
     }
     async function deleteHandler(id) {
-        console.log("usuwam");
-        console.log(id);
         const fetchUrl = getBackendUrl() + `/review/${id}`;
 
         const token = getAuthToken();
 
         const response = await fetch(fetchUrl, {
             method: "DELETE",
-            // body: JSON.stringify(sendPackage),
             headers: {
                 Authorization: "Bearer " + token,
-                // "Content-Type": "application/json",
             },
         });
-
-        console.log(response);
 
         if (!response.ok) {
             toast.error("Nie udało się usunąć recenzji.");

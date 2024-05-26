@@ -7,7 +7,6 @@ import { useState } from "react";
 export default function UserList({ initialData }) {
     const [data, setData] = useState(initialData.sort(sortById));
     const [searchedList, setSearchedList] = useState(data);
-    console.log(data);
 
     function sortById(a, b) {
         if (a.id > b.id) {
@@ -20,22 +19,16 @@ export default function UserList({ initialData }) {
     }
 
     async function deleteHandler(id) {
-        console.log("usuwam");
-        console.log(id);
         const fetchUrl = getBackendUrl() + `/user/${id}`;
 
         const token = getAuthToken();
 
         const response = await fetch(fetchUrl, {
             method: "DELETE",
-            // body: JSON.stringify(sendPackage),
             headers: {
                 Authorization: "Bearer " + token,
-                // "Content-Type": "application/json",
             },
         });
-
-        console.log(response);
 
         if (!response.ok) {
             toast.error("Nie udało się usunąć użytkownika.");
@@ -55,8 +48,6 @@ export default function UserList({ initialData }) {
             )
         );
     }
-    console.log(searchedList);
-    searchedList.sort(sortById);
 
     return (
         <section className={classes.container}>

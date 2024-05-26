@@ -12,8 +12,7 @@ export default function ChangeAccountNumber(info) {
                 [info.oldNumber],
                 "Numer konta nie może być taki sam jak poprzedni"
             )
-            .min(26, "Numer konta musi mieć 26 znaków")
-            .max(26, "Numer konta musi mieć 26 znaków")
+            .length(26, "Numer konta musi mieć 26 znaków")
             .required(""),
         confirmedAccount: Yup.string()
             .oneOf([Yup.ref("account")], "Numery konta muszą być takie same")
@@ -57,7 +56,7 @@ export default function ChangeAccountNumber(info) {
 
     return (
         <form onSubmit={formikAccount.handleSubmit}>
-            {formikAccount.errors.account && (
+            {formikAccount.errors.account && formikAccount.touched.account && (
                 <>{formikAccount.errors.account}</>
             )}
 
@@ -67,18 +66,21 @@ export default function ChangeAccountNumber(info) {
                 type="string"
                 placeholder="Nowy numer konta"
                 onChange={formikAccount.handleChange}
+                onBlurCapture={formikAccount.handleBlur}
             />
             <br />
 
-            {formikAccount.errors.confirmedAccount && (
-                <>{formikAccount.errors.confirmedAccount}</>
-            )}
+            {formikAccount.errors.confirmedAccount &&
+                formikAccount.touched.confirmedAccount && (
+                    <>{formikAccount.errors.confirmedAccount}</>
+                )}
 
             <input
                 id="confirmedAccount"
                 name="confirmedAccount"
                 placeholder={"Powtórz nowy numer konta"}
                 onChange={formikAccount.handleChange}
+                onBlurCapture={formikAccount.handleBlur}
             />
             <br />
             <button

@@ -4,7 +4,7 @@ import ReviewDisplay from "../components/admin/ReviewList";
 
 export default function DisplayReviewsPage() {
     const data = useLoaderData();
-    return <ReviewDisplay reviewList={data} />;
+    return <ReviewDisplay initialData={data} />;
 }
 
 // TODO: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.

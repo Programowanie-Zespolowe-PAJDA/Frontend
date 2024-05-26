@@ -8,7 +8,7 @@ export default function DisplayUsersPage() {
 
     return (
         <>
-            <UserList data={data} />
+            <UserList initialData={data} />
         </>
     );
 }

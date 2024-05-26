@@ -1,9 +1,14 @@
-.table {
-    width: 60%;
-    margin: 0 auto;
+.container {
+    display: grid;
+    justify-items: center;
     margin-top: var(--spacing-8);
+    gap: var(--spacing-6);
+}
+.table {
+    min-width: 60%;
     border-collapse: collapse;
     border-radius: var(--spacing-2);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 .table td {
     padding: var(--spacing-2) var(--spacing-4);
@@ -38,4 +43,10 @@
     border: 0;
     background-color: transparent;
     cursor: pointer;
+}
+.search {
+    border: 2px solid gray;
+    font-size: var(--font-6);
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: 999rem;
 }

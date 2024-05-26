@@ -9,7 +9,7 @@ export default function ChangeAccountNumber(info) {
         account: Yup.string()
             .matches(/^[0-9]+$/, "Numer Konta musi być liczbą")
             .notOneOf(
-                [info.bankAccountNumber],
+                [info.oldNumber],
                 "Numer konta nie może być taki sam jak poprzedni"
             )
             .min(26, "Numer konta musi mieć 26 znaków")

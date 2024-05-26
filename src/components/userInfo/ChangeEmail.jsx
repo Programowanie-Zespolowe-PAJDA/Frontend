@@ -24,7 +24,7 @@ export default function ChangeEmail({ oldEmail }) {
         validationSchema: validationSchemaEmail,
     });
 
-    //console.log(mailFormik);
+    // console.log(mailFormik);
 
     async function sendChange(values) {
         // console.log("zmieniam");
@@ -47,7 +47,7 @@ export default function ChangeEmail({ oldEmail }) {
             },
         });
 
-        //console.log(response);
+        // console.log(response);
 
         if (!response.ok) {
             toast.error("Nie udało się zmienić maila");

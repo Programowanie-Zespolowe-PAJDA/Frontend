@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./List.css";
+import classes from "./List.module.css";
 
 export default function ReviewDisplay({ reviewList }) {
     const [isEditing, setIsEditing] = useState();

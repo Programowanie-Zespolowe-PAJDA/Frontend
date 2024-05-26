@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./List.css";
+import classes from "./List.module.css";
 
 const EXAMPLE_DATA = [
     {

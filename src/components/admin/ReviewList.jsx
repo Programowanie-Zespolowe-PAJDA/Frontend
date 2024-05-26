@@ -1,5 +1,8 @@
 import { useState } from "react";
 import classes from "./List.module.css";
+import { getBackendUrl } from "../../util/localUrlGeneration";
+import { getAuthToken } from "../auth/auth";
+import { toast } from "react-toastify";
 
 export default function ReviewDisplay({ reviewList }) {
     const [isEditing, setIsEditing] = useState();
@@ -29,8 +32,29 @@ export default function ReviewDisplay({ reviewList }) {
     function saveHandler() {
         // TO-DO: dodać zapisywanie po dodaniu logowania
     }
-    function deleteHandler() {
-        // TO-DO: dodać usuwanie po dodaniu logowania
+    async function deleteHandler(id) {
+        console.log("usuwam");
+        console.log(id);
+        const fetchUrl = getBackendUrl() + `/review/${id}`;
+
+        const token = getAuthToken();
+
+        const response = await fetch(fetchUrl, {
+            method: "DELETE",
+            // body: JSON.stringify(sendPackage),
+            headers: {
+                Authorization: "Bearer " + token,
+                // "Content-Type": "application/json",
+            },
+        });
+
+        console.log(response);
+
+        if (!response.ok) {
+            toast.error("Nie udało się usunąć recenzji.");
+        } else {
+            toast.success("recenzja została usunięta.");
+        }
     }
     function inputHandler(identifier, event) {
         setEditingData((oldValues) => ({
@@ -40,9 +64,9 @@ export default function ReviewDisplay({ reviewList }) {
     }
 
     return (
-        <table className="table">
-            <thead>
-                <tr className="list-head">
+        <table className={classes.table}>
+            <thead className={classes.head}>
+                <tr>
                     <td>ID</td>
                     <td>WaiterID</td>
                     <td>Date</td>
@@ -55,7 +79,7 @@ export default function ReviewDisplay({ reviewList }) {
             <tbody>
                 {reviewList.map((review, index) => {
                     return (
-                        <tr key={index} className="list-data">
+                        <tr key={index} className={classes.body}>
                             <td>{review.id}</td>
                             <td>{review.userID}</td>
                             <td>{formatTime(review.createdAt)}</td>
@@ -125,8 +149,16 @@ export default function ReviewDisplay({ reviewList }) {
                                         >
                                             edytuj
                                         </button>
-                                        <button onClick={deleteHandler}>
-                                            usuń
+                                        <button
+                                            className={classes.button}
+                                            onClick={() =>
+                                                deleteHandler(review.id)
+                                            }
+                                        >
+                                            <img
+                                                src="/bin.png"
+                                                className={classes.bin}
+                                            />
                                         </button>
                                     </>
                                 )}

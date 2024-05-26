@@ -16,6 +16,16 @@ export default function CurrencySelector({ changeFunction, current }) {
                         <li>
                             <button
                                 onClick={() => {
+                                    changeFunction("NULL");
+                                    setActiveMenu(false);
+                                }}
+                            >
+                                Wszystko
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
                                     changeFunction("PLN");
                                     setActiveMenu(false);
                                 }}

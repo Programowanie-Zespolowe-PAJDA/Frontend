@@ -29,6 +29,7 @@ import UserPanelPage, { userPanelLoader } from "./Pages/UserPanel";
 import { ROLES } from "./components/auth/roles.js";
 import RegisterPage from "./Pages/RegisterPage.jsx";
 import { DarkModeProvider } from "./components/DarkModeProvider.jsx";
+import ReviewCooldownPage from "./Pages/ReviewCooldown.jsx";
 
 export const LOCAL = false;
 
@@ -98,6 +99,7 @@ const router = createBrowserRouter([
         loader: reviewAddLoader,
         action: reviewAddAction,
     },
+    { path: "/cooldown", element: <ReviewCooldownPage /> },
     { path: "/thankyou", element: <ThankYouPage /> },
     {
         path: "/qr",

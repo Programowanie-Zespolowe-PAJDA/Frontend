@@ -1,21 +1,41 @@
-import { useState } from "react";
 import classes from "./ReviewAdd.module.css";
 import { Form } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const TIPS_AMOUNT = [5, 10, 20, 30, 40];
 
+const validationSchemaReview = Yup.object().shape({
+    tip: Yup.string()
+        .required("Ilość jest wymagana")
+        .matches(/^\d+(\.\d{1,2})?$/, "Zły format!"),
+    rating: Yup.string()
+        .required("Ocena jest wymagana")
+        .max(10, "Za duża ocena, jak ty to zrobiłeś?!"),
+    clientName: Yup.string().max(30, "Za długa nazwa, max 30 znaków"),
+    comment: Yup.string().max(1500, "Za długi opis, max 1500 znaków"),
+});
+
 export default function Review({ userData }) {
-    const [reviewData, setReviewData] = useState({
-        rating: 0,
-        tipAmount: "",
+    const reviewFormik = useFormik({
+        initialValues: {
+            tip: "",
+            rating: "",
+            clientName: "",
+            comment: "",
+        },
+        validateOnChange: true,
+        validateOnMount: true,
+        validationSchema: validationSchemaReview,
     });
 
-    function selectHandler(type, value) {
-        setReviewData((oldData) => ({
-            ...oldData,
-            [type]: value,
-        }));
+    function checkCurrency(event) {
+        if (/^\d+(\.\d{0,2})?$/.test(event.target.value)) {
+            reviewFormik.setFieldValue("tip", event.target.value);
+        }
     }
+
+    console.log(reviewFormik);
 
     return (
         <div className={classes.container}>
@@ -27,13 +47,16 @@ export default function Review({ userData }) {
             </header>
             <Form method="post">
                 <section className={classes.tip}>
+                    {reviewFormik.errors.tip && (
+                        <div>{reviewFormik.errors.tip}</div>
+                    )}
                     <div className={classes.tipGrid}>
                         {TIPS_AMOUNT.map((tipValue, index) => (
                             <div
                                 key={index}
                                 className={`${classes.TipBg}
                                 ${
-                                    tipValue === reviewData.tipAmount
+                                    tipValue === reviewFormik.values.tip
                                         ? classes.selectedTipBg
                                         : ""
                                 }
@@ -42,11 +65,14 @@ export default function Review({ userData }) {
                                 <button
                                     type="button"
                                     onClick={() =>
-                                        selectHandler("tipAmount", tipValue)
+                                        reviewFormik.setFieldValue(
+                                            "tip",
+                                            tipValue
+                                        )
                                     }
                                     className={`${classes.tipButton}
                                     ${
-                                        tipValue === reviewData.tipAmount
+                                        tipValue === reviewFormik.values.tip
                                             ? classes.selectedTip
                                             : ""
                                     }
@@ -60,12 +86,9 @@ export default function Review({ userData }) {
                             id="tip"
                             type="number"
                             name="tip"
-                            min="1"
-                            required
-                            onChange={(event) =>
-                                selectHandler("tipAmount", event.target.value)
-                            }
-                            value={reviewData.tipAmount}
+                            value={reviewFormik.values.tip}
+                            onChange={checkCurrency}
+                            onBlurCapture={reviewFormik.handleBlur}
                             placeholder="Podaj wartość napiwku"
                         />
                         <select id="currency" name="currency">
@@ -78,6 +101,9 @@ export default function Review({ userData }) {
                 </section>
 
                 <section className={classes.rating}>
+                    {reviewFormik.errors.rating && (
+                        <div>{reviewFormik.errors.rating}</div>
+                    )}
                     <ol>
                         {[...Array(10)].map((a, index) => {
                             const rating = index + 1;
@@ -86,13 +112,17 @@ export default function Review({ userData }) {
                                     <button
                                         type="button"
                                         onClick={() =>
-                                            selectHandler("rating", rating)
+                                            reviewFormik.setFieldValue(
+                                                "rating",
+                                                rating
+                                            )
                                         }
                                     >
                                         <img
                                             alt="Rating scale"
                                             src={
-                                                reviewData.rating >= rating
+                                                reviewFormik.values.rating >=
+                                                rating
                                                     ? "/star-half.png"
                                                     : "/star-empty-half.png"
                                             }
@@ -111,25 +141,44 @@ export default function Review({ userData }) {
                         type="hidden"
                         id="rating"
                         name="rating"
-                        value={reviewData.rating}
+                        value={reviewFormik.values.rating}
+                        onChange={reviewFormik.handleChange}
+                        onBlurCapture={reviewFormik.handleBlur}
                     />
                 </section>
 
                 <section className={classes.comment}>
+                    {reviewFormik.errors.clientName && (
+                        <div>{reviewFormik.errors.clientName}</div>
+                    )}
                     <input
                         id="clientName"
                         name="clientName"
                         placeholder="Twoje imię"
+                        value={reviewFormik.values.clientName}
+                        onChange={reviewFormik.handleChange}
+                        onBlurCapture={reviewFormik.handleBlur}
                     />
+                    {reviewFormik.errors.comment && (
+                        <div>{reviewFormik.errors.comment}</div>
+                    )}
                     <textarea
                         id="comment"
                         name="comment"
                         placeholder="Komentarz"
+                        value={reviewFormik.values.comment}
+                        onChange={reviewFormik.handleChange}
+                        onBlurCapture={reviewFormik.handleBlur}
                     />
                 </section>
 
                 <section className={classes.send}>
-                    <button>Prześlij napiwek</button>
+                    <button
+                        disabled={!(reviewFormik.isValid && reviewFormik.dirty)}
+                        type="submit"
+                    >
+                        Prześlij napiwek
+                    </button>
                 </section>
             </Form>
         </div>

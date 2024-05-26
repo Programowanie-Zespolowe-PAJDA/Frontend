@@ -3,15 +3,14 @@ import classes from "./UserPanel.module.css";
 
 export default function Comments({ commentList }) {
     return (
-        <ol>
+        <ol className={classes.comments}>
             {commentList &&
                 commentList.map((comment, index) => (
                     <li key={index} className={classes.comment}>
                         <h4 className={classes.commentTitle}>
                             {comment.clientName}
                         </h4>
-                        <p>{`${comment.amount / 100} ${comment.currency}`}</p>
-                        <div className={classes.rating}>
+                        <div className={classes.ratingComment}>
                             <UserRating rating={comment.rating} />
                         </div>
                         <p className={classes.commentText}>{comment.comment}</p>

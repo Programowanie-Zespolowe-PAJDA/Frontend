@@ -131,7 +131,7 @@ export default function UserPanel({ initialData }) {
                 {showReviewChart && <RatingChart chartData={data.ratingAll} />}
             </section>
 
-            <section className={classes.comments}>
+            <section>
                 <h2>Wykres przychodów z napiwków</h2>
                 <TipChart tipData={data.sumTipValueForEveryMonth} />
             </section>

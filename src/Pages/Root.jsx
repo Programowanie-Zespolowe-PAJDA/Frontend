@@ -18,12 +18,8 @@ export default function RootLayout() {
     const [help, setHelp] = useState(false);
 
     useEffect(() => {
-        console.log("Root Effect");
         if (user) {
             handleTokenRefresh(user, submit).then(() => {
-                console.log(
-                    "Next check in: " + ((2 / 3) * getTimeLeft()) / 1000 / 60
-                );
                 window.setTimeout(
                     () => setHelp(!help),
                     (2 / 3) * getTimeLeft()

@@ -63,6 +63,10 @@ export default function UserPanel({ initialData }) {
             throw new Error("Failed to GET response from user panel");
         }
 
+        if (currency === "NULL") {
+            currency = "PLN";
+        }
+
         setData({
             comments: responseCommentData,
             rating: responseRatingAvgData.avgRating,

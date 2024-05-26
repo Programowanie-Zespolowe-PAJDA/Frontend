@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import UserList from "../components/admin/UserList.jsx";
-import { getAuthToken } from "../components/auth/auth";
+import { getAuthToken, getUser } from "../components/auth/auth";
 import { getBackendUrl } from "../util/localUrlGeneration.js";
 
 export default function DisplayUsersPage() {
@@ -14,6 +14,10 @@ export default function DisplayUsersPage() {
 }
 
 export async function displayUsersLoader() {
+    if (!getUser()) {
+        return null;
+    }
+
     const token = getAuthToken();
     const fetchUrl = getBackendUrl() + "/user";
 

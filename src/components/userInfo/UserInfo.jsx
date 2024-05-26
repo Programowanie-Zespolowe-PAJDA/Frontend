@@ -3,6 +3,7 @@ import DataBox from "./DataBox";
 import PasswordBox from "./PasswordBox";
 import QRBox from "./QRBox";
 import ChangeEmail from "./ChangeEmail";
+import ChangeAccountNumber from "./ChangeAccountNumber.jsx";
 
 export default function UserInfo({ info }) {
     return (
@@ -11,6 +12,7 @@ export default function UserInfo({ info }) {
             <PasswordBox />
             <QRBox id={info.id} />
             <ChangeEmail oldEmail={info.mail} />
+            <ChangeAccountNumber oldNumber={info.bankAccountNumber} />
         </section>
     );
 }

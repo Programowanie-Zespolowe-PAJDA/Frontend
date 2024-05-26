@@ -1,5 +1,5 @@
 import UserPanel from "../components/UserPanel/UserPanel.jsx";
-import { getAuthToken } from "../components/auth/auth";
+import { getAuthToken, getUser } from "../components/auth/auth";
 import { getBackendUrl } from "../util/localUrlGeneration.js";
 import { useLoaderData } from "react-router-dom";
 
@@ -10,6 +10,10 @@ export default function UserPanelPage() {
 }
 
 export async function userPanelLoader() {
+    if (!getUser()) {
+        return null;
+    }
+
     const token = getAuthToken();
     const fetchUrlComments = getBackendUrl() + "/review/owner";
     // TODO - podawanie wlasnej waluty

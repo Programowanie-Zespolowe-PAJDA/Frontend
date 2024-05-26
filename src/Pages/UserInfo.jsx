@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import { getBackendUrl } from "../util/localUrlGeneration.js";
-import { getAuthToken } from "../components/auth/auth.js";
+import { getAuthToken, getUser } from "../components/auth/auth.js";
 import UserInfo from "../components/userInfo/UserInfo.jsx";
 
 export default function UserInfoPage() {
@@ -10,6 +10,10 @@ export default function UserInfoPage() {
 }
 
 export async function userInfoLoader() {
+    if (!getUser()) {
+        return null;
+    }
+
     const token = getAuthToken();
     const fetchUrl = getBackendUrl() + "/user/profile";
 

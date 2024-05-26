@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import UserList from "../components/UserList";
+import UserList from "../components/admin/UserList.jsx";
 import { getAuthToken, getUser } from "../components/auth/auth";
 import { getBackendUrl } from "../util/localUrlGeneration.js";
 
@@ -8,7 +8,7 @@ export default function DisplayUsersPage() {
 
     return (
         <>
-            <UserList data={data} />
+            <UserList initialData={data} />
         </>
     );
 }

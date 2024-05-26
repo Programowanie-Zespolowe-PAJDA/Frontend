@@ -11,45 +11,6 @@ import CurrencySelector from "./CurrencySelector.jsx";
 import { getAuthToken } from "../auth/auth.js";
 import { getBackendUrl } from "../../util/localUrlGeneration.js";
 
-const EXAMPLE_COMMENTS = [
-    {
-        rating: 8,
-        comment: "string",
-        clientName: "string",
-        hashRevID: "string",
-        userID: 1,
-        amount: 10,
-        currency: "USD",
-    },
-    {
-        rating: 5,
-        comment: "string",
-        clientName: "string",
-        hashRevID: "string",
-        userID: 0,
-        amount: 13526,
-        currency: "USD",
-    },
-    {
-        rating: 0,
-        comment: "string",
-        clientName: "string",
-        hashRevID: "string",
-        userID: 0,
-        amount: 0,
-        currency: "USD",
-    },
-    {
-        rating: 0,
-        comment: "string",
-        clientName: "string",
-        hashRevID: "string",
-        userID: 0,
-        amount: 0,
-        currency: "USD",
-    },
-];
-
 export default function UserPanel({ initialData }) {
     const [showReviewChart, setShowReviewChart] = useState(false);
     const [data, setData] = useState(initialData);
@@ -58,7 +19,6 @@ export default function UserPanel({ initialData }) {
     async function setCurrency(currency) {
         const token = getAuthToken();
         const fetchUrlComments = getBackendUrl() + "/review/owner";
-        // TODO - podawanie wlasnej waluty
         const fetchUrlTip = getBackendUrl() + "/tip/stats?currency=" + currency;
         const fetchUrlRatingAvg = getBackendUrl() + "/review/avgRating";
         const fetchUrlRatingAll =
@@ -166,16 +126,15 @@ export default function UserPanel({ initialData }) {
                 </button>
                 {showReviewChart && <RatingChart chartData={data.ratingAll} />}
             </section>
-            {data.sumTipValueForEveryMonth && (
-                <section className={classes.comments}>
-                    <h2>Wykres przychodów z napiwków</h2>
-                    <TipChart data={data.sumTipValueForEveryMonth} />
-                </section>
-            )}
+
+            <section className={classes.comments}>
+                <h2>Wykres przychodów z napiwków</h2>
+                <TipChart tipData={data.sumTipValueForEveryMonth} />
+            </section>
 
             <section className={classes.comments}>
                 <h2>Komentarze</h2>
-                <Comments commentList={EXAMPLE_COMMENTS} />
+                <Comments commentList={data.comments} />
             </section>
         </div>
     );

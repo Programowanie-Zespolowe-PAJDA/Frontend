@@ -16,8 +16,7 @@ export async function userPanelLoader() {
 
     const token = getAuthToken();
     const fetchUrlComments = getBackendUrl() + "/review/owner";
-    // TODO - podawanie wlasnej waluty
-    const fetchUrlTip = getBackendUrl() + "/tip/stats?currency=PLN";
+    const fetchUrlTip = getBackendUrl() + "/tip/stats?currency=NULL";
     const fetchUrlRatingAvg = getBackendUrl() + "/review/avgRating";
     const fetchUrlRatingAll = getBackendUrl() + "/review/numberOfEachRating";
 

@@ -1,29 +1,15 @@
-import { Form, NavLink, useRouteLoaderData } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
 export default function AdminNavigation() {
     return (
-        <nav className={classes.mainNav}>
-            <NavLink
-                to="thankyou"
-                className={({ isActive }) =>
-                    isActive ? classes.active : undefined
-                }
-            >
-                Thank You
-            </NavLink>
-            <NavLink
-                to="error"
-                className={({ isActive }) =>
-                    isActive ? classes.active : undefined
-                }
-            >
-                Błąd
-            </NavLink>
+        <nav className={classes.adminNav}>
             <NavLink
                 to="reviewlist"
                 className={({ isActive }) =>
-                    isActive ? classes.active : undefined
+                    `${classes.navLink} ${
+                        isActive ? classes.active : undefined
+                    }`
                 }
             >
                 Review lista
@@ -31,7 +17,9 @@ export default function AdminNavigation() {
             <NavLink
                 to="userlist"
                 className={({ isActive }) =>
-                    isActive ? classes.active : undefined
+                    `${classes.navLink} ${
+                        isActive ? classes.active : undefined
+                    }`
                 }
             >
                 Lista użytkowników

@@ -55,10 +55,39 @@ export default function HomePage() {
             </header>
             <div className={classes.container}>
                 <section className={classes.comparison}>
-                    <div>
+                    <div className={classes.comparison2}>
+                        <div class={classes.bar}>
+                            <p>nieprzyjemnych sytuacji</p>
+                            <p>kolejne dni bez napiwków</p>
+                            <p>negatywne myśli</p>
+                            <p>dyskonfort klientów</p>
+                            <p>przestarzałe metody</p>
+                            <p>przestarzałe metody</p>
+                            <p class={classes.ppp}>nieprzyjemnych sytuacji</p>
+                            <p>kolejne dni bez napiwków</p>
+                            <p>negatywne myśli</p>
+                            <p>dyskonfort klientów</p>
+                            <p>przestarzałe metody</p>
+                            <p>przestarzałe metody</p>
+                        </div>
+                        <p className={classes.textComparison}>Pożegnaj</p>
                         <h2>Razem z nami</h2>
-                        <p>Pożegnaj</p>
-                        <ul>
+                        <p className={classes.textComparison2}>Przywitaj</p>
+                        <div class={classes.bar2}>
+                            <p>nieprzyjemnych sytuacji</p>
+                            <p>kolejne dni bez napiwków</p>
+                            <p>negatywne myśli</p>
+                            <p>dyskonfort klientów</p>
+                            <p>przestarzałe metody</p>
+                            <p>przestarzałe metody</p>
+                            <p class={classes.ppp}>nieprzyjemnych sytuacji</p>
+                            <p>kolejne dni bez napiwków</p>
+                            <p>negatywne myśli</p>
+                            <p>dyskonfort klientów</p>
+                            <p>przestarzałe metody</p>
+                            <p>przestarzałe metody</p>
+                        </div>
+                        {/*<ul>
                             <li>
                                 <span>Pożegnaj</span> niezręczne sytuacje
                             </li>
@@ -68,41 +97,46 @@ export default function HomePage() {
                             <li>
                                 <span>Pożegnaj</span> negatywne myśli
                             </li>
-                        </ul>
+    </ul>*/}
                     </div>
-                    <img
+                    {/*<img
                         src="waving-person.png"
                         alt="waving-person"
                         className={classes.picturePoints}
-                    />
+                    />*/}
                 </section>
 
-                <section className={`${classes.comparison} ${classes.good}`}>
-                    <img
-                        src="happy-person.png"
-                        alt="happy-person"
-                        className={classes.picturePoints}
-                    />
-                    <div>
-                        <h2>Razem z nami</h2>
-                        <p>Przywitaj</p>
-                        <ul>
-                            <li>
-                                <span>Przywitaj</span> zręczne sytuacje
-                            </li>
-                            <li>
-                                <span>Przywitaj</span> bezgotówkowe napiwki
-                            </li>
-                            <li>
-                                <span>Przywitaj</span> wygodę
-                            </li>
-                        </ul>
-                    </div>
-                </section>
+                {/*
+                    <section className={`${classes.comparison} ${classes.good}`}>
+                        <img
+                            src="happy-person.png"
+                            alt="happy-person"
+                            className={classes.picturePoints}
+                        />
+                        <div>
+                            <h2>Razem z nami</h2>
+                            <p>Przywitaj</p>
+                            <ul>
+                                <li>
+                                    <span>Przywitaj</span> zręczne sytuacje
+                                </li>
+                                <li>
+                                    <span>Przywitaj</span> bezgotówkowe napiwki
+                                </li>
+                                <li>
+                                    <span>Przywitaj</span> wygodę
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                */}
 
                 <section className={classes.description}>
                     <div>
-                        <h3>eNapiwek</h3>
+                        <h3>
+                            Krzyknij{" "}
+                            <span className={classes.title}>eNapiwek</span>
+                        </h3>
                         <p>
                             Nasz zespół stworzył platformę dla kelnerów do
                             łatwiejszej obsługi napiwków bezgotówkowo. Opiera
@@ -117,7 +151,18 @@ export default function HomePage() {
 
                 <section className={classes.steps}>
                     <h2>Jak to działa?</h2>
-                    <div className={classes.stepsListContainer}>
+                    <div className={classes.circlesDiv}>
+                        <div class={classes.circle}>
+                            Kelner daje kod QR klientowi
+                        </div>
+                        <div class={classes.circle}>
+                            Klient skanuje kod QR. Pisz recenzje i płaci napiwek
+                        </div>
+                        <div class={classes.circle}>
+                            Kelner ma pieniądze na koncie
+                        </div>
+                    </div>
+                    {/*<div className={classes.stepsListContainer}>
                         <img
                             src="handshake.png"
                             alt="handshake"
@@ -130,7 +175,7 @@ export default function HomePage() {
                             <li>Klient pisze napiwek</li>
                             <li>Kelner ma pieniądze na koncie</li>
                         </ol>
-                    </div>
+            </div>*/}
                 </section>
 
                 <section className={classes.trusted}>

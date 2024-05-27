@@ -63,14 +63,14 @@ body > div > div {
     transition: 0.1s border linear;
 }
 
-.loginDiv > input:focus {
+.loginDiv input:focus {
     outline: none;
     border: 3px solid var(--color-orange) !important;
 
     transition: 0.1s border linear;
 }
 
-.loginForm > label {
+.loginForm label {
     margin-top: 1rem;
     text-align: left;
     position: relative;

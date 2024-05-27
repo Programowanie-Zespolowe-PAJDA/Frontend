@@ -6,38 +6,38 @@
     max-width: 100rem;
     margin: 0 auto;
     padding: 0 var(--spacing-5);
-    margin-top: var(--spacing-10);
+    margin-top: var(--spacing-12);
 }
 
 .button {
     justify-self: end;
     align-self: end;
-    color: black;
     text-decoration: none;
-    padding: var(--spacing-3) var(--spacing-5);
+    padding: var(--spacing-4) var(--spacing-6);
     border-radius: var(--spacing-2);
     border: 0;
-    background-color: orange;
-    color: white;
+    background-color: var(--color-orange);
+    color: var(--color-white);
     font-size: var(--font-3);
     font-weight: 600;
     cursor: pointer;
 }
 .button:disabled {
-    background-color: gray;
+    background-color: var(--color-gray);
     cursor: default;
 }
 
 .passwordButtons {
     display: flex;
     justify-content: end;
-    gap: var(--spacing-4);
+    gap: var(--spacing-6);
 }
 .buttonReset {
     background: 0;
     border: 0;
-    color: var(--color-text);
+    color: var(--color-orange);
     font-size: var(--font-3);
+    font-weight: 700;
     cursor: pointer;
 }
 
@@ -45,11 +45,20 @@
 .password,
 .qr {
     justify-items: center;
-    border: 2px solid black;
-    border-radius: var(--spacing-2);
-    box-shadow: 0 1rem 1rem 0rem rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--color-gray);
+    border-radius: var(--spacing-1);
+    box-shadow: 0 1rem 1rem 0rem #12030944;
     /* background-color: white; */
     padding: var(--spacing-5) var(--spacing-7);
+}
+
+.data input:focus,
+.password input:focus,
+.qr input:focus {
+    outline: none;
+    border-bottom: 3px solid var(--color-orange) !important;
+
+    transition: 0.1s border-bottom linear;
 }
 
 .data,
@@ -59,7 +68,12 @@
 }
 .data h2,
 .password h2 {
-    font-size: var(--font-8);
+    font-size: var(--font-7);
+    letter-spacing: 1px;
+    color: var(--color-black);
+
+    text-decoration: underline solid var(--color-black);
+    text-underline-offset: var(--spacing-5);
 }
 
 .data {
@@ -72,20 +86,38 @@
     grid-template-rows: auto 1fr;
 }
 .dataForm button {
-    align-self: start;
+    align-self: end;
     justify-self: end;
-    padding: var(--spacing-3) var(--spacing-5);
     font-size: var(--font-3);
+    padding: var(--spacing-4) var(--spacing-6);
+
+    background-color: var(--color-orange);
+    margin-bottom: 15px;
 }
+
 .dataInfo {
     display: grid;
     align-items: center;
     grid-template-columns: 15rem 1fr;
-    row-gap: var(--spacing-2);
+    row-gap: var(--spacing-5);
     font-size: var(--font-7);
 }
+
 .dataInfo label {
-    font-weight: 600;
+    padding-top: 16px;
+}
+
+.dataInfo p {
+    padding: 8px 0px 8px 16px;
+    color: var(--color-black) !important;
+}
+
+.dataInfo label,
+.dataInfo h4,
+.dataInfo p {
+    color: var(--color-gray);
+    font-size: var(--font-4);
+    font-weight: 400;
 }
 
 .edit {
@@ -95,14 +127,19 @@
     justify-content: stretch;
 }
 .editInput {
-    color: var(--color-text);
+    color: var(--color-black);
     max-width: 100%;
     border: 0;
     background: 0;
     padding: var(--spacing-3) var(--spacing-5);
     font-size: var(--font-4);
-    border-bottom: 2px solid gray;
+    border-bottom: 2px solid var(--color-gray);
 }
+
+.editInput::placeholder {
+    color: var(--color-gray);
+}
+
 .editInputDark {
     color: var(--color-text-dark);
 }
@@ -121,23 +158,27 @@
     width: auto;
 }
 .buttonQRView {
-    background-color: white;
-    color: rgb(245, 159, 0);
+    background-color: var(--color-white);
+    color: var(--color-orange);
+    font-weight: 700;
     align-self: center;
 }
 .buttonQRDownload {
-    color: white;
-    background-color: rgb(245, 159, 0);
+    color: var(--color-white);
+    background-color: var(--color-orange);
     align-self: center;
 }
 
 .validElement {
-    color: green;
+    color: var(--color-green);
+    font-weight: 600;
 }
 
 .passwordValid {
     justify-self: start;
-    font-size: var(--font-3);
+    font-size: var(--font-2);
+    padding-left: 15px;
+    color: var(--color-gray);
 }
 .validationButtonsContainer {
     display: flex;
@@ -154,8 +195,25 @@
 /* 672px or less */
 @media (max-width: 42em) {
     .container {
-        max-width: 65rem;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto 10rem;
+        display: block;
+        width: 100%;
+        padding: 0px;
+    }
+
+    .container > div {
+        margin-bottom: 20px;
+        width: 95%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .qrImg {
+        max-height: 100px;
+        height: 100%;
+        width: auto;
+    }
+
+    .button {
+        padding: var(--spacing-5) var(--spacing-8);
     }
 }

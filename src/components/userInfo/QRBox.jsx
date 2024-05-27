@@ -24,7 +24,7 @@ export default function QRBox({ id }) {
                 to="/qr"
                 className={`${classes.button} ${classes.buttonQRView}`}
             >
-                Wyświetl
+                Wyświetl kod QR
             </Link>
             <button
                 onClick={downloadQRCode}

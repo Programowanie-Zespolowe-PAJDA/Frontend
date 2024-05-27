@@ -57,9 +57,9 @@ export default function MainNavigation({ token }) {
                 )}
             </div>
             <div className={classes.rightSide}>
-                <button onClick={changeMode} className={classes.themeButton}>
+                {/*<button onClick={changeMode} className={classes.themeButton}>
                     {darkMode ? "jasny" : "ciemny"}
-                </button>
+            </button>*/}
                 {token && (
                     <Form action={"logout"} method={"post"}>
                         <button className={classes.logoutButton}>

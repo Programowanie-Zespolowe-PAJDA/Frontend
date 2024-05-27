@@ -181,25 +181,122 @@ body:has(.fff:hover) .aaa {
     align-items: center;
     justify-content: space-around;
     margin-bottom: var(--spacing-1);
+
+    position: relative;
+
+    height: 300px;
 }
 
 .comparison img {
     height: 300px;
 }
 
-.comparison h2 {
+.comparison h2,
+.description h3 {
     margin-bottom: var(--spacing-2);
-    font-size: var(--font-12);
+    font-size: 92px;
+    color: var(--color-black);
+    letter-spacing: 4px;
+    position: relative;
 }
-.comparison p {
-    font-size: var(--font-8);
+
+.textComparison,
+.textComparison2 {
+    display: inline-block;
+    font-size: var(--font-10);
     font-weight: 600;
     letter-spacing: 0.8rem;
     text-align: center;
     color: var(--color-bad);
     text-transform: uppercase;
     margin-bottom: var(--spacing-5);
+
+    padding: var(--spacing-3) var(--spacing-3);
+
+    background-color: var(--color-white);
+    box-shadow: 0px 0px 10px 10px var(--color-white);
+
+    position: absolute;
 }
+
+.textComparison {
+    top: 10px;
+    left: 60px;
+}
+
+.textComparison2 {
+    color: var(--color-green);
+    bottom: 0px;
+    right: 60px;
+}
+
+.bar,
+.bar2 {
+    display: inline-block;
+    color: var(--color-black) !important;
+    font-size: 18px !important;
+
+    position: absolute;
+    width: max-content;
+}
+
+.bar {
+    animation: spin 10s linear infinite;
+}
+
+.bar2 {
+    animation: spin 10s linear reverse infinite;
+}
+
+.bar p,
+.bar2 p {
+    display: inline-block;
+    margin-right: var(--spacing-4);
+}
+
+.bar {
+    top: 30px;
+    left: 0px;
+}
+
+.bar2 {
+    bottom: 40px;
+    left: 0px;
+    z-index: -4;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%);
+    }
+}
+
+.comparison2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 900px;
+    overflow: hidden;
+    height: 300px;
+}
+
+.comparison2 h2 {
+    align-self: center;
+}
+
+.comparison2 > p:nth-child(1) {
+    position: relative;
+    left: 20px;
+}
+
+.comparison2 > p:nth-child(3) {
+    color: var(--color-green);
+    position: relative;
+    left: 200px;
+}
+
 .comparison ul {
     list-style: none;
 }
@@ -227,23 +324,39 @@ body:has(.fff:hover) .aaa {
     position: relative;
     display: flex;
     justify-content: center;
-    background: url("/qr-plant.png");
-    background-size: contain;
     background-repeat: no-repeat;
     margin-bottom: var(--spacing-9);
     padding: var(--spacing-10) 0;
     color: var(--color-text);
 }
+
+.description h3 {
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.description .title {
+    font-size: 110px;
+    background: #120309;
+    background: linear-gradient(to bottom left, #143109 0%, #fb6107 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .description div {
-    max-width: 50rem;
+    width: 80%;
+    max-width: 900px;
     font-size: var(--font-6);
-    background-color: var(--color-description);
-    border-radius: var(--spacing-5);
-    padding: var(--spacing-5);
-    box-shadow: 0 1rem 2rem 0.5rem rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: var(--spacing-1);
+    padding: var(--spacing-5) var(--spacing-5);
 }
 .description p {
+    margin-top: 40px;
+    text-align: justify;
     line-height: 1.6;
+    color: var(--color-black);
+    opacity: 0.8;
 }
 
 .pictureSteps {
@@ -254,26 +367,78 @@ body:has(.fff:hover) .aaa {
 }
 .steps {
     margin-bottom: var(--spacing-9);
+    max-width: 1000px;
+    width: 90%;
+    margin: auto auto;
+
+    height: 700px;
 }
 .steps h2 {
-    margin-bottom: var(--spacing-7);
+    margin-bottom: var(--spacing-10);
+    color: var(--color-black);
+    font-size: var(--font-14);
 }
 .stepsListContainer {
     position: relative;
 }
+
+.stepsListContainer img {
+    position: absolute;
+    scale: 0.9;
+}
+
 .stepsListContainer ol {
     list-style: none;
     text-align: right;
 }
 .stepsListContainer li {
-    padding: var(--spacing-5) var(--spacing-7);
+    padding: var(--spacing-6) var(--spacing-8);
     border: 0.3rem solid var(--color-steps-border);
-    margin-bottom: var(--spacing-4);
+    margin-bottom: var(--spacing-6);
     font-size: var(--font-6);
+    color: var(--color-black);
+
+    background-color: #fff;
 }
 .stepsListContainer li:last-child {
     color: var(--color-good);
     margin-bottom: 0;
+}
+
+.circlesDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    /* <- here it is */
+}
+
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    width: 300px;
+    height: 300px;
+    font-size: var(--font-7);
+    color: var(--color-white);
+    text-align: center;
+    padding: var(--spacing-6) var(--spacing-6);
+}
+
+.circle:nth-child(1) {
+    background-color: var(--color-black);
+}
+
+.circle:nth-child(2) {
+    background-color: var(--color-black);
+}
+
+.circle:nth-child(3) {
+    background-color: var(--color-black);
+    color: var(--color-orange);
 }
 
 .trusted {
@@ -380,6 +545,20 @@ body:has(.fff:hover) .aaa {
     html {
         font-size: 8px;
     }
+
+    .comparison2 h2 {
+        font-size: 64px;
+    }
+
+    .textComparison {
+        font-size: 24px !important;
+        top: 22px;
+    }
+
+    .textComparison2 {
+        font-size: 24px !important;
+        bottom: 17px;
+    }
 }
 
 /* 576px or less */
@@ -420,5 +599,13 @@ body:has(.fff:hover) .aaa {
         position: absolute;
         top: 1rem;
         left: var(--spacing-6);
+    }
+
+    .comparison2 h2 {
+        font-size: 36px;
+    }
+
+    .comparison2 {
+        height: 200px;
     }
 }

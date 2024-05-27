@@ -1,11 +1,15 @@
 .container {
     max-width: 100rem;
     padding: 0 var(--spacing-8);
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
 }
 .container h2 {
-    font-size: var(--font-10);
+    font-size: var(--font-8);
+    color: var(--color-black);
     margin-bottom: var(--spacing-6);
+    padding: var(--spacing-7) var(--spacing-5);
 }
 .container section {
     margin-bottom: var(--spacing-10);
@@ -22,6 +26,7 @@
 }
 .headerLine h1 {
     font-size: var(--font-13);
+    color: var(--color-black);
 }
 .headerLine hr {
     flex-grow: 1;
@@ -33,31 +38,39 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    position: relative;
 }
 .earnings ol {
     list-style: none;
     text-align: center;
 }
 .earnings h3 {
-    font-size: var(--font-9);
-    color: var(--color-nav-link-current);
+    font-size: var(--font-11);
+    color: var(--color-orange);
     padding: var(--spacing-4) var(--spacing-11);
     margin-bottom: var(--spacing-4);
     border-bottom: 0.1rem solid var(--color-text);
+    font-weight: 200;
 }
 .earnings span {
-    font-size: var(--font-6);
-    color: var(--color-text);
+    font-size: var(--font-5);
+    font-weight: 900;
+    color: var(--color-black);
 }
 .earnings p {
     font-size: var(--font-5);
 }
 .earnings img {
-    width: 15rem;
+    position: relative;
+    width: 20rem;
+    top: -140px;
 }
 .earnings ol {
     list-style: none;
     text-align: center;
+    position: relative;
+    top: -80px;
 }
 .earnings li {
     margin-bottom: var(--spacing-6);
@@ -68,7 +81,7 @@
 }
 .rating ol {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     list-style: none;
     /* gap: var(--spacing-6); */
 }
@@ -78,23 +91,39 @@
 .rating button {
     justify-self: end;
     border: 0;
-    border-radius: var(--spacing-3);
-    background-color: orange;
-    color: var(--color-text-dark);
+    border-radius: var(--spacing-1);
+    background-color: var(--color-orange);
+    color: var(--color-white);
     font-size: var(--font-3);
     font-weight: 600;
-    padding: var(--spacing-3) var(--spacing-5);
+    padding: var(--spacing-4) var(--spacing-6);
+    cursor: pointer;
+    margin-top: 20px;
 }
 .mirror {
     transform: scaleX(-1);
 }
 
+/*
 .comments {
     list-style: none;
     padding: var(--spacing-6) var(--spacing-8);
 }
 .comment {
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}*/
+
+.comments h2 {
+    padding-bottom: var(--spacing-2);
+}
+
+.comments ol {
+    list-style: none;
+    padding: var(--spacing-6) var(--spacing-8);
+}
+.comments li {
+    box-shadow: 8px 6px 0 4px #120309;
+    border: 1px solid #120309;
     padding: var(--spacing-4) var(--spacing-6);
     margin-bottom: var(--spacing-6);
     display: grid;
@@ -106,9 +135,11 @@
 }
 .commentTitle {
     font-size: var(--font-7);
+    color: var(--color-green);
 }
 .commentText {
     font-size: var(--font-5);
+    color: var(--color-black);
     margin: var(--spacing-4) var(--spacing-6);
 }
 
@@ -122,15 +153,27 @@
     border-bottom: 0.1rem solid var(--color-text-dark);
 }
 
+/*
 .ratingComment {
     display: grid;
     justify-self: end;
 }
 .ratingComment ol {
     display: flex;
-    /* justify-content: flex-end; */
+    /* justify-content: flex-end; 
     list-style: none;
 }
 .ratingComment img {
     width: 1.5rem;
+}*/
+
+
+@media (max-width: 36em) {
+    .earnings ol {
+        top: 0px;
+    }
+
+    .earnings img {
+        top: 0px;
+    }
 }

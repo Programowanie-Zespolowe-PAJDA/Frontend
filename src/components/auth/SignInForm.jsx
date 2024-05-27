@@ -28,14 +28,6 @@ export default function SignInForm() {
     }, []);
 
     return (
-<<<<<<< HEAD
-        <Form method={"post"}>
-            <div className={classes.loginForm}>
-                <h1 className={classes.mainHeader}>eNapiwek</h1>
-                <h6 className={classes.descriptionHeader}>
-                    Aplikacja do napiwków QR
-                </h6>
-=======
         <div className={classes.parent}>
             <Form method={"post"} className={classes.singInForm}>
                 <div className={classes.loginForm}>
@@ -45,30 +37,16 @@ export default function SignInForm() {
                             Aplikacja do napiwków QR
                         </h6>
                     </header>
->>>>>>> 1617e0e (Login, Register and a bit HomePage a change css)
 
-                <p
-                    className={
-                        isRetry ? classes.errorMessage : classes.clearMessage
-                    }
-                >
-                    {isRetry && "Incorrect login or password"}
-                </p>
-
-<<<<<<< HEAD
-                <label htmlFor="email">Email</label>
-                <input id="mail" type="email" name="mail" required />
-
-                <label htmlFor="password">Hasło</label>
-                <input id="password" type="password" name="password" required />
-
-                <button className={classes.loginButton}>Zaloguj się</button>
-                <Link to={"/register"} className={classes.registerButton}>
-                    Zarejestruj się
-                </Link>
-            </div>
-        </Form>
-=======
+                    <p
+                        className={
+                            isRetry
+                                ? classes.errorMessage
+                                : classes.clearMessage
+                        }
+                    >
+                        {isRetry && "Incorrect login or password"}
+                    </p>
                     <div className={classes.loginDiv}>
                         <input
                             id="mail"
@@ -104,6 +82,5 @@ export default function SignInForm() {
                 </div>
             </Form>
         </div>
->>>>>>> 1617e0e (Login, Register and a bit HomePage a change css)
     );
 }

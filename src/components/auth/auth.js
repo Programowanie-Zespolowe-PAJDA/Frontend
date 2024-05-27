@@ -1,6 +1,7 @@
 import { redirect } from "react-router-dom";
 import { getBackendUrl } from "../../util/localUrlGeneration.js";
 import { ROLES } from "./roles.js";
+import { toast } from "react-toastify";
 
 // 15 mins token life
 export const msTokenLife = 1000 * 60 * 15;
@@ -20,8 +21,10 @@ export async function action({ request }) {
         body: JSON.stringify(authData),
     });
 
+    const responseData = await response.text();
     if (response.status === 401) {
-        return redirect("?notConfirmed");
+        toast.warning(responseData);
+        return redirect("/auth");
     }
 
     if (response.status !== 200) {
@@ -80,7 +83,10 @@ export async function registerAction({ request }) {
         console.log("Błąd rejestracji!");
     } else {
         console.log("Rejestracja udana");
-        return redirect("/auth?goConfirm");
+        toast.success(
+            "Rejestracja udana! Prosimy teraz potwierdzić adres email."
+        );
+        return redirect("/auth");
     }
 
     return null;

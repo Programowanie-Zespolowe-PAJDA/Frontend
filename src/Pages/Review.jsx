@@ -1,6 +1,7 @@
 import { json, redirect, useLoaderData } from "react-router-dom";
 import ReviewAdd from "../components/review/ReviewAdd";
 import { getBackendUrl } from "../util/localUrlGeneration";
+import { toast } from "react-toastify";
 
 export default function ReviewPage() {
     const userData = useLoaderData();
@@ -34,6 +35,7 @@ export async function reviewAddAction({ request, params }) {
         currency: data.get("currency"),
     };
 
+    console.log("Wysylam");
     const response = await fetch(fetchUrl, {
         method: "POST",
         body: JSON.stringify(reviewData),
@@ -41,20 +43,24 @@ export async function reviewAddAction({ request, params }) {
             "Content-Type": "application/json",
         },
     });
+    console.log("dostalem");
+    console.log(response);
 
     if (response.status === 429) {
         redirect("/cooldown");
     }
 
     if (!response.ok) {
-        const responseData = await response.text();
-        throw json(
-            {
-                message: "Błąd przy wysyłaniu recenzji.",
-                response: responseData,
-            },
-            { status: 500 }
-        );
+        // const responseData = await response.text();
+        // throw json(
+        //     {
+        //         message: "Błąd przy wysyłaniu recenzji.",
+        //         response: responseData,
+        //     },
+        //     { status: 500 }
+        // );
+        toast.error("Błąd przy wysyłaniu napiwka");
+        redirect("");
     }
 
     const responseData = await response.json();

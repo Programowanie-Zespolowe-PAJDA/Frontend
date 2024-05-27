@@ -8,7 +8,7 @@ import ChangeAccountNumber from "./ChangeAccountNumber.jsx";
 export default function UserInfo({ info }) {
     return (
         <section className={classes.container}>
-            <DataBox info={info} />
+            <DataBox data={info} />
             <PasswordBox />
             <QRBox id={info.id} />
             <ChangeEmail oldEmail={info.mail} />

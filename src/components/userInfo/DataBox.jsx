@@ -1,12 +1,14 @@
 import classes from "./UserInfo.module.css";
-import { useFormik } from "formik";
-import { useContext } from "react";
+import { Formik, useFormik } from "formik";
+import { useContext, useState } from "react";
 import * as Yup from "yup";
 import { DarkModeContext } from "../DarkModeProvider";
 import { getAuthToken } from "../auth/auth";
 import { getBackendUrl } from "../../util/localUrlGeneration";
+import { toast } from "react-toastify";
 
-export default function DataBox({ info }) {
+export default function DataBox({ data }) {
+    const [info, setInfo] = useState(data);
     const [darkMode] = useContext(DarkModeContext);
 
     const validationSchemaInfo = Yup.object().shape({
@@ -14,17 +16,15 @@ export default function DataBox({ info }) {
             .required()
             .min(2)
             .max(30)
-            .matches(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*$/)
-            .notOneOf([info.name]),
+            .matches(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*$/),
         surname: Yup.string()
             .required()
             .min(2)
             .max(30)
             .matches(
                 /^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*(?:[- ]?[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*)?$/
-            )
-            .notOneOf([info.surname]),
-        location: Yup.string().required().notOneOf([info.location]),
+            ),
+        location: Yup.string().required(),
     });
 
     const infoFormik = useFormik({
@@ -62,11 +62,31 @@ export default function DataBox({ info }) {
         if (!response.ok) {
             throw new Error("Failed to edit data");
         }
+
+        setInfo((prev) => {
+            return { ...prev, ...sendPackage };
+        });
+
+        toast.success("Zmieniono dane");
+    }
+
+    function checkForChange() {
+        return (
+            info.name !== infoFormik.values.name ||
+            info.surname !== infoFormik.values.surname ||
+            info.location !== infoFormik.values.location
+        );
     }
 
     const inputClass = `${classes.editInput} ${
         darkMode ? classes.editInputDark : ""
     }`;
+
+    console.log(info);
+    console.log(infoFormik);
+    console.log("change");
+    console.log(checkForChange());
+
     return (
         <div className={classes.data}>
             <h2>Twoje dane</h2>
@@ -111,7 +131,13 @@ export default function DataBox({ info }) {
                     <p>{info.bankAccountNumber}</p>
                 </div>
                 <button
-                    disabled={!(infoFormik.isValid && infoFormik.dirty)}
+                    disabled={
+                        !(
+                            infoFormik.isValid &&
+                            infoFormik.dirty &&
+                            checkForChange()
+                        )
+                    }
                     type="submit"
                     className={classes.button}
                 >

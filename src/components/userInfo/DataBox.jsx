@@ -6,26 +6,27 @@ import { DarkModeContext } from "../DarkModeProvider";
 import { getAuthToken } from "../auth/auth";
 import { getBackendUrl } from "../../util/localUrlGeneration";
 
-const validationSchemaInfo = Yup.object().shape({
-    name: Yup.string()
-        .required()
-        .min(2)
-        .max(30)
-        .matches(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*$/)
-        .notOneOf([info.name]),
-    surname: Yup.string()
-        .required()
-        .min(2)
-        .max(30)
-        .matches(
-            /^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*(?:[- ]?[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*)?$/
-        )
-        .notOneOf([info.surname]),
-    location: Yup.string().required().notOneOf([info.location]),
-});
-
 export default function DataBox({ info }) {
     const [darkMode] = useContext(DarkModeContext);
+
+    const validationSchemaInfo = Yup.object().shape({
+        name: Yup.string()
+            .required()
+            .min(2)
+            .max(30)
+            .matches(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*$/)
+            .notOneOf([info.name]),
+        surname: Yup.string()
+            .required()
+            .min(2)
+            .max(30)
+            .matches(
+                /^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*(?:[- ]?[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*)?$/
+            )
+            .notOneOf([info.surname]),
+        location: Yup.string().required().notOneOf([info.location]),
+    });
+
     const infoFormik = useFormik({
         initialValues: {
             name: info.name,

@@ -1,16 +1,21 @@
+body > div > div {
+    height: 100%;
+}
+
 .qrContainer {
-    display: grid;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: var(--spacing-7);
-    margin-top: var(--spacing-7);
 }
 .linkBack:link,
 .linkBack:visited {
-    background-color: orange;
+    background-color: var(--color-orange);
     color: white;
     text-decoration: none;
-    padding: var(--spacing-3) var(--spacing-5);
-    border-radius: var(--spacing-3);
+    padding: var(--spacing-4) var(--spacing-7);
+    border-radius: var(--spacing-1);
     font-size: var(--font-7);
-    justify-self: center;
 }

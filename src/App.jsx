@@ -41,16 +41,7 @@ const router = createBrowserRouter([
         loader: userLoader,
         children: [
             { index: true, element: <HomePage /> },
-            {
-                path: "auth",
-                element: <AuthenticationPage />,
-                action: authAction,
-            },
-            {
-                path: "register",
-                element: <RegisterPage />,
-                action: registerAction,
-            },
+
             {
                 path: "logout",
                 action: logoutAction,
@@ -92,6 +83,17 @@ const router = createBrowserRouter([
                 loader: userPanelLoader,
             },
         ],
+    },
+
+    {
+        path: "register",
+        element: <RegisterPage />,
+        action: registerAction,
+    },
+    {
+        path: "auth",
+        element: <AuthenticationPage />,
+        action: authAction,
     },
     {
         path: "/review/:waiterId",

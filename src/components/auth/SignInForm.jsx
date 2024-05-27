@@ -21,32 +21,59 @@ export default function SignInForm() {
     }, []);
 
     return (
-        <Form method={"post"}>
-            <div className={classes.loginForm}>
-                <h1 className={classes.mainHeader}>eNapiwek</h1>
-                <h6 className={classes.descriptionHeader}>
-                    Aplikacja do napiwków QR
-                </h6>
+        <div className={classes.parent}>
+            <Form method={"post"} className={classes.singInForm}>
+                <div className={classes.loginForm}>
+                    <header>
+                        <h1 className={classes.mainHeader}>eNapiwek</h1>
+                        <h6 className={classes.descriptionHeader}>
+                            Aplikacja do napiwków QR
+                        </h6>
+                    </header>
 
-                <p
-                    className={
-                        isRetry ? classes.errorMessage : classes.clearMessage
-                    }
-                >
-                    {isRetry && "Incorrect login or password"}
-                </p>
+                    <p
+                        className={
+                            isRetry
+                                ? classes.errorMessage
+                                : classes.clearMessage
+                        }
+                    >
+                        {isRetry && "Incorrect login or password"}
+                    </p>
+                    <div className={classes.loginDiv}>
+                        <input
+                            id="mail"
+                            type="email"
+                            name="mail"
+                            placeholder="Wpisz login"
+                            required
+                        />
 
-                <label htmlFor="email">Email</label>
-                <input id="mail" type="email" name="mail" required />
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            placeholder="Wpisz hasło"
+                            required
+                        />
+                    </div>
 
-                <label htmlFor="password">Hasło</label>
-                <input id="password" type="password" name="password" required />
-
-                <button className={classes.loginButton}>Zaloguj się</button>
-                <Link to={"/register"} className={classes.registerButton}>
-                    Zarejestruj się
-                </Link>
-            </div>
-        </Form>
+                    <div className={classes.buttonsDiv}>
+                        <button className={classes.loginButton}>
+                            Zaloguj się
+                        </button>
+                        <div className={classes.registerDiv}>
+                            <span>Nie masz konta? </span>
+                            <Link
+                                to={"/register"}
+                                className={classes.registerButton}
+                            >
+                                Zarejestruj się
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </Form>
+        </div>
     );
 }

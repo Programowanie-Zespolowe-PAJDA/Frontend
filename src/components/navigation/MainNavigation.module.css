@@ -2,32 +2,70 @@
 .adminNav {
     position: relative;
     z-index: 2;
-    background-color: var(--color-nav);
-    padding: 0 var(--spacing-4);
+    background-color: #120309ee;
+    padding: var(--spacing-2) var(--spacing-4);
     display: flex;
     justify-content: space-between;
-    box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.1);
+
+    backdrop-filter: blur(20px);
+
+    position: fixed;
+
+    top: 0px;
+
+    width: 100%;
 }
-.adminNav {
-    justify-content: start;
+
+
+.adminNavigation {
+    top: 65px;
+    padding: 10px 60px;
 }
+
+.adminNavigation a {
+    text-decoration: none;
+    color: var(--color-white);
+}
+
 .rightSide,
 .leftSide {
     display: flex;
     gap: var(--spacing-3);
 }
+
+.leftSide .navLink:not(:last-child) {
+    border-right: dashed 1px #fff9fb88;
+}
+
 .navLink:link,
 .navLink:visited,
 .logoutButton {
-    font-size: var(--font-4);
-    padding: var(--spacing-4) var(--spacing-6);
-    margin-top: var(--spacing-3);
-    margin-bottom: var(--spacing-3);
-    background-color: var(--color-nav-link);
-    border-radius: var(--spacing-3);
+    font-size: var(--font-3);
+    padding: var(--spacing-3) var(--spacing-6);
+    margin-top: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+    color: var(--color-white);
+    letter-spacing: 1px;
+    background-color: #0000;
     border: none;
-    color: black;
-    text-decoration: none;
+
+    text-decoration: underline #0000;
+    text-underline-offset: 0.8em;
+    opacity: 0.9;
+
+    transition:
+        0.1s opacity linear,
+        0.4s text-decoration;
+}
+
+.navLink:hover,
+.logoutButton:hover {
+    opacity: 1;
+    text-decoration: underline var(--color-white);
+
+    transition:
+        0.1s opacity linear,
+        0.4s text-decoration;
 }
 
 .logoutButton:hover {
@@ -36,9 +74,16 @@
 
 .navLink:link.active,
 .navLink:visited.active {
-    color: var(--color-text);
-    background-color: var(--color-nav-link-current);
+    color: var(--color-white);
+    letter-spacing: 2px;
+
+    /*text-decoration: underline dotted var(--color-orange);*/
+    font-weight: 500;
+
+    text-decoration: underline var(--color-orange);
+    text-underline-offset: 0.8em;
 }
+
 .themeButton {
     color: black;
     font-size: var(--font-3);
@@ -53,4 +98,31 @@
 
 .darkText {
     color: var(--color-text-dark);
+}
+
+@media (max-width: 870px) {
+    .adminNavigation {
+        top: 40px;
+    }
+
+    .navLink:link,
+    .navLink:visited,
+    .logoutButton {
+        font-size: var(--font-1);
+    }
+}
+
+@media (max-width: 42em) {
+    .adminNavigation {
+        top: 35px;
+    }
+
+    .navLink:link,
+    .navLink:visited,
+    .logoutButton {
+        font-size: 8px;
+        font-weight: 900;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 }

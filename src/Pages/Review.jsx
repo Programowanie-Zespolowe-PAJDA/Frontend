@@ -47,7 +47,7 @@ export async function reviewAddAction({ request, params }) {
     console.log(response);
 
     if (response.status == 429) {
-        redirect("/cooldown");
+        return redirect("/cooldown");
     }
 
     if (!response.ok) {

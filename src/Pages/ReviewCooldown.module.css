@@ -1,0 +1,13 @@
+.cointainerCooldown {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tooMuch {
+    font-weight: 100;
+    font-size: var(--font-12);
+    color: var(--color-black);
+}

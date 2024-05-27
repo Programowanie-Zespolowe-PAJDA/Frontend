@@ -11,15 +11,17 @@ const validationSchemaInfo = Yup.object().shape({
         .required()
         .min(2)
         .max(30)
-        .matches(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*$/),
+        .matches(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*$/)
+        .notOneOf([info.name]),
     surname: Yup.string()
         .required()
         .min(2)
         .max(30)
         .matches(
             /^[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*(?:[- ]?[A-ZĄĆĘŁŃÓŚŹŻ][a-zząćęłńóśźż]*)?$/
-        ),
-    location: Yup.string().required(),
+        )
+        .notOneOf([info.surname]),
+    location: Yup.string().required().notOneOf([info.location]),
 });
 
 export default function DataBox({ info }) {

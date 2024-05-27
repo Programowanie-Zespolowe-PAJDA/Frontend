@@ -56,14 +56,16 @@ export default function HomePage() {
             <div className={classes.container}>
                 <section className={classes.comparison}>
                     <div className={classes.comparison2}>
-                        <div class={classes.bar}>
+                        <div className={classes.bar}>
                             <p>nieprzyjemnych sytuacji</p>
                             <p>kolejne dni bez napiwków</p>
                             <p>negatywne myśli</p>
                             <p>dyskonfort klientów</p>
                             <p>przestarzałe metody</p>
                             <p>przestarzałe metody</p>
-                            <p class={classes.ppp}>nieprzyjemnych sytuacji</p>
+                            <p className={classes.ppp}>
+                                nieprzyjemnych sytuacji
+                            </p>
                             <p>kolejne dni bez napiwków</p>
                             <p>negatywne myśli</p>
                             <p>dyskonfort klientów</p>
@@ -73,19 +75,19 @@ export default function HomePage() {
                         <p className={classes.textComparison}>Pożegnaj</p>
                         <h2>Razem z nami</h2>
                         <p className={classes.textComparison2}>Przywitaj</p>
-                        <div class={classes.bar2}>
-                            <p>nieprzyjemnych sytuacji</p>
-                            <p>kolejne dni bez napiwków</p>
-                            <p>negatywne myśli</p>
-                            <p>dyskonfort klientów</p>
-                            <p>przestarzałe metody</p>
-                            <p>przestarzałe metody</p>
-                            <p class={classes.ppp}>nieprzyjemnych sytuacji</p>
-                            <p>kolejne dni bez napiwków</p>
-                            <p>negatywne myśli</p>
-                            <p>dyskonfort klientów</p>
-                            <p>przestarzałe metody</p>
-                            <p>przestarzałe metody</p>
+                        <div className={classes.bar2}>
+                            <p>Konfortowe sytuacje</p>
+                            <p>kolejne dni z napiwkami</p>
+                            <p>spokojną głowe</p>
+                            <p>konfort klientów</p>
+                            <p>wykorzystanie kodów QR</p>
+                            <p>wykorzystanie kodów QR</p>
+                            <p className={classes.ppp}>Konfortowe sytuacje</p>
+                            <p>kolejne dni z napiwkami</p>
+                            <p>spokojną głowe</p>
+                            <p>konfort klientów</p>
+                            <p>wykorzystanie kodów QR</p>
+                            <p>wykorzystanie kodów QR</p>
                         </div>
                         {/*<ul>
                             <li>
@@ -151,17 +153,7 @@ export default function HomePage() {
 
                 <section className={classes.steps}>
                     <h2>Jak to działa?</h2>
-                    {/*<div className={classes.circlesDiv}>
-                        <div class={classes.circle}>
-                            Kelner daje kod QR klientowi
-                        </div>
-                        <div class={classes.circle}>
-                            Klient skanuje kod QR. Pisz recenzje i płaci napiwek
-                        </div>
-                        <div class={classes.circle}>
-                            Kelner ma pieniądze na koncie
-                        </div>
-            </div>*/}
+
                     <div className={classes.stepsListContainer}>
                         <img
                             src="handshake.png"

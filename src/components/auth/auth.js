@@ -21,8 +21,8 @@ export async function action({ request }) {
         body: JSON.stringify(authData),
     });
 
-    const responseData = await response.text();
     if (response.status === 401) {
+        const responseData = await response.text();
         toast.warning(responseData);
         return redirect("/auth");
     }
@@ -30,6 +30,9 @@ export async function action({ request }) {
     if (response.status !== 200) {
         return redirect("?retry=true");
     }
+
+    console.log("response");
+    console.log(response);
 
     const responseJson = await response.json();
     const rToken = responseJson.token;

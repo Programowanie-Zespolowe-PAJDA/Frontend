@@ -37,6 +37,9 @@ export default function UserList({ initialData }) {
             setData((prev) => {
                 return prev.filter((user) => user.id !== id);
             });
+            setSearchedList((prev) => {
+                return prev.filter((user) => user.id !== id);
+            });
         }
     }
     function searchList(term) {
@@ -48,6 +51,9 @@ export default function UserList({ initialData }) {
             )
         );
     }
+
+    console.log("searched list");
+    console.log(searchedList);
 
     return (
         <section className={classes.container}>

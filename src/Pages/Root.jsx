@@ -7,10 +7,6 @@ import { DarkModeContext } from "../components/DarkModeProvider.jsx";
 import classes from "./dark.module.css";
 import { getTimeLeft, handleTokenRefresh } from "../components/auth/auth.js";
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import toastClasses from "./Toast.module.css";
-
 export default function RootLayout() {
     const user = useLoaderData();
     const [darkMode] = useContext(DarkModeContext);
@@ -32,10 +28,7 @@ export default function RootLayout() {
         <div className={darkMode ? classes.dark : undefined}>
             <MainNavigation token={user} />
             {user && user.role === ROLES.ADMIN && <AdminNavigation />}
-            <ToastContainer
-                position="top-center"
-                className={toastClasses.toast}
-            />
+
             <Outlet />
         </div>
     );

@@ -46,7 +46,7 @@ export async function reviewAddAction({ request, params }) {
     console.log("dostalem");
     console.log(response);
 
-    if (response.status === 429) {
+    if (response.status == 429) {
         redirect("/cooldown");
     }
 
@@ -60,7 +60,7 @@ export async function reviewAddAction({ request, params }) {
         //     { status: 500 }
         // );
         toast.error("Błąd przy wysyłaniu napiwka");
-        redirect("");
+        return redirect("");
     }
 
     const responseData = await response.json();

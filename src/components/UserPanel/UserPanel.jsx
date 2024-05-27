@@ -84,14 +84,14 @@ export default function UserPanel({ initialData }) {
                 darkMode ? classes.dark : undefined
             }`}
         >
+            <CurrencySelector
+                changeFunction={setCurrency}
+                current={data.currency}
+            />
             <header className={classes.header}>
                 <div className={classes.headerLine}>
                     <h1>Panel</h1>
                     <hr />
-                    <CurrencySelector
-                        changeFunction={setCurrency}
-                        current={data.currency}
-                    />
                 </div>
                 <div className={classes.headerLine}>
                     <h1>Napiwków</h1>

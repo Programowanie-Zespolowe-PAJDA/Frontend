@@ -15,7 +15,7 @@ body > div > div {
     max-width: 1600px;
     border: #7c7c7c 2px solid;
     display: flex;
-    height: 500px;
+    height: 550px;
 }
 
 .formArea {
@@ -23,14 +23,18 @@ body > div > div {
     margin: 2rem auto;
     font-size: var(--font-12);
     position: relative;
-    padding-top: 25px;
+    padding-top: 10px;
+}
+
+.formArea > p {
+    height: 68px;
 }
 
 .registerImage {
     height: 600px;
     margin-left: 5rem;
     overflow: visible;
-    margin-top: -50px;
+    margin-top: -25px;
     padding: 5px;
 }
 
@@ -111,6 +115,14 @@ body > div > div {
     text-align: center;
     margin-top: 1rem;
     font-weight: bold;
+}
+
+.errorInput {
+    color: #f00;
+    font-size: var(--font-1);
+    letter-spacing: 1px;
+    text-align: right;
+    padding-right: var(--spacing-3);
 }
 
 @media (max-width: 1400px) {

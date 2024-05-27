@@ -3,8 +3,9 @@ import classes from "./MainNavigation.module.css";
 
 export default function AdminNavigation() {
     return (
-
-        <nav className={`${classes.mainNav} ${classes.adminNavigation} ${classes.adminNav}`}>
+        <nav
+            className={`${classes.mainNav} ${classes.adminNavigation} ${classes.adminNav}`}
+        >
             <NavLink
                 to="thankyou"
                 className={({ isActive }) =>
@@ -24,9 +25,7 @@ export default function AdminNavigation() {
             <NavLink
                 to="reviewlist"
                 className={({ isActive }) =>
-                    `${classes.navLink} ${
-                        isActive ? classes.active : undefined
-                    }`
+                    isActive ? classes.active : undefined
                 }
             >
                 Review lista
@@ -34,9 +33,7 @@ export default function AdminNavigation() {
             <NavLink
                 to="userlist"
                 className={({ isActive }) =>
-                    `${classes.navLink} ${
-                        isActive ? classes.active : undefined
-                    }`
+                    isActive ? classes.active : undefined
                 }
             >
                 Lista użytkowników

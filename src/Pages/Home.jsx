@@ -151,7 +151,7 @@ export default function HomePage() {
 
                 <section className={classes.steps}>
                     <h2>Jak to działa?</h2>
-                    <div className={classes.circlesDiv}>
+                    {/*<div className={classes.circlesDiv}>
                         <div class={classes.circle}>
                             Kelner daje kod QR klientowi
                         </div>
@@ -161,8 +161,8 @@ export default function HomePage() {
                         <div class={classes.circle}>
                             Kelner ma pieniądze na koncie
                         </div>
-                    </div>
-                    {/*<div className={classes.stepsListContainer}>
+            </div>*/}
+                    <div className={classes.stepsListContainer}>
                         <img
                             src="handshake.png"
                             alt="handshake"
@@ -175,10 +175,10 @@ export default function HomePage() {
                             <li>Klient pisze napiwek</li>
                             <li>Kelner ma pieniądze na koncie</li>
                         </ol>
-            </div>*/}
+                    </div>
                 </section>
 
-                <section className={classes.trusted}>
+                {/*<section className={classes.trusted}>
                     <h2>Zaufali nam</h2>
 
                     <div className={classes.trustedGrid}>
@@ -187,7 +187,7 @@ export default function HomePage() {
                         <img src="qr-code.jpg" alt="qr-code" />
                         <img src="qr-code.jpg" alt="qr-code" />
                     </div>
-                </section>
+                </section>*/}
             </div>
 
             <section className={classes.contact}>

@@ -41,9 +41,24 @@
     cursor: pointer;
 }
 
+.email {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.errorInput {
+    color: #f00;
+    font-size: var(--font-1);
+    letter-spacing: 1px;
+    text-align: right;
+    padding-right: var(--spacing-3);
+}
+
 .data,
 .password,
-.qr {
+.qr,
+.email {
     justify-items: center;
     border: 2px solid var(--color-gray);
     border-radius: var(--spacing-1);
@@ -67,10 +82,13 @@
     gap: var(--spacing-6);
 }
 .data h2,
-.password h2 {
+.password h2,
+.email h2 {
     font-size: var(--font-7);
     letter-spacing: 1px;
     color: var(--color-black);
+
+    text-align: center;
 
     text-decoration: underline solid var(--color-black);
     text-underline-offset: var(--spacing-5);
@@ -200,7 +218,8 @@
         padding: 0px;
     }
 
-    .container > div {
+    .container > div,
+    .email {
         margin-bottom: 20px;
         width: 95%;
         margin-right: auto;

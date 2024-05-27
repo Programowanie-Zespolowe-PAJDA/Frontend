@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import classes from "./UserInfo.module.css";
 import { getBackendUrl } from "../../util/localUrlGeneration.js";
 import { getAuthToken } from "../auth/auth.js";
 import { toast } from "react-toastify";
@@ -55,37 +56,45 @@ export default function ChangeAccountNumber(info) {
     }
 
     return (
-        <form onSubmit={formikAccount.handleSubmit}>
-            {formikAccount.errors.account && formikAccount.touched.account && (
-                <>{formikAccount.errors.account}</>
-            )}
+        <form onSubmit={formikAccount.handleSubmit} className={classes.email}>
+            <h2>Zmień nr konta</h2>
 
             <input
                 id="account"
                 name="account"
                 type="string"
                 placeholder="Nowy numer konta"
+                className={classes.editInput}
                 onChange={formikAccount.handleChange}
                 onBlurCapture={formikAccount.handleBlur}
             />
-            <br />
 
-            {formikAccount.errors.confirmedAccount &&
-                formikAccount.touched.confirmedAccount && (
-                    <>{formikAccount.errors.confirmedAccount}</>
-                )}
+            {formikAccount.errors.account && formikAccount.touched.account && (
+                <div className={classes.errorInput}>
+                    {formikAccount.errors.account}
+                </div>
+            )}
 
             <input
                 id="confirmedAccount"
                 name="confirmedAccount"
                 placeholder={"Powtórz nowy numer konta"}
+                className={classes.editInput}
                 onChange={formikAccount.handleChange}
                 onBlurCapture={formikAccount.handleBlur}
             />
-            <br />
+
+            {formikAccount.errors.confirmedAccount &&
+                formikAccount.touched.confirmedAccount && (
+                    <div className={classes.errorInput}>
+                        {formikAccount.errors.confirmedAccount}
+                    </div>
+                )}
+
             <button
                 disabled={!(formikAccount.isValid && formikAccount.dirty)}
                 type="submit"
+                className={classes.button}
             >
                 Zmień numer konta
             </button>

@@ -4,6 +4,8 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
+
+    position: relative;
 }
 .container h2 {
     font-size: var(--font-8);
@@ -18,11 +20,14 @@
 .header {
     margin-top: var(--spacing-8);
     margin-bottom: var(--spacing-8);
+    position: relative;
 }
 .headerLine {
     display: flex;
     align-items: center;
     gap: var(--spacing-7);
+
+    position: relative;
 }
 .headerLine h1 {
     font-size: var(--font-13);
@@ -104,6 +109,42 @@
     transform: scaleX(-1);
 }
 
+.currencyContainer {
+    position: absolute;
+    z-index: 1;
+    top: 30px;
+    right: 20px;
+    box-shadow: 0 0px 0px 10px var(--color-white);
+}
+
+.currencyContainer button {
+    width: 150px;
+
+    font-size: var(--font-3);
+    color: var(--color-black);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-black);
+
+    padding: var(--spacing-3) var(--spacing-6);
+    cursor: pointer;
+
+    transition:
+        0.4s color linear,
+        0.2s background-color linear,
+        0.1s border linear;
+}
+
+.currencyContainer button:hover {
+    background-color: var(--color-black);
+    border: 1px solid var(--color-white);
+    color: var(--color-white);
+
+    transition:
+        0.4s color linear,
+        0.2s background-color linear,
+        0.1s border linear;
+}
+
 /*
 .comments {
     list-style: none;
@@ -117,19 +158,25 @@
     padding-bottom: var(--spacing-2);
 }
 
-.comments ol {
+.comments > ol {
     list-style: none;
     padding: var(--spacing-6) var(--spacing-8);
 }
-.comments li {
+.comment {
     box-shadow: 8px 6px 0 4px #120309;
     border: 1px solid #120309;
     padding: var(--spacing-4) var(--spacing-6);
     margin-bottom: var(--spacing-6);
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-columns: auto auto;
 }
+
+.commentTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: var(--spacing-3) var(--spacing-2);
+}
+
 .ccomment:last-child {
     margin-bottom: 0;
 }
@@ -141,6 +188,7 @@
     font-size: var(--font-5);
     color: var(--color-black);
     margin: var(--spacing-4) var(--spacing-6);
+    text-align: justify;
 }
 
 .dark hr {
@@ -153,20 +201,18 @@
     border-bottom: 0.1rem solid var(--color-text-dark);
 }
 
-/*
 .ratingComment {
     display: grid;
     justify-self: end;
 }
 .ratingComment ol {
     display: flex;
-    /* justify-content: flex-end; 
+    /* justify-content: flex-end; */
     list-style: none;
 }
 .ratingComment img {
     width: 1.5rem;
-}*/
-
+}
 
 @media (max-width: 36em) {
     .earnings ol {

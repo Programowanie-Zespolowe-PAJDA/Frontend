@@ -7,11 +7,13 @@ export default function Comments({ commentList }) {
             {commentList &&
                 commentList.map((comment, index) => (
                     <li key={index} className={classes.comment}>
-                        <h4 className={classes.commentTitle}>
-                            {comment.clientName}
-                        </h4>
-                        <div className={classes.ratingComment}>
-                            <UserRating rating={comment.rating} />
+                        <div className={classes.commentTop}>
+                            <h4 className={classes.commentTitle}>
+                                {comment.clientName}
+                            </h4>
+                            <div className={classes.ratingComment}>
+                                <UserRating rating={comment.rating} />
+                            </div>
                         </div>
                         <p className={classes.commentText}>{comment.comment}</p>
                     </li>

@@ -1,4 +1,5 @@
 import { Bar } from "react-chartjs-2";
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -24,6 +25,7 @@ export default function TipChart({ tipData }) {
         ),
         datasets: [
             {
+                maxBarThickness: 140,
                 label: "Zarobki",
                 data: tipData?.map((tipMonth) => tipMonth.amount / 100),
                 backgroundColor: "rgba(255,165,0, 0.5)",
@@ -52,5 +54,6 @@ export default function TipChart({ tipData }) {
             },
         },
     };
+
     return <Bar options={options} data={data} />;
 }

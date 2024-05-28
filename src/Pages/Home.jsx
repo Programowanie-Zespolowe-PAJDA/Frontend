@@ -1,13 +1,13 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { getBackendUrl } from "../util/localUrlGeneration";
 import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function HomePage() {
     // This component should be probably split to multiple smaller ones!
     const nickRef = useRef();
     const textRef = useRef();
-    const [reportSuccess, setReportSuccess] = useState(false);
 
     async function sendReport(event) {
         event.preventDefault();
@@ -30,7 +30,7 @@ export default function HomePage() {
             throw new Error("Failed to send report");
         }
 
-        setReportSuccess(true);
+        toast.success("Wysłano wiadomość");
     }
 
     return (
@@ -59,85 +59,44 @@ export default function HomePage() {
                         <div className={classes.bar}>
                             <p>nieprzyjemnych sytuacji</p>
                             <p>kolejne dni bez napiwków</p>
-                            <p>negatywne myśli</p>
-                            <p>dyskonfort klientów</p>
                             <p>przestarzałe metody</p>
+                            <p>negatywne myśli</p>
+                            <p>dyskomfort klientów</p>
                             <p>przestarzałe metody</p>
                             <p className={classes.ppp}>
                                 nieprzyjemnych sytuacji
                             </p>
                             <p>kolejne dni bez napiwków</p>
-                            <p>negatywne myśli</p>
-                            <p>dyskonfort klientów</p>
                             <p>przestarzałe metody</p>
+                            <p>negatywne myśli</p>
+                            <p>dyskomfort klientów</p>
                             <p>przestarzałe metody</p>
                         </div>
                         <p className={classes.textComparison}>Pożegnaj</p>
                         <h2>Razem z nami</h2>
                         <p className={classes.textComparison2}>Przywitaj</p>
                         <div className={classes.bar2}>
-                            <p>Konfortowe sytuacje</p>
+                            <p>Komfortowe sytuacje</p>
                             <p>kolejne dni z napiwkami</p>
+                            <p>wykorzystanie kodów QR</p>
                             <p>spokojną głowe</p>
-                            <p>konfort klientów</p>
+                            <p>komfort klientów</p>
                             <p>wykorzystanie kodów QR</p>
-                            <p>wykorzystanie kodów QR</p>
-                            <p className={classes.ppp}>Konfortowe sytuacje</p>
+                            <p className={classes.ppp}>Komfortowe sytuacje</p>
                             <p>kolejne dni z napiwkami</p>
-                            <p>spokojną głowe</p>
-                            <p>konfort klientów</p>
                             <p>wykorzystanie kodów QR</p>
+                            <p>spokojną głowe</p>
+                            <p>komfort klientów</p>
                             <p>wykorzystanie kodów QR</p>
                         </div>
-                        {/*<ul>
-                            <li>
-                                <span>Pożegnaj</span> niezręczne sytuacje
-                            </li>
-                            <li>
-                                <span>Pożegnaj</span> kolejne dni bez napiwków
-                            </li>
-                            <li>
-                                <span>Pożegnaj</span> negatywne myśli
-                            </li>
-    </ul>*/}
                     </div>
-                    {/*<img
-                        src="waving-person.png"
-                        alt="waving-person"
-                        className={classes.picturePoints}
-                    />*/}
                 </section>
-
-                {/*
-                    <section className={`${classes.comparison} ${classes.good}`}>
-                        <img
-                            src="happy-person.png"
-                            alt="happy-person"
-                            className={classes.picturePoints}
-                        />
-                        <div>
-                            <h2>Razem z nami</h2>
-                            <p>Przywitaj</p>
-                            <ul>
-                                <li>
-                                    <span>Przywitaj</span> zręczne sytuacje
-                                </li>
-                                <li>
-                                    <span>Przywitaj</span> bezgotówkowe napiwki
-                                </li>
-                                <li>
-                                    <span>Przywitaj</span> wygodę
-                                </li>
-                            </ul>
-                        </div>
-                    </section>
-                */}
 
                 <section className={classes.description}>
                     <div>
                         <h3>
-                            Krzyknij{" "}
-                            <span className={classes.title}>eNapiwek</span>
+                            Krzyknij
+                            <h3 className={classes.title}>eNapiwek</h3>
                         </h3>
                         <p>
                             Nasz zespół stworzył platformę dla kelnerów do
@@ -169,17 +128,6 @@ export default function HomePage() {
                         </ol>
                     </div>
                 </section>
-
-                {/*<section className={classes.trusted}>
-                    <h2>Zaufali nam</h2>
-
-                    <div className={classes.trustedGrid}>
-                        <img src="qr-code.jpg" alt="qr-code" />
-                        <img src="qr-code.jpg" alt="qr-code" />
-                        <img src="qr-code.jpg" alt="qr-code" />
-                        <img src="qr-code.jpg" alt="qr-code" />
-                    </div>
-                </section>*/}
             </div>
 
             <section className={classes.contact}>
@@ -201,11 +149,6 @@ export default function HomePage() {
                         required
                     />
                     <button type="submit">Wyślij</button>
-                    {reportSuccess && (
-                        <div className={classes.reportSuccess}>
-                            Pomyślnie wysłano wiadomość
-                        </div>
-                    )}
                 </form>
             </section>
 

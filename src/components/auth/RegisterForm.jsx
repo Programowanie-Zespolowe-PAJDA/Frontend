@@ -159,7 +159,7 @@ export default function RegisterForm() {
                         <input
                             id="location"
                             name="location"
-                            placeholder="Wpisz lokacja"
+                            placeholder="Wpisz nazwę restauracji"
                             value={registerFormik.values.location}
                             onChange={registerFormik.handleChange}
                             onBlurCapture={registerFormik.handleBlur}

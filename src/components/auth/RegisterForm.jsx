@@ -142,7 +142,7 @@ export default function RegisterForm() {
                             id="retypedPassword"
                             type="password"
                             name="retypedPassword"
-                            placeholder="powtórz Hasło"
+                            placeholder="Powtórz hasło"
                             value={registerFormik.values.retypedPassword}
                             onChange={registerFormik.handleChange}
                             onBlurCapture={registerFormik.handleBlur}

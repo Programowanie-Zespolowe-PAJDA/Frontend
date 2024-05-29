@@ -1,29 +1,38 @@
-import { useRef } from "react";
 import { getBackendUrl } from "../util/localUrlGeneration";
 import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export default function HomePage() {
-    // This component should be probably split to multiple smaller ones!
-    const nickRef = useRef();
-    const textRef = useRef();
+    const validationSchemaMessage = Yup.object().shape({
+        nick: Yup.string().required("Pole wymagane").max(20, "Max 20 znaków"),
+        mail: Yup.string().required("Pole wymagane").email("Zła forma emaila"),
+        text: Yup.string()
+            .required("Pole wymagane")
+            .max(1500, "Max 1500 znaków"),
+    });
+    const messageFormik = useFormik({
+        initialValues: {
+            nick: "",
+            mail: "",
+            text: "",
+        },
+        onSubmit: (values) => sendReport(values),
+        validateOnChange: true,
+        validationSchema: validationSchemaMessage,
+    });
 
-    async function sendReport(event) {
-        event.preventDefault();
+    async function sendReport(values) {
         const fetchUrl = getBackendUrl() + "/reports";
-
-        const reportData = {
-            nick: nickRef.current.value,
-            text: textRef.current.value,
-        };
 
         const response = await fetch(fetchUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(reportData),
+            body: JSON.stringify(values),
         });
 
         if (!response.ok) {
@@ -31,6 +40,7 @@ export default function HomePage() {
         }
 
         toast.success("Wysłano wiadomość");
+        messageFormik.resetForm();
     }
 
     return (
@@ -133,21 +143,55 @@ export default function HomePage() {
             <section className={classes.contact}>
                 <h3>Zainteresowany?</h3>
                 <p>Napisz do nas aby dowiedzieć się szczegółów</p>
-                <form onSubmit={sendReport} className={classes.contactForm}>
+                <form
+                    onSubmit={messageFormik.handleSubmit}
+                    className={classes.contactForm}
+                >
                     <input
-                        ref={nickRef}
+                        id="nick"
+                        name="nick"
+                        type="text"
                         placeholder="Imię"
-                        minLength={1}
-                        maxLength={20}
-                        required
+                        value={messageFormik.values.nick}
+                        onChange={messageFormik.handleChange}
+                        onBlurCapture={messageFormik.handleBlur}
                     />
+                    {messageFormik.errors.nick &&
+                        messageFormik.touched.nick && (
+                            <div className={classes.errorInput}>
+                                {messageFormik.errors.nick}
+                            </div>
+                        )}
+                    <input
+                        id="mail"
+                        name="mail"
+                        type="text"
+                        placeholder="Mail kontaktowy"
+                        value={messageFormik.values.mail}
+                        onChange={messageFormik.handleChange}
+                        onBlurCapture={messageFormik.handleBlur}
+                    />
+                    {messageFormik.errors.mail &&
+                        messageFormik.touched.mail && (
+                            <div className={classes.errorInput}>
+                                {messageFormik.errors.mail}
+                            </div>
+                        )}
                     <textarea
-                        ref={textRef}
+                        id="text"
+                        name="text"
+                        type="text"
                         placeholder="Pytanie, pomysł, propozycja..."
-                        minLength={1}
-                        maxLength={1500}
-                        required
+                        value={messageFormik.values.text}
+                        onChange={messageFormik.handleChange}
+                        onBlurCapture={messageFormik.handleBlur}
                     />
+                    {messageFormik.errors.text &&
+                        messageFormik.touched.text && (
+                            <div className={classes.errorInput}>
+                                {messageFormik.errors.text}
+                            </div>
+                        )}
                     <button type="submit">Wyślij</button>
                 </form>
             </section>

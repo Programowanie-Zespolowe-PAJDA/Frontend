@@ -563,6 +563,14 @@ body:has(.fff:hover) .aaa {
     width: 80%;
 }
 
+.errorInput {
+    color: #f00;
+    font-size: var(--font-1);
+    letter-spacing: 1px;
+    text-align: right;
+    padding-right: var(--spacing-3);
+}
+
 @media (max-width: 1200px) {
     .headerContainer h1 {
         font-size: var(--font-16);

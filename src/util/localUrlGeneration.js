@@ -1,13 +1,15 @@
 import { LOCAL } from "../App.jsx";
 
-// TODO: Why is this file upper camel case? You probably should use one convention
-
 export function getBackendUrl() {
     return LOCAL
         ? "http://localhost:8080"
-        : "https://enapiwek-api.onrender.com";
+        : import.meta.env.VITE_API_BACKEND_URL ||
+              "https://enapiwek.onrender.com";
 }
 
 export function getFrontendUrl() {
-    return LOCAL ? "http://localhost:5173" : "https://enapiwek.onrender.com";
+    return LOCAL
+        ? "http://localhost:5173"
+        : import.meta.env.VITE_API_FRONTEND_URL ||
+              "https://enapiwek.onrender.com";
 }
